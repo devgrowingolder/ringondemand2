@@ -1,0 +1,42 @@
+[
+  {
+    "id": "homepage-exclusivity",
+    "claim": "Every delivery is exclusive.",
+    "source": "Verification required from current campaign terms and operating policy.",
+    "owner": "Operations",
+    "status": "unverified",
+    "reviewDate": null,
+    "expirationDate": null,
+    "pagePlacement": ["homepage", "vertical pages"]
+  },
+  {
+    "id": "homepage-launch-speed",
+    "claim": "Campaigns launch within a stated number of days.",
+    "source": "Verification required from onboarding operations.",
+    "owner": "Operations",
+    "status": "unverified",
+    "reviewDate": null,
+    "expirationDate": null,
+    "pagePlacement": ["homepage"]
+  },
+  {
+    "id": "homepage-customer-stories",
+    "claim": "Named customer outcomes and testimonials.",
+    "source": "Customer approval and source documentation required.",
+    "owner": "Marketing",
+    "status": "unverified",
+    "reviewDate": null,
+    "expirationDate": null,
+    "pagePlacement": ["homepage", "customer experience"]
+  },
+  {
+    "id": "homepage-integrations",
+    "claim": "Named phone, CRM, and calendar integrations.",
+    "source": "Product and implementation verification required.",
+    "owner": "Product",
+    "status": "unverified",
+    "reviewDate": null,
+    "expirationDate": null,
+    "pagePlacement": ["homepage", "buyer workspace"]
+  }
+]

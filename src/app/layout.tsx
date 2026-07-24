@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import "@fontsource-variable/dm-sans";
+import "@fontsource/ibm-plex-mono/400.css";
+import "@fontsource/ibm-plex-mono/500.css";
+import { IntercomChatbot } from "@/components/site/intercom-chatbot";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Website Clone",
-  description: "Pixel-perfect website clone",
+  metadataBase: new URL("https://ringondemand.com"),
+  title: {
+    default: "Ring On Demand | Turn demand into live conversations",
+    template: "%s | Ring On Demand",
+  },
+  description:
+    "Define, route, and review inbound calls, exclusive leads, and appointments from one buyer experience.",
+  openGraph: {
+    title: "Ring On Demand",
+    description: "Turn demand into live conversations.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,11 +26,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>
+        {children}
+        <IntercomChatbot />
+      </body>
     </html>
   );
 }
