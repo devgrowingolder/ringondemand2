@@ -123,7 +123,7 @@ img {
   align-items: center;
   background-color: var(--rid-purple-deep);
   background-image: linear-gradient(rgb(27 4 54 / 24%), rgb(27 4 54 / 24%)),
-    url("/media/rid-announcement-signal.png");
+    url("/media/rid-announcement-signal.jpg");
   background-position: center;
   background-size: cover;
   color: white;
@@ -661,7 +661,7 @@ img {
 
 .home-hero {
   align-items: center;
-  background-image: url("/media/rid-signal-field.png");
+  background-image: url("/media/rid-signal-field.jpg");
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -762,7 +762,7 @@ img {
 }
 
 .campaign-demo-section::before {
-  background-image: url("/media/rid-signal-field.png");
+  background-image: url("/media/rid-signal-field.jpg");
   background-position: center;
   background-size: cover;
   content: "";
@@ -1740,7 +1740,7 @@ img {
 
 .editorial-hero {
   align-items: center;
-  background-image: url("/media/rid-signal-field.png");
+  background-image: url("/media/rid-signal-field.jpg");
   background-position: center bottom;
   background-size: cover;
   border-bottom: 1px solid var(--rid-border);
@@ -1755,7 +1755,7 @@ img {
 .editorial-hero.is-inverse {
   background-color: var(--rid-purple-deep);
   background-image: linear-gradient(rgb(50 19 67 / 90%), rgb(50 19 67 / 90%)),
-    url("/media/rid-signal-field.png");
+    url("/media/rid-signal-field.jpg");
   color: white;
 }
 
@@ -2433,7 +2433,7 @@ img {
   align-items: center;
   background-color: var(--rid-navy);
   background-image: linear-gradient(rgb(13 10 38 / 90%), rgb(13 10 38 / 92%)),
-    url("/media/rid-announcement-signal.png");
+    url("/media/rid-announcement-signal.jpg");
   background-position: center;
   background-size: cover;
   color: white;
