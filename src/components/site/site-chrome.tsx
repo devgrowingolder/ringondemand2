@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { verticals } from "@/lib/verticals";
 
 const productLinks = [
   {
@@ -27,14 +28,7 @@ const productLinks = [
   },
 ];
 
-const verticalLinks = [
-  { href: "/verticals/final-expense", label: "Final expense" },
-  { href: "/verticals/medicare", label: "Medicare" },
-  { href: "/verticals/auto-insurance", label: "Auto insurance" },
-  { href: "/verticals/home-services", label: "Home services" },
-  { href: "/verticals/personal-injury", label: "Personal injury" },
-  { href: "/verticals", label: "View every vertical" },
-];
+const verticalCategories = ["Insurance", "Home services", "Legal", "Financial"];
 
 function NavDropdown({
   label,
@@ -60,10 +54,10 @@ function NavDropdown({
 
 export function AnnouncementBar() {
   return (
-    <Link className="announcement-bar" href="/agents">
-      <span>Meet the new Ring On Demand buyer experience</span>
+    <Link className="announcement-bar" href="/verticals/final-expense">
+      <span>Final Expense calls are now the lead Ring On Demand offer</span>
       <span className="announcement-link">
-        Explore the platform <ArrowRight aria-hidden="true" size={14} />
+        Explore Final Expense <ArrowRight aria-hidden="true" size={14} />
       </span>
     </Link>
   );
@@ -111,14 +105,28 @@ export function SiteHeader() {
             <Link className="nav-link" href="/#buying-models">
               Solutions
             </Link>
-            <NavDropdown label="Verticals">
-              <div className="nav-vertical-list">
-                {verticalLinks.map((item) => (
-                  <Link href={item.href} key={item.href}>
-                    {item.label}
-                  </Link>
+            <NavDropdown label="Verticals" wide>
+              <div className="nav-vertical-mega">
+                {verticalCategories.map((category) => (
+                  <div key={category}>
+                    <p>{category}</p>
+                    {verticals
+                      .filter((vertical) => vertical.category === category)
+                      .map((vertical) => (
+                        <Link
+                          href={`/verticals/${vertical.slug}`}
+                          key={vertical.slug}
+                        >
+                          {vertical.name}
+                        </Link>
+                      ))}
+                  </div>
                 ))}
               </div>
+              <Link className="nav-view-all" href="/verticals">
+                View all verticals
+                <ArrowRight aria-hidden="true" size={14} />
+              </Link>
             </NavDropdown>
             <Link className="nav-link" href="/blog">
               Resources
@@ -164,7 +172,14 @@ export function SiteHeader() {
             <Link href="/#how-it-works">How it works</Link>
             <Link href="/agents">Buyer workspace</Link>
             <Link href="/#buying-models">Buying models</Link>
-            <Link href="/verticals">Verticals</Link>
+            <p className="mobile-nav-label">Verticals</p>
+            <div className="mobile-vertical-grid">
+              {verticals.map((vertical) => (
+                <Link href={`/verticals/${vertical.slug}`} key={vertical.slug}>
+                  {vertical.name}
+                </Link>
+              ))}
+            </div>
             <Link href="/blog">Resources</Link>
             <Link href="/partners">Partners</Link>
           </nav>
@@ -231,6 +246,9 @@ export function SiteFooter() {
         <div>
           <h3>Explore</h3>
           <Link href="/verticals">Verticals</Link>
+          <Link href="/verticals/final-expense">Final Expense</Link>
+          <Link href="/verticals/medicare">Medicare</Link>
+          <Link href="/verticals/home-services">Home Services</Link>
           <Link href="/blog">Resources</Link>
           <Link href="/partners">Partners</Link>
         </div>

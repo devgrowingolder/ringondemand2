@@ -39,14 +39,20 @@ export default async function VerticalPage({ params }: Props) {
 
   const brief = `${vertical.name} inbound calls in Florida on weekdays from 9am to 5pm with a daily limit of 25 calls.`;
   const campaignHref = `/build-campaign?brief=${encodeURIComponent(brief)}`;
+  const categoryClass = vertical.category.toLowerCase().replace(" ", "-");
+  const relatedVerticals = verticals.filter(
+    (item) => item.slug !== vertical.slug && item.category === vertical.category,
+  );
 
   return (
     <SiteShell>
-      <main className="vertical-funnel">
+      <main className={`vertical-funnel vertical-tone-${categoryClass}`}>
         <section className="vertical-funnel-hero">
           <div className="vertical-funnel-copy">
             <p className="section-code">[ {vertical.category} ]</p>
-            <h1>{vertical.headline}</h1>
+            <h1 className={vertical.slug === "final-expense" ? "is-long" : ""}>
+              {vertical.headline}
+            </h1>
             <p>{vertical.description}</p>
             <ul>
               <li>
@@ -62,7 +68,7 @@ export default async function VerticalPage({ params }: Props) {
                 Approve qualification and destination rules
               </li>
             </ul>
-            <Link className="button button-light" href={campaignHref}>
+            <Link className="button button-dark" href={campaignHref}>
               Build this campaign
               <ArrowRight aria-hidden="true" size={15} />
             </Link>
@@ -74,7 +80,10 @@ export default async function VerticalPage({ params }: Props) {
               <span>Buyer approval required</span>
             </div>
             <h2>{vertical.name}</h2>
-            <p>Start with a structured brief. Edit every field before submission.</p>
+            <p>
+              Start with a structured brief. Edit every field before
+              submission.
+            </p>
             <div className="vertical-offer-fields">
               <div>
                 <span>Delivery</span>
@@ -199,6 +208,27 @@ export default async function VerticalPage({ params }: Props) {
             ))}
           </div>
         </section>
+
+        {relatedVerticals.length > 0 && (
+          <section className="vertical-related">
+            <div>
+              <p className="section-code">[ Also in {vertical.category} ]</p>
+              <h2>Explore adjacent campaign pages.</h2>
+            </div>
+            <div>
+              {relatedVerticals.map((item) => (
+                <Link href={`/verticals/${item.slug}`} key={item.slug}>
+                  <span>{item.name}</span>
+                  <ArrowRight aria-hidden="true" size={16} />
+                </Link>
+              ))}
+              <Link href="/verticals">
+                <span>View every vertical</span>
+                <ArrowRight aria-hidden="true" size={16} />
+              </Link>
+            </div>
+          </section>
+        )}
 
         <section className="vertical-faq-section">
           <div>

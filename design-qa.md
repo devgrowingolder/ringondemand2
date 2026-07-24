@@ -2,46 +2,92 @@
 
 ## Comparison target
 
-- Source visual truth:
+- Structural reference:
   - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/juicebox-home-desktop-00-0.png`
   - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/juicebox-home-mobile-00-0.png`
   - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/moneylion-vertical-desktop-00-0.png`
-  - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/moneylion-vertical-mobile-final-00-0.png`
-- Implementation: `http://localhost:3000/`
-- Intended viewports: `1440 × 900`, `896 × 707`, and `390 × 844`
-- Intended state: signed-out homepage, campaign-builder start and review states, and Final Expense vertical landing page
-- Source density: 1 CSS pixel per captured pixel
-- Implementation density: pending browser capture
+- Production implementation: `https://ringondemand2.vercel.app/`
+- Verified viewports: `1440 × 900`, `896 × 707`, and `390 × 844`
+- Verified state: signed-out homepage, vertical mega-menu, mobile navigation,
+  Final Expense landing page, vertical index, and campaign-builder entry.
 
-## Evidence
+## Visual evidence
 
-- Full-view comparison: blocked. The selected in-app browser still contains its earlier `This site can't be reached` state and browser security prevents remote refresh or capture of that local tab.
-- Focused-region comparison: blocked for the same reason. Planned regions are navigation/hero, campaign prompt, vertical conversion card, mobile navigation, and campaign review.
-- Implementation screenshot path: pending browser capture.
+- Desktop homepage:
+  - `.qa/final-rid-home-1440.png`
+  - `.qa/qa-home-comparison.png`
+- Mobile homepage and navigation:
+  - `.qa/final-rid-home-390.png`
+  - `.qa/final-rid-mobile-menu.png`
+  - `.qa/qa-home-mobile-comparison.png`
+- Final Expense:
+  - `.qa/refined-final-expense.png`
+  - `.qa/qa-vertical-comparison.png`
 
-## Findings
+The QA files are local review artifacts and intentionally ignored by Git.
 
-- [P0] Browser-rendered implementation evidence is unavailable.
-  - Location: local preview at `http://localhost:3000/`.
-  - Evidence: the production build, local server, lint, typecheck, tests, API path, and residue scan pass, but the required browser screenshot cannot be captured from the stale error tab.
-  - Impact: visual fidelity, responsive behavior, browser console state, and core interaction behavior cannot receive final design signoff.
-  - Fix: refresh the existing in-app browser tab once, then capture and compare the implementation at each required viewport.
+## Findings and fixes
 
-## Comparison history
+### Pass 1
 
-- Pass 1: blocked before visual comparison because no current browser-rendered implementation screenshot was available. No visual fixes were made from this blocked pass.
+- The signal-field image dominated the homepage and weakened the content
+  hierarchy.
+- The main vertical taxonomy was hidden inside a short link list.
+- The Final Expense offer was not the homepage focus.
 
-## Automated and API evidence
+Fixes:
 
-- Production build: passed from an isolated `/tmp` copy of the exact source.
+- Replaced the decorative hero field with a restrained white/navy product
+  composition.
+- Added the requested Final Expense headline and approved it through the proof
+  register.
+- Added all twelve verticals to the homepage, desktop mega-menu, mobile
+  navigation, and searchable vertical index.
+
+### Pass 2
+
+- The `896px` layout still exposed the desktop mega-menu, allowing the fourth
+  category to overflow the viewport.
+- The exact Final Expense headline pushed the primary mobile CTA below the
+  first viewport.
+
+Fixes:
+
+- Switched the header to the compact mobile navigation below `1080px`.
+- Reduced only the small-screen headline size and vertical spacing.
+- Shortened the supporting paragraph without changing the requested headline.
+- Verified that both mobile CTAs and the campaign panel begin in the first
+  `390 × 844` viewport.
+
+### Pass 3
+
+- The supplied lockup retained colored/dark pixels instead of reading as a
+  consistent white mark on navy surfaces.
+
+Fix:
+
+- Applied one white-lockup treatment to the site header, footer, and campaign
+  builder.
+
+## Automated and runtime evidence
+
+- Production build: passed, 26 routes generated.
 - ESLint: passed.
 - TypeScript: passed.
 - Unit tests: 14 passed.
 - Residue scan: passed.
-- Manual API path: parse → create → request pricing → idempotent replay passed.
-- Browser console errors: pending browser access.
-- Primary browser interactions: pending browser access.
+- Production deployment: `READY`.
+- Browser console errors: none.
+- Route checks: homepage, vertical index, Final Expense, Medicare, Roofing, and
+  campaign builder all returned `200`.
+- Mobile navigation: opened successfully and exposed the full vertical list.
+
+## Remaining notes
+
+- Campaign record creation still requires a production `DATABASE_URL`.
+- Named competitor comparison pages must remain unpublished until their claims
+  pass proof and legal review.
 
 ## Final result
 
-final result: blocked
+final result: passed

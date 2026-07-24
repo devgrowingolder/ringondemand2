@@ -1,16 +1,22 @@
 import {
   ArrowRight,
   CalendarDays,
+  Check,
+  Clock3,
   Headphones,
   Inbox,
+  MapPinned,
   PhoneCall,
+  ShieldCheck,
   SlidersHorizontal,
+  Volume2,
 } from "lucide-react";
 import Link from "next/link";
 import { CampaignBriefDemo } from "@/components/home/campaign-brief-demo";
 import { FAQ } from "@/components/home/faq";
 import { ProductStory } from "@/components/home/product-story";
 import { SiteShell } from "@/components/site/site-chrome";
+import { verticals } from "@/lib/verticals";
 
 const buyingModels = [
   {
@@ -59,23 +65,34 @@ const workspaceFeatures = [
   ],
 ];
 
+const categoryOrder = ["Insurance", "Home services", "Legal", "Financial"];
+
 export default function Home() {
   return (
     <SiteShell>
       <main>
-        <section className="home-hero">
+        <section className="home-hero home-hero-final-expense">
           <div className="hero-fold-mark" aria-hidden="true" />
           <div className="hero-copy">
-            <h1>Turn demand into live conversations.</h1>
+            <p className="hero-eyebrow">
+              <span aria-hidden="true" />
+              Final Expense / Live inbound calls
+            </p>
+            <h1>
+              We Provide High Volume Final Expense Calls That Have Guaranteed
+              Intent &amp; 90 Second Call Times.
+            </h1>
             <p>
-              Describe who you want to reach, where your team can take calls,
-              and how much volume you can handle. Ring On Demand routes
-              exclusive inbound calls, leads, and appointments into one buyer
-              workspace.
+              Set the states, call windows, and daily capacity your team can
+              support. Approve the campaign once, then route every qualified
+              call to your buyer line.
             </p>
             <div className="hero-actions">
-              <Link className="button button-dark" href="/build-campaign">
-                Build a campaign
+              <Link
+                className="button button-purple"
+                href="/build-campaign?brief=Final%20Expense%20inbound%20calls"
+              >
+                Build a Final Expense campaign
               </Link>
               <Link
                 className="button button-outline"
@@ -85,13 +102,82 @@ export default function Home() {
               </Link>
             </div>
           </div>
+
+          <div className="hero-campaign-panel">
+            <div className="hero-panel-top">
+              <span>Campaign specification</span>
+              <span className="hero-live-status">
+                <i aria-hidden="true" />
+                Ready to configure
+              </span>
+            </div>
+            <div className="hero-panel-title">
+              <span>RID / FE / CALLS</span>
+              <h2>Final Expense</h2>
+              <p>Live inbound call campaign</p>
+            </div>
+            <div className="hero-panel-fields">
+              <div>
+                <MapPinned aria-hidden="true" />
+                <span>
+                  <small>Coverage</small>
+                  <strong>Select states and ZIPs</strong>
+                </span>
+              </div>
+              <div>
+                <Clock3 aria-hidden="true" />
+                <span>
+                  <small>Call window</small>
+                  <strong>Set agent availability</strong>
+                </span>
+              </div>
+              <div>
+                <Volume2 aria-hidden="true" />
+                <span>
+                  <small>Daily capacity</small>
+                  <strong>Choose your call volume</strong>
+                </span>
+              </div>
+              <div>
+                <PhoneCall aria-hidden="true" />
+                <span>
+                  <small>Destination</small>
+                  <strong>Route to your buyer line</strong>
+                </span>
+              </div>
+            </div>
+            <div className="hero-panel-foot">
+              <span>
+                <ShieldCheck aria-hidden="true" />
+                Buyer approval required
+              </span>
+              <Link
+                href="/build-campaign?brief=Final%20Expense%20inbound%20calls"
+              >
+                Configure
+                <ArrowRight aria-hidden="true" size={15} />
+              </Link>
+            </div>
+          </div>
         </section>
 
-        <div className="model-strip" aria-label="Available buying models">
-          <span>Inbound calls</span>
-          <span>Exclusive leads</span>
-          <span>Appointments</span>
-          <span>Buyer workspace</span>
+        <div className="model-strip hero-proof-strip" aria-label="Final Expense campaign highlights">
+          <span>
+            <Check aria-hidden="true" />
+            High volume
+          </span>
+          <span>
+            <Check aria-hidden="true" />
+            Guaranteed intent
+          </span>
+          <span>
+            <Clock3 aria-hidden="true" />
+            90 second call times
+          </span>
+          <span>
+            <PhoneCall aria-hidden="true" />
+            Live buyer routing
+          </span>
         </div>
 
         <section className="campaign-demo-section">
@@ -228,9 +314,55 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section-frame home-verticals-section" id="verticals">
+          <div className="section-heading">
+            <p className="section-code">[04] Verticals</p>
+            <div>
+              <h2>One campaign system, built for every market.</h2>
+              <p>
+                Start with Final Expense or choose the vertical that matches
+                your team. Every page carries the same brief, review, and
+                routing experience.
+              </p>
+            </div>
+          </div>
+          <div className="vertical-catalog">
+            {categoryOrder.map((category, categoryIndex) => (
+              <section
+                className={`vertical-catalog-group vertical-tone-${category
+                  .toLowerCase()
+                  .replace(" ", "-")}`}
+                key={category}
+              >
+                <div className="vertical-catalog-head">
+                  <span>0{categoryIndex + 1}</span>
+                  <h3>{category}</h3>
+                </div>
+                <div>
+                  {verticals
+                    .filter((vertical) => vertical.category === category)
+                    .map((vertical) => (
+                      <Link
+                        href={`/verticals/${vertical.slug}`}
+                        key={vertical.slug}
+                      >
+                        <span>{vertical.name}</span>
+                        <ArrowRight aria-hidden="true" size={16} />
+                      </Link>
+                    ))}
+                </div>
+              </section>
+            ))}
+          </div>
+          <Link className="text-link vertical-catalog-all" href="/verticals">
+            Browse all vertical pages
+            <ArrowRight aria-hidden="true" size={16} />
+          </Link>
+        </section>
+
         <section className="section-frame research-section">
           <div className="section-heading">
-            <p className="section-code">[04] Research</p>
+            <p className="section-code">[05] Research</p>
             <div>
               <h2>Why live conversations matter.</h2>
               <p>
@@ -261,7 +393,7 @@ export default function Home() {
 
         <section className="section-frame questions-section">
           <div className="section-heading">
-            <p className="section-code">[05] Questions</p>
+            <p className="section-code">[06] Questions</p>
             <div>
               <h2>Straight answers before you launch.</h2>
               <p>

@@ -12,7 +12,8 @@ export const verticals: VerticalDefinition[] = [
     slug: "final-expense",
     name: "Final Expense",
     category: "Insurance",
-    headline: "Turn Final Expense demand into live conversations.",
+    headline:
+      "We Provide High Volume Final Expense Calls That Have Guaranteed Intent & 90 Second Call Times.",
     description:
       "Define the states, hours, daily volume, qualification rules, and call destination your team can support.",
     qualificationPrompts: [

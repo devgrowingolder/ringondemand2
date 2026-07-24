@@ -1,5 +1,15 @@
 [
   {
+    "id": "final-expense-headline",
+    "claim": "We Provide High Volume Final Expense Calls That Have Guaranteed Intent & 90 Second Call Times.",
+    "source": "Owner-provided website directive dated 2026-07-24.",
+    "owner": "Ring On Demand",
+    "status": "approved",
+    "reviewDate": "2026-07-24",
+    "expirationDate": null,
+    "pagePlacement": ["homepage", "final expense"]
+  },
+  {
     "id": "homepage-exclusivity",
     "claim": "Every delivery is exclusive.",
     "source": "Verification required from current campaign terms and operating policy.",
