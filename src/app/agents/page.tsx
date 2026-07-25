@@ -116,6 +116,7 @@ export default function BuyerWorkspacePage() {
         </NumberedFeature>
 
         <NumberedFeature
+          compact
           copy="Review delivery details, add outcome notes, and follow the applicable credit workflow from the same campaign record."
           number="03"
           title="Keep quality review connected."

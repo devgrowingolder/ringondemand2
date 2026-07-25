@@ -45,15 +45,21 @@ export function NumberedFeature({
   copy,
   children,
   reverse = false,
+  compact = false,
 }: {
   number: string;
   title: string;
   copy: string;
   children: React.ReactNode;
   reverse?: boolean;
+  compact?: boolean;
 }) {
   return (
-    <section className={`numbered-feature ${reverse ? "is-reverse" : ""}`}>
+    <section
+      className={`numbered-feature ${reverse ? "is-reverse" : ""} ${
+        compact ? "is-compact" : ""
+      }`}
+    >
       <div className="numbered-feature-copy">
         <p className="section-code">[{number}]</p>
         <h2>{title}</h2>
