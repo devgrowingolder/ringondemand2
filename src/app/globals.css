@@ -156,7 +156,8 @@ img {
 
 .brand-lockup {
   align-items: center;
-  background: var(--rid-navy);
+  background: var(--rid-canvas);
+  border-right: 1px solid var(--rid-border);
   display: flex;
   flex: 0 0 218px;
   justify-content: center;
@@ -164,7 +165,7 @@ img {
 }
 
 .brand-lockup img {
-  filter: brightness(0) invert(1);
+  filter: brightness(0);
   height: auto;
   width: 182px;
 }
