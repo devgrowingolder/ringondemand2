@@ -54,10 +54,10 @@ function NavDropdown({
 
 export function AnnouncementBar() {
   return (
-    <Link className="announcement-bar" href="/verticals/final-expense">
-      <span>Final Expense calls are now the lead Ring On Demand offer</span>
+    <Link className="announcement-bar" href="/careers">
+      <span>Help build the infrastructure behind live demand</span>
       <span className="announcement-link">
-        Explore Final Expense <ArrowRight aria-hidden="true" size={14} />
+        Explore careers <ArrowRight aria-hidden="true" size={14} />
       </span>
     </Link>
   );
@@ -134,6 +134,9 @@ export function SiteHeader() {
             <Link className="nav-link" href="/partners">
               Partners
             </Link>
+            <Link className="nav-link" href="/careers">
+              Careers
+            </Link>
           </nav>
 
           <div className="desktop-actions">
@@ -182,6 +185,7 @@ export function SiteHeader() {
             </div>
             <Link href="/blog">Resources</Link>
             <Link href="/partners">Partners</Link>
+            <Link href="/careers">Careers</Link>
           </nav>
           <div className="mobile-drawer-actions">
             <a
@@ -255,6 +259,7 @@ export function SiteFooter() {
         <div>
           <h3>Company</h3>
           <Link href="/customers">Customer experience</Link>
+          <Link href="/careers">Careers</Link>
           <a href="mailto:hello@ringondemand.com">Contact</a>
           <a
             href="https://ring-on-demand.proaxis.ai/cx/buyer/login"

@@ -71,28 +71,25 @@ export default function Home() {
   return (
     <SiteShell>
       <main>
-        <section className="home-hero home-hero-final-expense">
+        <section className="home-hero">
           <div className="hero-fold-mark" aria-hidden="true" />
           <div className="hero-copy">
             <p className="hero-eyebrow">
               <span aria-hidden="true" />
-              Final Expense / Live inbound calls
+              Campaign infrastructure / Built around your demand
             </p>
-            <h1>
-              We Provide High Volume Final Expense Calls That Have Guaranteed
-              Intent &amp; 90 Second Call Times.
-            </h1>
+            <h1>Turn demand into live conversations.</h1>
             <p>
-              Set the states, call windows, and daily capacity your team can
-              support. Approve the campaign once, then route every qualified
-              call to your buyer line.
+              Describe who you want to reach, where your team can take calls,
+              and how much volume you can handle. Ring On Demand routes inbound
+              calls, exclusive leads, and appointments into one buyer workspace.
             </p>
             <div className="hero-actions">
               <Link
                 className="button button-purple"
-                href="/build-campaign?brief=Final%20Expense%20inbound%20calls"
+                href="/build-campaign"
               >
-                Build a Final Expense campaign
+                Build a campaign
               </Link>
               <Link
                 className="button button-outline"
@@ -105,30 +102,30 @@ export default function Home() {
 
           <div className="hero-campaign-panel">
             <div className="hero-panel-top">
-              <span>Campaign specification</span>
+              <span>Campaign brief</span>
               <span className="hero-live-status">
                 <i aria-hidden="true" />
                 Ready to configure
               </span>
             </div>
             <div className="hero-panel-title">
-              <span>RID / FE / CALLS</span>
-              <h2>Final Expense</h2>
-              <p>Live inbound call campaign</p>
+              <span>RID / BUY BOX / 01</span>
+              <h2>Your ideal campaign</h2>
+              <p>Calls, leads, or appointments</p>
             </div>
             <div className="hero-panel-fields">
               <div>
                 <MapPinned aria-hidden="true" />
                 <span>
                   <small>Coverage</small>
-                  <strong>Select states and ZIPs</strong>
+                  <strong>Choose states and ZIPs</strong>
                 </span>
               </div>
               <div>
                 <Clock3 aria-hidden="true" />
                 <span>
                   <small>Call window</small>
-                  <strong>Set agent availability</strong>
+                  <strong>Set team availability</strong>
                 </span>
               </div>
               <div>
@@ -152,7 +149,7 @@ export default function Home() {
                 Buyer approval required
               </span>
               <Link
-                href="/build-campaign?brief=Final%20Expense%20inbound%20calls"
+                href="/build-campaign"
               >
                 Configure
                 <ArrowRight aria-hidden="true" size={15} />
@@ -161,22 +158,22 @@ export default function Home() {
           </div>
         </section>
 
-        <div className="model-strip hero-proof-strip" aria-label="Final Expense campaign highlights">
-          <span>
-            <Check aria-hidden="true" />
-            High volume
-          </span>
-          <span>
-            <Check aria-hidden="true" />
-            Guaranteed intent
-          </span>
-          <span>
-            <Clock3 aria-hidden="true" />
-            90 second call times
-          </span>
+        <div className="model-strip hero-proof-strip" aria-label="Ring On Demand campaign models">
           <span>
             <PhoneCall aria-hidden="true" />
-            Live buyer routing
+            Inbound calls
+          </span>
+          <span>
+            <Check aria-hidden="true" />
+            Exclusive leads
+          </span>
+          <span>
+            <CalendarDays aria-hidden="true" />
+            Appointments
+          </span>
+          <span>
+            <ShieldCheck aria-hidden="true" />
+            Buyer-approved rules
           </span>
         </div>
 
@@ -320,9 +317,8 @@ export default function Home() {
             <div>
               <h2>One campaign system, built for every market.</h2>
               <p>
-                Start with Final Expense or choose the vertical that matches
-                your team. Every page carries the same brief, review, and
-                routing experience.
+                Choose the vertical that matches your team. Every page carries
+                the same brief, review, and routing experience.
               </p>
             </div>
           </div>

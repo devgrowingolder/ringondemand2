@@ -8,15 +8,15 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://ringondemand.com"),
   title: {
-    default: "Ring On Demand | High Volume Final Expense Calls",
+    default: "Ring On Demand | Turn Demand Into Live Conversations",
     template: "%s | Ring On Demand",
   },
   description:
-    "Build a Final Expense inbound-call campaign, or explore Ring On Demand campaigns across insurance, home services, legal, and financial verticals.",
+    "Build and manage inbound call, exclusive lead, and appointment campaigns across insurance, home services, legal, and financial markets.",
   openGraph: {
-    title: "Ring On Demand | High Volume Final Expense Calls",
+    title: "Ring On Demand | Turn Demand Into Live Conversations",
     description:
-      "High volume Final Expense calls with guaranteed intent and 90 second call times.",
+      "Describe the demand you need, approve the campaign, and route live conversations into one buyer workspace.",
     type: "website",
   },
 };

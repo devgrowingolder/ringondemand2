@@ -9,7 +9,8 @@
 - Production implementation: `https://ringondemand2.vercel.app/`
 - Verified viewports: `1440 × 900`, `896 × 707`, and `390 × 844`
 - Verified state: signed-out homepage, vertical mega-menu, mobile navigation,
-  Final Expense landing page, vertical index, and campaign-builder entry.
+  Final Expense landing page, vertical index, campaign-builder entry, careers
+  landing page, and talent-network introduction form.
 
 ## Visual evidence
 
@@ -23,6 +24,11 @@
 - Final Expense:
   - `.qa/refined-final-expense.png`
   - `.qa/qa-vertical-comparison.png`
+- Careers:
+  - `.qa/juicebox-careers-desktop-top.png`
+  - `.qa/rid-careers-desktop-top.png`
+  - `.qa/rid-careers-mobile-top.png`
+  - `.qa/careers-reference-vs-rid.png`
 
 The QA files are local review artifacts and intentionally ignored by Git.
 
@@ -69,16 +75,37 @@ Fix:
 - Applied one white-lockup treatment to the site header, footer, and campaign
   builder.
 
+### Pass 4
+
+- Final Expense positioning had leaked into the global metadata, announcement
+  bar, homepage hero, and homepage proof strip.
+- The site did not have a careers destination or a controlled hiring funnel.
+
+Fixes:
+
+- Restored the homepage to the platform-wide “Turn demand into live
+  conversations” position and kept the requested Final Expense claim on its
+  dedicated vertical page.
+- Added `/careers` and `/careers/apply` using the reference’s editorial pacing,
+  numbered sections, focused openings area, process, and FAQ in the original
+  RID visual system.
+- Implemented a transparent general-interest talent-network flow without
+  inventing open roles, compensation, benefits, or employment claims.
+- Compared the reference and implementation together at `1440 × 900`, then
+  separately verified the implementation at `390 × 844`. No P0, P1, or P2
+  visual issues remain.
+
 ## Automated and runtime evidence
 
-- Production build: passed, 26 routes generated.
+- Production build: passed, 28 routes generated.
 - ESLint: passed.
 - TypeScript: passed.
 - Unit tests: 14 passed.
 - Residue scan: passed.
 - Production deployment: `READY`.
 - Browser console errors: none.
-- Route checks: homepage, vertical index, Final Expense, Medicare, Roofing, and
+- Route checks: homepage, careers, talent-network form, buyer workspace,
+  resources, customers, partners, vertical index, sampled verticals, and
   campaign builder all returned `200`.
 - Mobile navigation: opened successfully and exposed the full vertical list.
 
