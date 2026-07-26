@@ -307,8 +307,8 @@ export function CampaignBuilder({
         <p className="section-code">Campaign brief saved</p>
         <h1>Your campaign is ready for the next step.</h1>
         <p>
-          Campaign ID <strong>{campaignId}</strong> now carries the approved
-          brief and contact record into pricing or demo scheduling.
+          Your approved campaign details and contact information will carry
+          into pricing or call scheduling. Reference: <strong>{campaignId}</strong>
         </p>
         {completedAction ? (
           <div className="campaign-action-complete">{completedAction}</div>
@@ -344,7 +344,7 @@ export function CampaignBuilder({
           <p className="section-code">
             {intent === "demo" ? "Demo campaign brief" : "Campaign brief"}
           </p>
-          <h1>Build the buy box once.</h1>
+          <h1>Tell us what you want to buy.</h1>
         </div>
         <span>
           Step {step + 1} of {steps.length}
@@ -378,8 +378,8 @@ export function CampaignBuilder({
               <p className="section-code">Describe</p>
               <h2>What kind of demand do you want?</h2>
               <p>
-                Use normal language. The deterministic parser extracts only what
-                you state and leaves anything ambiguous for confirmation.
+                Use normal language. We&apos;ll organize what you enter and ask
+                you to confirm anything that is missing or unclear.
               </p>
             </div>
             <label>
@@ -640,7 +640,7 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <Clock3 aria-hidden="true" />
               <p className="section-code">Volume, rules, and destination</p>
-              <h2>Set the operating rules.</h2>
+              <h2>Set your volume, filters, and destination.</h2>
             </div>
             <div className="two-column-fields">
               <label className="form-field">
@@ -744,8 +744,8 @@ export function CampaignBuilder({
               <p className="section-code">Contact once</p>
               <h2>Who should own the next step?</h2>
               <p>
-                This contact record is reused for pricing, demo scheduling,
-                onboarding, and operational handoff.
+                Enter your contact details once. We&apos;ll reuse them for
+                pricing, scheduling, and onboarding.
               </p>
             </div>
             <div className="two-column-fields">
@@ -837,10 +837,9 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <CheckCircle2 aria-hidden="true" />
               <p className="section-code">Buyer approval</p>
-              <h2>Review the canonical campaign.</h2>
+              <h2>Review your campaign.</h2>
               <p>
-                No model, seller, or routing process can submit this campaign
-                without your explicit approval.
+                Nothing is submitted until you approve the details below.
               </p>
             </div>
             <dl className="builder-summary">

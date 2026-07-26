@@ -7,7 +7,7 @@ import { SiteShell } from "@/components/site/site-chrome";
 export const metadata: Metadata = {
   title: "Customer experience",
   description:
-    "How Ring On Demand structures the buyer experience without publishing unapproved customer claims.",
+    "See how Ring On Demand makes campaign terms, deliveries, and next steps easier for buyers to understand.",
 };
 
 export default function CustomersPage() {
@@ -18,20 +18,20 @@ export default function CustomersPage() {
           action="Book a walkthrough"
           actionHref="/build-campaign?intent=demo"
           code="[ Customer experience ]"
-          copy="We publish named customer stories only after the company, role, timeframe, campaign type, and outcome are approved. The product experience does not depend on anonymous proof."
-          title="Proof without the hype."
+          copy="Know what you ordered, what was delivered, and what your team should do next. Every campaign begins with a buy box you can review."
+          title="A clearer way to buy inbound demand."
         >
           <div className="proof-register-visual">
             <div className="proof-register-head">
               <MessageSquareText aria-hidden="true" />
-              <span>Story approval record</span>
+              <span>Campaign record</span>
             </div>
             {[
-              "Named company and role",
-              "Campaign type and timeframe",
-              "Source for measurable outcome",
-              "Owner and review date",
-              "Publication approval",
+              "Delivery model and vertical",
+              "States, ZIP codes, and hours",
+              "Volume and qualification rules",
+              "Phone, CRM, or calendar destination",
+              "Buyer approval before submission",
             ].map((item) => (
               <div key={item}>
                 <Check aria-hidden="true" size={15} />

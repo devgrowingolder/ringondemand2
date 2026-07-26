@@ -2,18 +2,16 @@
 
 import {
   ArrowRight,
-  Building2,
   ChevronDown,
   Link2,
   Menu,
   PhoneCall,
   Route,
-  Users,
   X,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { verticals } from "@/lib/verticals";
 
 const productLinks = [
@@ -35,13 +33,6 @@ const productLinks = [
     detail: "Carry approved campaign data into downstream systems.",
     icon: Link2,
   },
-];
-
-const companyLinks = [
-  { href: "/about", label: "About", icon: Building2 },
-  { href: "/community", label: "Pay per call community", icon: Users },
-  { href: "/brands", label: "Brand network", icon: Link2 },
-  { href: "/careers", label: "Careers", icon: Route },
 ];
 
 const verticalCategories = ["Insurance", "Home services", "Legal", "Financial"];
@@ -70,10 +61,10 @@ function NavDropdown({
 
 export function AnnouncementBar() {
   return (
-    <Link className="announcement-bar" href="/careers">
-      <span>Help build the infrastructure behind live demand</span>
+    <Link className="announcement-bar" href="/build-campaign">
+      <span>Pay per call, pay per lead, or pay per appointment</span>
       <span className="announcement-link">
-        Explore careers <ArrowRight aria-hidden="true" size={14} />
+        Get pricing <ArrowRight aria-hidden="true" size={14} />
       </span>
     </Link>
   );
@@ -81,11 +72,31 @@ export function AnnouncementBar() {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+
+    if (!open) {
+      return () => {
+        document.body.style.overflow = "";
+      };
+    }
+
+    drawerRef.current?.querySelector<HTMLElement>("a")?.focus();
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
     return () => {
       document.body.style.overflow = "";
+      window.removeEventListener("keydown", closeOnEscape);
     };
   }, [open]);
 
@@ -105,7 +116,7 @@ export function SiteHeader() {
           </Link>
 
           <nav className="desktop-nav" aria-label="Primary navigation">
-            <NavDropdown label="Product" wide>
+            <NavDropdown label="Services" wide>
               <div className="nav-product-grid">
                 {productLinks.map(({ href, label, detail, icon: Icon }) => (
                   <Link className="nav-product-link" href={href} key={href}>
@@ -118,9 +129,6 @@ export function SiteHeader() {
                 ))}
               </div>
             </NavDropdown>
-            <Link className="nav-link" href="/#buying-models">
-              Solutions
-            </Link>
             <NavDropdown label="Verticals" wide>
               <div className="nav-vertical-mega">
                 {verticalCategories.map((category) => (
@@ -144,46 +152,45 @@ export function SiteHeader() {
                 <ArrowRight aria-hidden="true" size={14} />
               </Link>
             </NavDropdown>
+            <Link className="nav-link" href="/about">
+              About
+            </Link>
             <Link className="nav-link" href="/blog">
               Resources
             </Link>
             <Link className="nav-link" href="/partners">
               Partners
             </Link>
-            <NavDropdown label="Company">
-              <div className="nav-product-grid">
-                {companyLinks.map(({ href, label, icon: Icon }) => (
-                  <Link className="nav-product-link" href={href} key={href}>
-                    <Icon aria-hidden="true" size={18} strokeWidth={1.5} />
-                    <span><strong>{label}</strong></span>
-                  </Link>
-                ))}
-              </div>
-            </NavDropdown>
+            <Link className="nav-link" href="mailto:hello@ringondemand.com">
+              Contact
+            </Link>
           </nav>
 
           <div className="desktop-actions">
             <a
               className="nav-link"
               href="https://ring-on-demand.proaxis.ai/cx/buyer/login"
+              aria-label="Open the Ring On Demand buyer portal in a new tab"
               rel="noreferrer"
               target="_blank"
             >
-              Sign in
+              Buyer login
             </a>
             <Link className="nav-link" href="/build-campaign?intent=demo">
-              Book a demo
+              Book a call
             </Link>
             <Link className="button button-dark button-nav" href="/build-campaign">
-              Build a campaign
+              Get pricing
             </Link>
           </div>
 
           <button
+            aria-controls="mobile-navigation"
             aria-expanded={open}
             aria-label={open ? "Close navigation" : "Open navigation"}
             className="mobile-menu-button"
             onClick={() => setOpen((value) => !value)}
+            ref={menuButtonRef}
             type="button"
           >
             {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
@@ -192,39 +199,57 @@ export function SiteHeader() {
       </header>
 
       {open && (
-        <div className="mobile-drawer">
+        <div
+          className="mobile-drawer"
+          id="mobile-navigation"
+          onClick={(event) => {
+            if ((event.target as HTMLElement).closest("a")) {
+              setOpen(false);
+            }
+          }}
+          ref={drawerRef}
+        >
           <nav aria-label="Mobile navigation">
-            <p className="mobile-nav-label">Product</p>
+            <p className="mobile-nav-label">Services</p>
             <Link href="/#how-it-works">How it works</Link>
             <Link href="/agents">Buyer workspace</Link>
             <Link href="/connected-apps">Connected operations</Link>
-            <Link href="/#buying-models">Buying models</Link>
+            <Link href="/#buying-models">Calls, leads, and appointments</Link>
             <p className="mobile-nav-label">Verticals</p>
             <div className="mobile-vertical-grid">
-              {verticals.map((vertical) => (
+              {verticals
+                .filter((vertical) =>
+                  ["final-expense", "home-services", "personal-injury", "tax-debt"].includes(
+                    vertical.slug,
+                  ),
+                )
+                .map((vertical) => (
                 <Link href={`/verticals/${vertical.slug}`} key={vertical.slug}>
                   {vertical.name}
                 </Link>
-              ))}
+                ))}
             </div>
+            <Link href="/verticals">View all verticals</Link>
             <Link href="/blog">Resources</Link>
             <Link href="/partners">Partners</Link>
             <Link href="/about">About</Link>
             <Link href="/community">Pay per call community</Link>
             <Link href="/brands">Brand network</Link>
             <Link href="/careers">Careers</Link>
+            <a href="mailto:hello@ringondemand.com">Contact</a>
           </nav>
           <div className="mobile-drawer-actions">
             <a
               className="button button-outline"
               href="https://ring-on-demand.proaxis.ai/cx/buyer/login"
+              aria-label="Open the Ring On Demand buyer portal in a new tab"
               rel="noreferrer"
               target="_blank"
             >
-              Sign in
+              Buyer login
             </a>
             <Link className="button button-dark" href="/build-campaign">
-              Build a campaign
+              Get pricing
             </Link>
           </div>
         </div>
@@ -239,15 +264,15 @@ export function SiteFooter() {
       <section className="footer-cta">
         <div>
           <p className="section-code">[ READY WHEN YOU ARE ]</p>
-          <h2>Build a campaign around the way your team closes.</h2>
+          <h2>Tell us what you want to buy.</h2>
           <p>
-            Tell us your vertical, locations, hours, volume, and preferred
-            delivery. We&apos;ll prepare one campaign brief for review.
+            Share your vertical, states, hours, volume, and preferred delivery.
+            We&apos;ll turn it into a campaign brief you can review.
           </p>
         </div>
         <div className="footer-cta-actions">
           <Link className="button button-light" href="/build-campaign">
-            Start my campaign brief
+            Get pricing
           </Link>
           <Link className="button button-ghost-light" href="/build-campaign?intent=demo">
             Book a demo
@@ -264,8 +289,8 @@ export function SiteFooter() {
             width={270}
           />
           <p>
-            Campaign infrastructure for inbound calls, exclusive leads, and
-            appointments.
+            Inbound calls, real-time leads, and booked appointments for teams
+            that know how to close.
           </p>
         </div>
         <div>
@@ -294,17 +319,22 @@ export function SiteFooter() {
           <a href="mailto:hello@ringondemand.com">Contact</a>
           <a
             href="https://ring-on-demand.proaxis.ai/cx/buyer/login"
+            aria-label="Open the Ring On Demand buyer portal in a new tab"
             rel="noreferrer"
             target="_blank"
           >
-            Sign in
+            Buyer login
           </a>
         </div>
       </div>
       <div className="footer-legal">
         <span>© {new Date().getFullYear()} Ring On Demand</span>
-        <span>Privacy policy</span>
-        <span>Terms of service</span>
+        <a href="https://ringondemand.com/legal/privacy-policy">
+          Privacy policy
+        </a>
+        <a href="https://ringondemand.com/legal/terms-of-service">
+          Terms of service
+        </a>
       </div>
     </footer>
   );

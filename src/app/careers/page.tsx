@@ -68,10 +68,10 @@ export default function CareersPage() {
         <section className="careers-hero">
           <div className="careers-hero-copy">
             <p className="section-code">Careers</p>
-            <h1>Build the infrastructure behind live demand.</h1>
+            <h1>Help us build a better way to buy inbound demand.</h1>
             <p>
-              Join a team designing clearer ways for buyers to define,
-              receive, and act on high-intent conversations.
+              Join a team making calls, leads, and appointments easier for
+              buyers to define, receive, and review.
             </p>
             <Link className="button button-light" href="#open-positions">
               Join the talent network
@@ -98,7 +98,7 @@ export default function CareersPage() {
           <div className="section-heading">
             <p className="section-code">[01] Who we are</p>
             <div>
-              <h2>Making performance marketing easier to operate.</h2>
+              <h2>Making performance marketing easier to understand and run.</h2>
               <p>
                 Ring On Demand connects campaign intent with the systems that
                 move a live call, lead, or appointment to the right buyer.

@@ -16,7 +16,7 @@ import { SiteShell } from "@/components/site/site-chrome";
 export const metadata: Metadata = {
   title: "Buyer workspace",
   description:
-    "Define, route, and review Ring On Demand campaigns from one buyer workspace.",
+    "Control Ring On Demand calls, leads, appointments, schedules, and delivery settings from one buyer workspace.",
 };
 
 export default function BuyerWorkspacePage() {
@@ -25,10 +25,10 @@ export default function BuyerWorkspacePage() {
       <main>
         <EditorialHero
           action="Build a campaign"
-          code="[ Product ]"
-          copy="One shared campaign record gives buyers, sales, routing, and operations the same view of what should be delivered and where it should go."
+          code="[ Buyer workspace ]"
+          copy="See your campaign settings, delivery details, call recordings, outcome notes, and quality-review activity without relying on separate spreadsheets."
           inverse
-          title="Your demand operations partner."
+          title="Run every campaign from one buyer workspace."
         >
           <div className="agent-console">
             <div className="agent-console-head">
@@ -61,16 +61,16 @@ export default function BuyerWorkspacePage() {
         </EditorialHero>
 
         <section className="editorial-statement">
-          <p className="section-code">Built around the approved buy box</p>
+          <p className="section-code">Your campaign controls</p>
           <h2>
-            The campaign stays coherent from first request to live delivery.
+            Control your market, schedule, volume, and routing in one place.
           </h2>
         </section>
 
         <NumberedFeature
-          copy="Service type, vertical, locations, hours, volume, qualification rules, and destination live in one editable summary."
+          copy="See the service type, vertical, locations, hours, volume, qualification rules, and destination in one editable summary."
           number="01"
-          title="Understand the campaign."
+          title="See exactly what you ordered."
         >
           <div className="feature-spec-sheet">
             {[
@@ -91,10 +91,10 @@ export default function BuyerWorkspacePage() {
         </NumberedFeature>
 
         <NumberedFeature
-          copy="Campaign controls make delivery expectations explicit before anything is activated."
+          copy="Change delivery windows, locations, volume limits, and destinations as your team’s availability changes."
           number="02"
           reverse
-          title="Adapt when operations change."
+          title="Adjust the campaign around your team."
         >
           <div className="control-grid">
             {[
@@ -117,9 +117,9 @@ export default function BuyerWorkspacePage() {
 
         <NumberedFeature
           compact
-          copy="Review delivery details, add outcome notes, and follow the applicable credit workflow from the same campaign record."
+          copy="Review delivery details, listen to available recordings, add outcome notes, and follow the applicable credit process."
           number="03"
-          title="Keep quality review connected."
+          title="Review quality without leaving the campaign."
         >
           <div className="quality-timeline">
             {[

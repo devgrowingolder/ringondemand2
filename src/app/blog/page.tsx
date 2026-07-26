@@ -37,8 +37,8 @@ export default function ResourcesPage() {
       <main>
         <EditorialHero
           code="[ Resources ]"
-          copy="Research, implementation notes, and operating guidance for teams buying inbound demand."
-          title="Resources"
+          copy="Practical guidance for buying inbound calls, real-time leads, and booked appointments."
+          title="Learn how performance campaigns work."
         >
           <div className="resource-index-graphic">
             <span>Research</span>
@@ -52,8 +52,8 @@ export default function ResourcesPage() {
           <div className="resource-feed-head">
             <p className="section-code">Latest from Ring On Demand</p>
             <p>
-              Every numerical or compliance claim remains unpublished until its
-              evidence record is approved.
+              Start with the basics, then talk with our team about the campaign
+              rules that apply to your market.
             </p>
           </div>
           <div className="resource-grid">

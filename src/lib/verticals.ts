@@ -15,7 +15,7 @@ export const verticals: VerticalDefinition[] = [
     headline:
       "We Provide High Volume Final Expense Calls That Have Guaranteed Intent & 90 Second Call Times.",
     description:
-      "Define the states, hours, daily volume, qualification rules, and call destination your team can support.",
+      "Buy final expense calls around the states, hours, daily volume, qualification rules, and call destination your team can support.",
     qualificationPrompts: [
       "Age or product criteria",
       "State availability",
@@ -26,9 +26,9 @@ export const verticals: VerticalDefinition[] = [
     slug: "medicare",
     name: "Medicare",
     category: "Insurance",
-    headline: "Build a Medicare campaign around your capacity.",
+    headline: "Buy Medicare calls, leads, or appointments around your capacity.",
     description:
-      "Set the geography, schedule, volume, qualification rules, and delivery destination before review.",
+      "Choose your states, schedule, volume, qualification rules, and delivery destination before requesting pricing.",
     qualificationPrompts: [
       "Geographic eligibility",
       "Campaign schedule",
@@ -39,9 +39,9 @@ export const verticals: VerticalDefinition[] = [
     slug: "aca",
     name: "ACA",
     category: "Insurance",
-    headline: "Route ACA demand using one approved campaign.",
+    headline: "Build an ACA campaign around your licensed markets.",
     description:
-      "Keep delivery requirements visible from buyer intake through routing and quality review.",
+      "Set your states, contact hours, volume, qualification rules, and preferred delivery model.",
     qualificationPrompts: [
       "State availability",
       "Contact window",
@@ -52,9 +52,9 @@ export const verticals: VerticalDefinition[] = [
     slug: "auto-insurance",
     name: "Auto Insurance",
     category: "Insurance",
-    headline: "Bring Auto Insurance demand to the right team.",
+    headline: "Send Auto Insurance demand to the right team.",
     description:
-      "Use one brief for geography, hours, volume, qualification rules, and call or lead delivery.",
+      "Choose your states, hours, volume, qualification rules, and whether you want calls or leads.",
     qualificationPrompts: [
       "State availability",
       "Policy or vehicle criteria",
@@ -65,9 +65,9 @@ export const verticals: VerticalDefinition[] = [
     slug: "mortgage-protection",
     name: "Mortgage Protection",
     category: "Insurance",
-    headline: "Structure Mortgage Protection demand before launch.",
+    headline: "Build a Mortgage Protection campaign around your sales team.",
     description:
-      "Confirm the buy box and destination once, then carry that same record into review and handoff.",
+      "Confirm your states, schedule, volume, qualification rules, and destination before requesting pricing.",
     qualificationPrompts: [
       "State availability",
       "Product criteria",
@@ -78,9 +78,9 @@ export const verticals: VerticalDefinition[] = [
     slug: "home-services",
     name: "Home Services",
     category: "Home services",
-    headline: "Send Home Services demand where your team can act.",
+    headline: "Buy Home Services calls, leads, or appointments by service area.",
     description:
-      "Define service areas, working hours, job criteria, expected volume, and delivery destination.",
+      "Choose your service areas, working hours, job criteria, expected volume, and delivery destination.",
     qualificationPrompts: [
       "Service area",
       "Requested service",
@@ -91,7 +91,7 @@ export const verticals: VerticalDefinition[] = [
     slug: "roofing",
     name: "Roofing",
     category: "Home services",
-    headline: "Build a Roofing campaign around your service area.",
+    headline: "Get Roofing demand in the markets your team serves.",
     description:
       "Set locations, hours, volume, job criteria, and whether demand should arrive as calls, leads, or appointments.",
     qualificationPrompts: [
@@ -104,7 +104,7 @@ export const verticals: VerticalDefinition[] = [
     slug: "hvac",
     name: "HVAC",
     category: "Home services",
-    headline: "Route HVAC demand using your actual availability.",
+    headline: "Buy HVAC demand around your dispatch hours and capacity.",
     description:
       "Document service areas, dispatch hours, capacity, job criteria, and destination before campaign review.",
     qualificationPrompts: [
@@ -117,7 +117,7 @@ export const verticals: VerticalDefinition[] = [
     slug: "solar",
     name: "Solar",
     category: "Home services",
-    headline: "Turn Solar interest into a reviewable campaign.",
+    headline: "Put qualified Solar opportunities in front of your team.",
     description:
       "Choose markets, contact windows, expected volume, qualification rules, and appointment destination.",
     qualificationPrompts: [
@@ -130,7 +130,7 @@ export const verticals: VerticalDefinition[] = [
     slug: "personal-injury",
     name: "Personal Injury",
     category: "Legal",
-    headline: "Structure Personal Injury demand with clear rules.",
+    headline: "Build a Personal Injury campaign around your intake criteria.",
     description:
       "Set the eligible geography, delivery hours, volume, case criteria, and intake destination.",
     qualificationPrompts: [
@@ -143,7 +143,7 @@ export const verticals: VerticalDefinition[] = [
     slug: "tax-debt",
     name: "Tax Debt",
     category: "Financial",
-    headline: "Build a Tax Debt campaign your intake team can review.",
+    headline: "Buy Tax Debt demand your intake team is ready to handle.",
     description:
       "Confirm geography, hours, capacity, qualification rules, and destination before any submission.",
     qualificationPrompts: [
@@ -156,7 +156,7 @@ export const verticals: VerticalDefinition[] = [
     slug: "debt-settlement",
     name: "Debt Settlement",
     category: "Financial",
-    headline: "Route Debt Settlement demand from one approved brief.",
+    headline: "Build a Debt Settlement campaign around your qualification rules.",
     description:
       "Keep qualification, schedule, volume, and destination requirements connected through the funnel.",
     qualificationPrompts: [

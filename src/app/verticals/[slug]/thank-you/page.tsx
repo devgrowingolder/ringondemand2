@@ -17,7 +17,7 @@ export default async function VerticalThankYouPage({ params }: Props) {
       <main className="funnel-thank-you">
         <CheckCircle2 aria-hidden="true" />
         <p className="section-code">{vertical.name} / Next step</p>
-        <h1>Your campaign context is ready for the conversation.</h1>
+        <h1>You&apos;re ready to discuss your {vertical.name} campaign.</h1>
         <p>Keep the campaign ID from your confirmation so the Ring On Demand team can continue from the same approved brief.</p>
         <div>
           <Link className="button button-dark" href="/build-campaign?intent=demo">Review my campaign</Link>

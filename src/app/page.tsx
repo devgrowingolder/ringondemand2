@@ -22,46 +22,49 @@ const buyingModels = [
   {
     number: "01",
     icon: PhoneCall,
-    name: "Inbound calls",
-    headline: "Speak with prospects while intent is active.",
-    copy: "Receive inbound calls routed to your agents according to the campaign rules you approve.",
+    name: "Pay per call",
+    headline: "Talk to consumers while they are on the phone.",
+    copy: "Inbound calls route to your agents using the states, hours, filters, and limits set for the campaign.",
+    linkLabel: "See Final Expense call campaigns",
     href: "/verticals/final-expense",
   },
   {
     number: "02",
     icon: Inbox,
-    name: "Exclusive leads",
-    headline: "Receive each lead in real time.",
-    copy: "Send exclusive form leads to your CRM with the delivery details your team needs for follow-up.",
+    name: "Pay per lead",
+    headline: "Put new leads in front of your team quickly.",
+    copy: "Real-time form leads can be delivered to the destination selected for the campaign.",
+    linkLabel: "See Home Services lead campaigns",
     href: "/verticals/home-services",
   },
   {
     number: "03",
     icon: CalendarDays,
-    name: "Appointments",
-    headline: "Put confirmed demand on the calendar.",
-    copy: "Receive booked appointments with the time and campaign information your team needs.",
+    name: "Pay per appointment",
+    headline: "Put qualified conversations on the calendar.",
+    copy: "Booked appointments arrive with the campaign and scheduling details your team needs.",
+    linkLabel: "See Personal Injury appointment campaigns",
     href: "/verticals/personal-injury",
   },
 ];
 
 const workspaceFeatures = [
-  ["Live delivery", "See incoming calls, leads, and appointments as they arrive."],
+  ["Live delivery", "See calls, leads, and appointments as they arrive."],
   [
     "Recordings and details",
-    "Review available delivery details and call recordings.",
+    "Review the delivery details and available call recordings.",
   ],
   [
     "Quality review",
-    "Add notes, track outcomes, and submit credit requests from the same record.",
+    "Add notes, record outcomes, and submit credit requests from one record.",
   ],
   [
     "Campaign controls",
-    "Manage locations, hours, availability, and volume by campaign.",
+    "Set locations, hours, availability, and volume for each campaign.",
   ],
   [
     "Performance view",
-    "Connect delivery data with the outcomes your team records.",
+    "See delivery information beside the outcomes your team records.",
   ],
 ];
 
@@ -76,26 +79,27 @@ export default function Home() {
           <div className="hero-copy">
             <p className="hero-eyebrow">
               <span aria-hidden="true" />
-              Campaign infrastructure / Built around your demand
+              Calls / Leads / Appointments
             </p>
-            <h1>Turn demand into live conversations.</h1>
+            <h1>Only pay for demand that reaches your team.</h1>
             <p>
-              Describe who you want to reach, where your team can take calls,
-              and how much volume you can handle. Ring On Demand routes inbound
-              calls, exclusive leads, and appointments into one buyer workspace.
+              Ring On Demand delivers inbound calls, real-time leads, and
+              booked appointments to insurance, home services, legal, and
+              financial teams. Choose your market, hours, volume, and filters
+              before anything goes live.
             </p>
             <div className="hero-actions">
               <Link
                 className="button button-purple"
                 href="/build-campaign"
               >
-                Build a campaign
+                Get pricing
               </Link>
               <Link
                 className="button button-outline"
                 href="/build-campaign?intent=demo"
               >
-                Book a demo
+                See how it works
               </Link>
             </div>
           </div>
@@ -110,8 +114,8 @@ export default function Home() {
             </div>
             <div className="hero-panel-title">
               <span>RID / BUY BOX / 01</span>
-              <h2>Your ideal campaign</h2>
-              <p>Calls, leads, or appointments</p>
+              <h2>Build your buy box</h2>
+              <p>Choose calls, leads, or appointments</p>
             </div>
             <div className="hero-panel-fields">
               <div>
@@ -132,14 +136,14 @@ export default function Home() {
                 <Volume2 aria-hidden="true" />
                 <span>
                   <small>Daily capacity</small>
-                  <strong>Choose your call volume</strong>
+                  <strong>Choose your daily volume</strong>
                 </span>
               </div>
               <div>
                 <PhoneCall aria-hidden="true" />
                 <span>
                   <small>Destination</small>
-                  <strong>Route to your buyer line</strong>
+                  <strong>Route to phone, CRM, or calendar</strong>
                 </span>
               </div>
             </div>
@@ -151,7 +155,7 @@ export default function Home() {
               <Link
                 href="/build-campaign"
               >
-                Configure
+                Start a campaign
                 <ArrowRight aria-hidden="true" size={15} />
               </Link>
             </div>
@@ -161,19 +165,19 @@ export default function Home() {
         <div className="model-strip hero-proof-strip" aria-label="Ring On Demand campaign models">
           <span>
             <PhoneCall aria-hidden="true" />
-            Inbound calls
+            Pay per call
           </span>
           <span>
             <Check aria-hidden="true" />
-            Exclusive leads
+            Real-time leads
           </span>
           <span>
             <CalendarDays aria-hidden="true" />
-            Appointments
+            Booked appointments
           </span>
           <span>
             <ShieldCheck aria-hidden="true" />
-            Buyer-approved rules
+            Your states, hours, and filters
           </span>
         </div>
 
@@ -185,11 +189,11 @@ export default function Home() {
         </section>
 
         <section className="brand-statement">
-          <p className="section-code">The new era of inbound demand</p>
-          <h2>Demand should arrive ready for action.</h2>
+          <p className="section-code">Three ways to buy production</p>
+          <h2>Buy the outcome that fits your sales team.</h2>
           <p>
-            Ring On Demand gives buyers control over who comes through, when
-            campaigns run, and how every result is reviewed.
+            Choose inbound calls, real-time leads, booked appointments, or a
+            mix built around your vertical and capacity.
           </p>
         </section>
 
@@ -197,10 +201,11 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[01] How it works</p>
             <div>
-              <h2>Buyers plus one platform.</h2>
+              <h2>Tell us what you want. We build around it.</h2>
               <p>
-                Describe the outcome once. Carry the same approved campaign from
-                sales through routing, review, and handoff.
+                Set your states, delivery hours, daily cap, filters, and
+                destination once. The same campaign details follow every
+                delivery.
               </p>
             </div>
           </div>
@@ -211,7 +216,7 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[02] Buying models</p>
             <div>
-              <h2>Choose how demand reaches your team.</h2>
+              <h2>Choose what you want to pay for.</h2>
             </div>
           </div>
           <div className="buying-model-grid">
@@ -223,7 +228,7 @@ export default function Home() {
                 <h3>{model.headline}</h3>
                 <p>{model.copy}</p>
                 <Link className="text-link" href={model.href}>
-                  Explore {model.name.toLowerCase()}
+                  {model.linkLabel}
                   <ArrowRight aria-hidden="true" size={16} />
                 </Link>
               </article>
@@ -234,7 +239,7 @@ export default function Home() {
         <section className="workspace-section">
           <div className="workspace-section-copy">
             <p className="section-code">[03] Buyer workspace</p>
-            <h2>Control every campaign from one place.</h2>
+            <h2>You decide when, where, and how much.</h2>
             <div className="workspace-feature-list">
               {workspaceFeatures.map(([name, copy], index) => (
                 <div key={name}>
@@ -315,10 +320,10 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[04] Verticals</p>
             <div>
-              <h2>One campaign system, built for every market.</h2>
+              <h2>Built for teams in high-intent markets.</h2>
               <p>
-                Choose the vertical that matches your team. Every page carries
-                the same brief, review, and routing experience.
+                Start with your market, then choose the delivery model,
+                locations, hours, volume, and qualification rules.
               </p>
             </div>
           </div>
@@ -360,12 +365,11 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[05] Research</p>
             <div>
-              <h2>Why live conversations matter.</h2>
+              <h2>Make every campaign easier to evaluate.</h2>
               <p>
-                Our research program studies buyer intent, immediate
-                engagement, lead quality, and performance-based pricing. We
-                publish numerical claims only after source and compliance
-                review.
+                Learn how to define a buy box, review delivery quality, and
+                compare calls, leads, and appointments without relying on
+                vague promises.
               </p>
               <Link className="text-link" href="/blog">
                 Read the research

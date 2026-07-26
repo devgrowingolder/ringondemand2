@@ -1,147 +1,207 @@
 # Ring On Demand Design QA
 
-## Comparison target
+Audit date: 2026-07-26
+Final result: passed
 
-- Structural reference:
-  - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/juicebox-home-desktop-00-0.png`
-  - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/juicebox-home-mobile-00-0.png`
-  - `/Users/kelly/Documents/RID/.reference-captures-ringondemand2/moneylion-vertical-desktop-00-0.png`
-- Production implementation: `https://ringondemand2.vercel.app/`
-- Verified viewports: `1440 × 900`, `896 × 707`, and `390 × 844`
-- Verified state: signed-out homepage, vertical mega-menu, mobile navigation,
-  Final Expense landing page, vertical index, campaign-builder entry, careers
-  landing page, and talent-network introduction form.
+## 1. Source truth and implementation
 
-## Visual evidence
+- Copy and offer-language source truth:
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/current-source/ringondemand-home-1440x900.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/current-source/ringondemand-home-390x844.png`
+  - `https://ringondemand.com/`
+- Approved implementation:
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-3-home-1440x900.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-home-896x707.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-home-390x844.png`
+- Local review target: `http://localhost:3000/`
+- Intended production target: `https://ringondemand2.vercel.app/`
+- State: signed out, default homepage, default campaign preview, no modal or
+  dropdown open.
+- Density: CSS pixel screenshots at device scale 1.
 
-- Desktop homepage:
-  - `.qa/final-rid-home-1440.png`
-  - `.qa/qa-home-comparison.png`
-- Mobile homepage and navigation:
-  - `.qa/final-rid-home-390.png`
-  - `.qa/final-rid-mobile-menu.png`
-  - `.qa/qa-home-mobile-comparison.png`
-- Final Expense:
-  - `.qa/refined-final-expense.png`
-  - `.qa/qa-vertical-comparison.png`
+The current Ring On Demand website is the language and offer reference. The
+implementation intentionally keeps the approved RID editorial design system
+rather than copying the source site's artwork, serif typography, effects, or
+unverified live statistics.
+
+## 2. Required comparison evidence
+
+### Full-view comparison
+
+- Source: `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/source-home-full-1440.png`
+- Implementation: `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/implementation-home-full-1440.png`
+- Same-composite comparison:
+  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-home-full-1440.png`
+- Viewport: `1440 × 900`; full-page captures are `1440 × 6501` and
+  `1440 × 9803`, top-aligned in a padded `2880 × 9803` composite.
+
+### Desktop focused comparison
+
+- Same-composite hero comparison:
+  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-home-final-1440x900.png`
+- Same-composite header crop:
+  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-header-final-1440x160.png`
+- Viewport: `1440 × 900`; header crop: `1440 × 160` per side.
+
+### Mobile focused comparison
+
+- Same-composite comparison:
+  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-home-final-390x844.png`
+- Viewport: `390 × 844`.
+
+### Template coverage
+
+- Buyer workspace:
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-3-agents-1440x900.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-3-agents-390x844.png`
+- Final Expense landing:
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-final-expense-1440x900.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-final-expense-390x844.png`
 - Careers:
-  - `.qa/juicebox-careers-desktop-top.png`
-  - `.qa/rid-careers-desktop-top.png`
-  - `.qa/rid-careers-mobile-top.png`
-  - `.qa/careers-reference-vs-rid.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-careers-1440x900.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-careers-390x844.png`
 - Connected operations:
-  - `.qa/stytch-connected-apps-desktop-top.png`
-  - `.qa/connected-apps-reference-vs-rid.png`
+  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-connected-1440x900.png`
+- Vertical booking:
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-book-1440x900.png`
+  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-book-390x844.png`
+- Brand network mobile:
+  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-brands-390x844.png`
 
-The QA files are local review artifacts and intentionally ignored by Git.
+## 3. Iteration history
 
-## Findings and fixes
+### Iteration 1
 
-### Pass 1
+Findings:
 
-- The signal-field image dominated the homepage and weakened the content
-  hierarchy.
-- The main vertical taxonomy was hidden inside a short link list.
-- The Final Expense offer was not the homepage focus.
-
-Fixes:
-
-- Replaced the decorative hero field with a restrained white/navy product
-  composition.
-- Added the requested Final Expense headline and approved it through the proof
-  register.
-- Added all twelve verticals to the homepage, desktop mega-menu, mobile
-  navigation, and searchable vertical index.
-
-### Pass 2
-
-- The `896px` layout still exposed the desktop mega-menu, allowing the fourth
-  category to overflow the viewport.
-- The exact Final Expense headline pushed the primary mobile CTA below the
-  first viewport.
+- P2: the desktop hero eyebrow wrapped at an awkward phrase boundary.
+- P2: editorial page headings remained too large and produced excessive line
+  counts on the Buyer Workspace page.
+- P2: global navigation type was visually smaller than the rest of the
+  interface.
+- P1: selecting an in-page mobile link left the drawer open and the body
+  scroll-locked; Escape also failed to close it.
+- P2: buying-model links promised service information but opened unexplained
+  example verticals.
+- P2: external brand links had repeated names and several external/footer
+  targets missed the project's 44 px touch minimum.
+- P1: the scheduling fallback exposed an environment-variable name to buyers.
+- P2: the generic 404 had no recovery path.
 
 Fixes:
 
-- Switched the header to the compact mobile navigation below `1080px`.
-- Reduced only the small-screen headline size and vertical spacing.
-- Shortened the supporting paragraph without changing the requested headline.
-- Verified that both mobile CTAs and the campaign panel begin in the first
-  `390 × 844` viewport.
+- Shortened the hero eyebrow to “Calls / Leads / Appointments.”
+- Reduced editorial display sizes independently of the homepage display scale.
+- Tightened header height and logo width while increasing navigation type.
+- Added mobile link-close behavior, Escape handling, focus restoration, and a
+  shorter featured-vertical list.
+- Renamed buying-model links to identify the example vertical they open.
+- Added destination-specific external-link names and 44 px minimum target
+  sizes.
+- Replaced the operator-facing booking error with a buyer-safe email and
+  return-to-brief fallback.
+- Added a branded 404 with home, vertical, and pricing recovery actions.
 
-### Pass 3
+### Iteration 2
 
-- The supplied lockup retained colored/dark pixels instead of reading as a
-  consistent white mark on navy surfaces.
+Recaptured the exact desktop, tablet, and mobile viewports after the fixes.
 
-Fix:
+### Iteration 3
 
-- Applied one white-lockup treatment to the site header, footer, and campaign
-  builder.
+The first type-scale rules were being partially superseded by legacy page
+layers later in the stylesheet. Moved the final editorial scale enforcement to
+the end of the cascade, then recaptured the homepage and Buyer Workspace at
+desktop and mobile sizes. The source and implementation were recomposited and
+inspected together. No remaining P0, P1, or P2 visual defects were found.
 
-### Pass 4
+## 4. Surface-by-surface QA
 
-- Final Expense positioning had leaked into the global metadata, announcement
-  bar, homepage hero, and homepage proof strip.
-- The site did not have a careers destination or a controlled hiring funnel.
+### Typography
 
-Fixes:
+- DM Sans remains the primary readable interface face; IBM Plex Mono is
+  limited to labels, navigation, metadata, and buttons.
+- A shared responsive display scale now controls homepage, editorial,
+  vertical, career, funnel, and builder headings.
+- Desktop editorial headings no longer dominate their product panels.
+- Mobile headings remain readable without clipping or horizontal overflow.
 
-- Restored the homepage to the platform-wide “Turn demand into live
-  conversations” position and kept the requested Final Expense claim on its
-  dedicated vertical page.
-- Added `/careers` and `/careers/apply` using the reference’s editorial pacing,
-  numbered sections, focused openings area, process, and FAQ in the original
-  RID visual system.
-- Implemented a transparent general-interest talent-network flow without
-  inventing open roles, compensation, benefits, or employment claims.
-- Compared the reference and implementation together at `1440 × 900`, then
-  separately verified the implementation at `390 × 844`. No P0, P1, or P2
-  visual issues remain.
+Result: passed.
 
-### Pass 5
+### Spacing and layout
 
-- The public route system did not include dedicated vertical booking and
-  thank-you templates.
-- The hiring funnel ended at the open-introduction form.
-- Connected operations, About, community, and brand-network information had no
-  controlled page structure.
+- Header height, logo footprint, navigation padding, and hero spacing are
+  consistent at desktop, tablet, and mobile breakpoints.
+- Buyer Workspace numbered sections use a reduced compact-section height and
+  balanced media/copy gap.
+- Homepage copy precedes the campaign panel on mobile and keeps both primary
+  actions visible.
+- Representative checks across 19 public routes reported zero horizontal
+  overflow at `390px`.
 
-Fixes:
+Result: passed.
 
-- Added static booking and non-indexed thank-you pages for all twelve
-  verticals, producing a consistent landing → booking → confirmation path.
-- Added a non-indexed careers confirmation page and connected it to the
-  existing email-based introduction flow.
-- Added About, Pay Per Call Community, Connected Operations, and Brand Network
-  pages with original RID copy and components.
-- Matched the Connected Operations hero to the Stytch reference’s measured
-  line geometry, editorial offset, oversized headline, and restrained CTA
-  treatment, then compared both at `1440 × 900` in one composite.
-- Verified Connected Operations and Careers at `390 × 844`; no overflow,
-  cropped primary actions, or P0/P1/P2 issues remain.
-- Kept submitted brand ownership in review while separately displaying the
-  properties whose websites could be verified online.
+### Color and tokens
 
-## Automated and runtime evidence
+- The implementation consistently uses RID navy, violet, teal, white, muted
+  text, and border tokens.
+- White text is reserved for approved dark surfaces; body copy uses the muted
+  token on white.
+- Focus uses the global 3 px violet outline.
 
-- Production build: passed, 57 routes generated.
-- ESLint: passed.
-- TypeScript: passed.
-- Unit tests: 14 passed.
-- Residue scan: passed.
-- Production deployment: `READY`.
-- Browser console errors: none.
-- Route checks: homepage, careers, talent-network form, buyer workspace,
-  resources, customers, partners, vertical index, sampled verticals, and
-  campaign builder all returned `200`.
-- Mobile navigation: opened successfully and exposed the full vertical list.
+Result: passed.
 
-## Remaining notes
+### Imagery and artwork
 
-- Campaign record creation still requires a production `DATABASE_URL`.
-- Named competitor comparison pages must remain unpublished until their claims
-  pass proof and legal review.
+- No source-site artwork or protected assets were copied.
+- Existing RID signal artwork is restrained to editorial and inverse sections.
+- Product panels remain original RID compositions.
 
-## Final result
+Result: passed.
+
+### Copy and information hierarchy
+
+- The hero now explains the offer in plain language: inbound calls, real-time
+  leads, booked appointments, markets, hours, volume, and filters.
+- “Campaign infrastructure,” “canonical record,” and similar internal jargon
+  were removed from primary buyer-facing flows.
+- Unverified live counters, testimonials, performance rates, launch-speed, and
+  compliance statistics from the current site were not carried over.
+- The owner-approved Final Expense headline remains isolated to its dedicated
+  vertical page.
+
+Result: passed.
+
+### Icons and controls
+
+- Lucide icons use a consistent lightweight stroke and remain decorative where
+  adjacent text already names the control.
+- Primary controls meet the 44 px touch-target rule.
+- External brand links now include the destination in their accessible name.
+
+Result: passed.
+
+### Interaction and accessibility
+
+- Mobile navigation closes on link selection and Escape, restores focus to the
+  trigger, and releases body scroll.
+- Product tabs, FAQ disclosures, campaign progress, fields, and action buttons
+  retain semantic roles and visible focus states.
+- The branded 404 provides useful recovery links.
+- Mobile and desktop screenshots show no clipped primary action or overlapping
+  controls.
+
+Result: passed.
+
+## 5. Known release checks outside visual QA
+
+- The production Intercom script loads, but launcher visibility depends on the
+  Intercom workspace/domain configuration and must be monitored after deploy.
+- The production scheduling hostname requires a controlled, non-public test
+  campaign because it is supplied at runtime.
+- Vertical thank-you templates remain non-indexed and are not the canonical
+  campaign-builder success state.
+- This review is not a claim of complete WCAG conformance; hands-on
+  VoiceOver/NVDA testing remains appropriate before a high-risk production
+  release.
 
 final result: passed

@@ -53,9 +53,9 @@ export default function PartnersPage() {
           action="Start a partner conversation"
           actionHref="/build-campaign?intent=demo"
           code="[ Partner network ]"
-          copy="Build a clear handoff between the campaign buyers request and the systems, teams, and workflows that deliver it."
+          copy="Connect buyers, technology, traffic, and operations through one clear campaign brief and handoff."
           inverse
-          title="Build with Ring On Demand."
+          title="Grow with Ring On Demand."
         >
           <div className="partner-route-map">
             <div>Campaign brief</div>
@@ -70,10 +70,10 @@ export default function PartnersPage() {
           <div className="section-heading">
             <p className="section-code">[01] Partner programs</p>
             <div>
-              <h2>Choose the partnership that fits the handoff.</h2>
+              <h2>Choose how you want to work together.</h2>
               <p>
-                Partnership terms, supported integrations, and public proof
-                remain subject to review.
+                We review the audience, responsibilities, systems, and campaign
+                terms before any partner program goes live.
               </p>
             </div>
           </div>
@@ -86,7 +86,10 @@ export default function PartnersPage() {
                   <h3>{partner.title}</h3>
                   <p>{partner.copy}</p>
                 </div>
-                <Link href="/build-campaign?intent=demo" aria-label={partner.title}>
+                <Link
+                  href="/build-campaign?intent=demo"
+                  aria-label={`Discuss a ${partner.title.toLowerCase()} with Ring On Demand`}
+                >
                   <ArrowRight aria-hidden="true" />
                 </Link>
               </article>

@@ -7,7 +7,7 @@ import { verticals } from "@/lib/verticals";
 export const metadata: Metadata = {
   title: "Verticals",
   description:
-    "Explore controlled Ring On Demand campaign verticals and start a reviewable brief.",
+    "Explore Ring On Demand pay-per-call, pay-per-lead, and pay-per-appointment campaigns by market.",
 };
 
 export default function VerticalsPage() {
@@ -17,8 +17,8 @@ export default function VerticalsPage() {
         <EditorialHero
           action="Describe a campaign"
           code="[ Verticals ]"
-          copy="Choose a controlled vertical or describe the demand in normal language. The campaign builder keeps unsupported or ambiguous values unresolved until you confirm them."
-          title="Start with the market. Finish with an approved buy box."
+          copy="Choose your market, then tell us whether you want calls, leads, or appointments. Set your locations, hours, volume, and filters before requesting pricing."
+          title="Find the right campaign for your sales team."
         >
           <div className="vertical-hero-index">
             {["Insurance", "Home services", "Legal", "Financial"].map(
@@ -33,12 +33,12 @@ export default function VerticalsPage() {
         </EditorialHero>
         <section className="vertical-browser-section">
           <div className="section-heading">
-            <p className="section-code">[01] Controlled verticals</p>
+            <p className="section-code">[01] Browse markets</p>
             <div>
-              <h2>Find the campaign you want to build.</h2>
+              <h2>Start with the vertical you sell.</h2>
               <p>
-                Categories organize the intake experience; each campaign still
-                requires buyer review.
+                Every vertical uses the same simple campaign brief, with
+                market-specific qualification questions.
               </p>
             </div>
           </div>

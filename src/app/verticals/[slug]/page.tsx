@@ -57,15 +57,15 @@ export default async function VerticalPage({ params }: Props) {
             <ul>
               <li>
                 <Check aria-hidden="true" size={17} />
-                Confirm service area and schedule
+                Choose your states, ZIPs, and delivery hours
               </li>
               <li>
                 <Check aria-hidden="true" size={17} />
-                Choose calls, leads, or appointments
+                Pick calls, leads, or appointments
               </li>
               <li>
                 <Check aria-hidden="true" size={17} />
-                Approve qualification and destination rules
+                Set qualification rules and daily volume
               </li>
             </ul>
             <Link className="button button-dark" href={campaignHref}>
@@ -130,8 +130,8 @@ export default async function VerticalPage({ params }: Props) {
         </section>
 
         <section className="vertical-benefits">
-          <p className="section-code">[01] Campaign controls</p>
-          <h2>Build around how your team actually works.</h2>
+          <p className="section-code">[01] Your buy box</p>
+          <h2>Build the campaign around your sales team.</h2>
           <div>
             {[
               [
@@ -165,33 +165,33 @@ export default async function VerticalPage({ params }: Props) {
 
         <section className="vertical-process">
           <div className="vertical-process-copy">
-            <p className="section-code">[02] A no-hassle campaign brief</p>
-            <h2>Describe. Confirm. Continue.</h2>
+            <p className="section-code">[02] How it works</p>
+            <h2>Tell us. Review it. Get pricing.</h2>
             <p>
-              The funnel follows the same conversion sequence on every vertical,
-              while the visual system remains consistent with the RID site.
+              Start in plain language or use the guided questions. You review
+              every campaign detail before it is sent.
             </p>
           </div>
           <ol>
             <li>
               <span>1</span>
               <div>
-                <strong>Answer progressive questions</strong>
-                <p>Choose only the fields the brief could not resolve.</p>
+                <strong>Tell us what you need</strong>
+                <p>Describe the vertical, states, hours, volume, and delivery model.</p>
               </div>
             </li>
             <li>
               <span>2</span>
               <div>
-                <strong>Review the canonical summary</strong>
-                <p>Edit any value before approval.</p>
+                <strong>Review your buy box</strong>
+                <p>Confirm or edit every value before approval.</p>
               </div>
             </li>
             <li>
               <span>3</span>
               <div>
-                <strong>Request pricing or book a demo</strong>
-                <p>Reuse the same contact and campaign record.</p>
+                <strong>Request pricing or book a call</strong>
+                <p>Your campaign details carry into the next conversation.</p>
               </div>
             </li>
           </ol>
@@ -200,7 +200,7 @@ export default async function VerticalPage({ params }: Props) {
         <section className="vertical-qualification">
           <div>
             <p className="section-code">[03] Qualification</p>
-            <h2>Keep campaign-specific rules explicit.</h2>
+            <h2>Define what counts for this campaign.</h2>
           </div>
           <div className="vertical-qualification-list">
             {vertical.qualificationPrompts.map((prompt, index) => (
@@ -244,10 +244,10 @@ export default async function VerticalPage({ params }: Props) {
 
         <section className="vertical-final-cta">
           <p className="section-code">[ Build the buy box ]</p>
-          <h2>Start your {vertical.name} campaign brief.</h2>
+          <h2>Get pricing for a {vertical.name} campaign.</h2>
           <p>
-            Carry the approved campaign into pricing, scheduling, onboarding,
-            and operational handoff.
+            Tell us the market, delivery model, locations, hours, and volume
+            your team can handle.
           </p>
           <Link className="button button-light" href={campaignHref}>
             Build this campaign

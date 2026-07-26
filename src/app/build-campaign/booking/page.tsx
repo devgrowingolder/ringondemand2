@@ -9,12 +9,18 @@ export default async function BookingFallbackPage({ searchParams }: Props) {
       <p className="section-code">Demo booking</p>
       <h1>Your campaign brief is ready.</h1>
       <p>
-        Configure <code>RID_SCHEDULING_URL</code> to continue directly into the
-        production calendar with campaign ID <strong>{campaignId}</strong>.
+        Online scheduling is temporarily unavailable. Email
+        {" "}<a href={`mailto:hello@ringondemand.com?subject=${encodeURIComponent(`Schedule campaign ${campaignId ?? ""}`)}`}>hello@ringondemand.com</a>
+        {" "}and include campaign reference <strong>{campaignId ?? "from your confirmation"}</strong>.
       </p>
-      <Link className="button button-dark" href="/">
-        Return to Ring On Demand
-      </Link>
+      <div className="campaign-success-actions">
+        <a className="button button-dark" href={`mailto:hello@ringondemand.com?subject=${encodeURIComponent(`Schedule campaign ${campaignId ?? ""}`)}`}>
+          Email the team
+        </a>
+        <Link className="button button-outline" href="/build-campaign?intent=demo">
+          Return to my brief
+        </Link>
+      </div>
     </main>
   );
 }

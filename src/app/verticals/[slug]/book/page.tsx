@@ -27,8 +27,8 @@ export default async function VerticalBookPage({ params }: Props) {
         <section className="vertical-book-hero">
           <div>
             <p className="section-code">{vertical.category} / Book a call</p>
-            <h1>Make the {vertical.name} conversation useful from minute one.</h1>
-            <p>Start with the campaign record so the scheduling step does not ask for your requirements again.</p>
+            <h1>Book a call about {vertical.name} campaigns.</h1>
+            <p>Tell us what you want to buy first, so our conversation can focus on availability, pricing, and next steps.</p>
             <Link className="button button-purple" href={`/build-campaign?intent=demo&brief=${encodeURIComponent(brief)}`}>
               Prepare and schedule <ArrowRight aria-hidden="true" size={16} />
             </Link>
@@ -40,7 +40,7 @@ export default async function VerticalBookPage({ params }: Props) {
         </section>
         <section className="vertical-book-process">
           <p className="section-code">[ One connected handoff ]</p>
-          <div><ClipboardCheck aria-hidden="true" /><h2>Your brief travels with the booking.</h2><p>The canonical campaign ID is passed into scheduling after submission.</p></div>
+          <div><ClipboardCheck aria-hidden="true" /><h2>Enter your campaign details once.</h2><p>Your approved brief stays attached when you continue to scheduling.</p></div>
           <Link className="text-link" href={`/verticals/${vertical.slug}`}>Return to {vertical.name}<ArrowRight aria-hidden="true" size={15} /></Link>
         </section>
       </main>
