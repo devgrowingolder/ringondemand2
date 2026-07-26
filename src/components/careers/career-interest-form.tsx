@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const disciplines = [
@@ -100,10 +101,11 @@ export function CareerInterestForm() {
           information is stored by this website.
         </p>
         {prepared && (
-          <p className="career-form-status" role="status">
+          <div className="career-form-status" role="status">
             <CheckCircle2 aria-hidden="true" size={18} />
-            Your introduction is ready in your email client.
-          </p>
+            <span>Your introduction is ready in your email client.</span>
+            <Link href="/careers/thank-you">I sent my introduction</Link>
+          </div>
         )}
       </form>
       <aside className="career-apply-aside">

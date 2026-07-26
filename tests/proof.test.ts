@@ -3,10 +3,12 @@ import { getApprovedProof } from "@/lib/proof";
 
 describe("proof filtering", () => {
   it("renders approved claims and filters every unverified claim", () => {
-    const approved = getApprovedProof("homepage");
+    const homepage = getApprovedProof("homepage");
+    const finalExpense = getApprovedProof("final expense");
 
-    expect(approved).toHaveLength(1);
-    expect(approved[0]).toMatchObject({
+    expect(homepage).toHaveLength(0);
+    expect(finalExpense).toHaveLength(1);
+    expect(finalExpense[0]).toMatchObject({
       id: "final-expense-headline",
       status: "approved",
     });

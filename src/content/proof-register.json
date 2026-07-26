@@ -7,7 +7,7 @@
     "status": "approved",
     "reviewDate": "2026-07-24",
     "expirationDate": null,
-    "pagePlacement": ["homepage", "final expense"]
+    "pagePlacement": ["final expense"]
   },
   {
     "id": "homepage-exclusivity",
@@ -48,5 +48,45 @@
     "reviewDate": null,
     "expirationDate": null,
     "pagePlacement": ["homepage", "buyer workspace"]
+  },
+  {
+    "id": "brand-top10rehab-online",
+    "claim": "The Top 10 Rehab website resolved publicly and identified itself as Top Rehab Centers by City.",
+    "source": "Direct HTTPS check of https://www.top10rehab.com/ on 2026-07-25.",
+    "owner": "Marketing",
+    "status": "approved",
+    "reviewDate": "2026-07-25",
+    "expirationDate": "2026-10-25",
+    "pagePlacement": ["brand network"]
+  },
+  {
+    "id": "brand-growingolder-online",
+    "claim": "The GrowingOlder website resolved publicly and identified itself as Senior Living & Care with Real Pricing.",
+    "source": "Direct HTTPS check of https://growingolder.com/ on 2026-07-25.",
+    "owner": "Marketing",
+    "status": "approved",
+    "reviewDate": "2026-07-25",
+    "expirationDate": "2026-10-25",
+    "pagePlacement": ["brand network"]
+  },
+  {
+    "id": "brand-american-addiction-hotline-online",
+    "claim": "The American Addiction Hotline domain returned a public website response.",
+    "source": "Direct HTTPS check of https://americanaddictionhotline.org/ on 2026-07-25.",
+    "owner": "Marketing",
+    "status": "approved",
+    "reviewDate": "2026-07-25",
+    "expirationDate": "2026-10-25",
+    "pagePlacement": ["brand network"]
+  },
+  {
+    "id": "brand-ownership",
+    "claim": "The submitted web properties are owned by Ring On Demand or its operating company.",
+    "source": "Corporate ownership, registrar, or acquisition documentation required.",
+    "owner": "Legal",
+    "status": "in_review",
+    "reviewDate": "2026-07-25",
+    "expirationDate": null,
+    "pagePlacement": ["brand network"]
   }
 ]

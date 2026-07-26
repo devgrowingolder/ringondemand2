@@ -29,6 +29,9 @@
   - `.qa/rid-careers-desktop-top.png`
   - `.qa/rid-careers-mobile-top.png`
   - `.qa/careers-reference-vs-rid.png`
+- Connected operations:
+  - `.qa/stytch-connected-apps-desktop-top.png`
+  - `.qa/connected-apps-reference-vs-rid.png`
 
 The QA files are local review artifacts and intentionally ignored by Git.
 
@@ -95,9 +98,33 @@ Fixes:
   separately verified the implementation at `390 × 844`. No P0, P1, or P2
   visual issues remain.
 
+### Pass 5
+
+- The public route system did not include dedicated vertical booking and
+  thank-you templates.
+- The hiring funnel ended at the open-introduction form.
+- Connected operations, About, community, and brand-network information had no
+  controlled page structure.
+
+Fixes:
+
+- Added static booking and non-indexed thank-you pages for all twelve
+  verticals, producing a consistent landing → booking → confirmation path.
+- Added a non-indexed careers confirmation page and connected it to the
+  existing email-based introduction flow.
+- Added About, Pay Per Call Community, Connected Operations, and Brand Network
+  pages with original RID copy and components.
+- Matched the Connected Operations hero to the Stytch reference’s measured
+  line geometry, editorial offset, oversized headline, and restrained CTA
+  treatment, then compared both at `1440 × 900` in one composite.
+- Verified Connected Operations and Careers at `390 × 844`; no overflow,
+  cropped primary actions, or P0/P1/P2 issues remain.
+- Kept submitted brand ownership in review while separately displaying the
+  properties whose websites could be verified online.
+
 ## Automated and runtime evidence
 
-- Production build: passed, 28 routes generated.
+- Production build: passed, 57 routes generated.
 - ESLint: passed.
 - TypeScript: passed.
 - Unit tests: 14 passed.

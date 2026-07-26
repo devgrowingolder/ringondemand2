@@ -72,6 +72,10 @@ export default async function VerticalPage({ params }: Props) {
               Build this campaign
               <ArrowRight aria-hidden="true" size={15} />
             </Link>
+            <Link className="text-link" href={`/verticals/${vertical.slug}/book`}>
+              Book a {vertical.name} call
+              <ArrowRight aria-hidden="true" size={15} />
+            </Link>
           </div>
 
           <div className="vertical-offer-card">
@@ -248,6 +252,9 @@ export default async function VerticalPage({ params }: Props) {
           <Link className="button button-light" href={campaignHref}>
             Build this campaign
             <ArrowRight aria-hidden="true" size={15} />
+          </Link>
+          <Link className="button button-ghost-light" href={`/verticals/${vertical.slug}/book`}>
+            Book a call
           </Link>
         </section>
       </main>

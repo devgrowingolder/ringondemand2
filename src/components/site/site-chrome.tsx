@@ -2,10 +2,13 @@
 
 import {
   ArrowRight,
+  Building2,
   ChevronDown,
+  Link2,
   Menu,
   PhoneCall,
   Route,
+  Users,
   X,
 } from "lucide-react";
 import Image from "next/image";
@@ -26,6 +29,19 @@ const productLinks = [
     detail: "One operating view for every live conversation.",
     icon: PhoneCall,
   },
+  {
+    href: "/connected-apps",
+    label: "Connected operations",
+    detail: "Carry approved campaign data into downstream systems.",
+    icon: Link2,
+  },
+];
+
+const companyLinks = [
+  { href: "/about", label: "About", icon: Building2 },
+  { href: "/community", label: "Pay per call community", icon: Users },
+  { href: "/brands", label: "Brand network", icon: Link2 },
+  { href: "/careers", label: "Careers", icon: Route },
 ];
 
 const verticalCategories = ["Insurance", "Home services", "Legal", "Financial"];
@@ -134,9 +150,16 @@ export function SiteHeader() {
             <Link className="nav-link" href="/partners">
               Partners
             </Link>
-            <Link className="nav-link" href="/careers">
-              Careers
-            </Link>
+            <NavDropdown label="Company">
+              <div className="nav-product-grid">
+                {companyLinks.map(({ href, label, icon: Icon }) => (
+                  <Link className="nav-product-link" href={href} key={href}>
+                    <Icon aria-hidden="true" size={18} strokeWidth={1.5} />
+                    <span><strong>{label}</strong></span>
+                  </Link>
+                ))}
+              </div>
+            </NavDropdown>
           </nav>
 
           <div className="desktop-actions">
@@ -174,6 +197,7 @@ export function SiteHeader() {
             <p className="mobile-nav-label">Product</p>
             <Link href="/#how-it-works">How it works</Link>
             <Link href="/agents">Buyer workspace</Link>
+            <Link href="/connected-apps">Connected operations</Link>
             <Link href="/#buying-models">Buying models</Link>
             <p className="mobile-nav-label">Verticals</p>
             <div className="mobile-vertical-grid">
@@ -185,6 +209,9 @@ export function SiteHeader() {
             </div>
             <Link href="/blog">Resources</Link>
             <Link href="/partners">Partners</Link>
+            <Link href="/about">About</Link>
+            <Link href="/community">Pay per call community</Link>
+            <Link href="/brands">Brand network</Link>
             <Link href="/careers">Careers</Link>
           </nav>
           <div className="mobile-drawer-actions">
@@ -245,6 +272,7 @@ export function SiteFooter() {
           <h3>Product</h3>
           <Link href="/#how-it-works">How it works</Link>
           <Link href="/agents">Buyer workspace</Link>
+          <Link href="/connected-apps">Connected operations</Link>
           <Link href="/build-campaign">Build a campaign</Link>
         </div>
         <div>
@@ -259,6 +287,9 @@ export function SiteFooter() {
         <div>
           <h3>Company</h3>
           <Link href="/customers">Customer experience</Link>
+          <Link href="/about">About</Link>
+          <Link href="/community">Pay per call community</Link>
+          <Link href="/brands">Brand network</Link>
           <Link href="/careers">Careers</Link>
           <a href="mailto:hello@ringondemand.com">Contact</a>
           <a
