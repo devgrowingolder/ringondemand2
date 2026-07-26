@@ -130,10 +130,23 @@ export function SiteHeader() {
               </div>
             </NavDropdown>
             <NavDropdown label="Verticals" wide>
+              <div className="nav-vertical-summary">
+                <span>Explore all {verticals.length} verticals</span>
+                <small>{verticalCategories.length} markets</small>
+              </div>
               <div className="nav-vertical-mega">
                 {verticalCategories.map((category) => (
                   <div key={category}>
-                    <p>{category}</p>
+                    <p>
+                      {category}
+                      <span>
+                        {String(
+                          verticals.filter(
+                            (vertical) => vertical.category === category,
+                          ).length,
+                        ).padStart(2, "0")}
+                      </span>
+                    </p>
                     {verticals
                       .filter((vertical) => vertical.category === category)
                       .map((vertical) => (
@@ -216,20 +229,35 @@ export function SiteHeader() {
             <Link href="/connected-apps">Connected operations</Link>
             <Link href="/#buying-models">Calls, leads, and appointments</Link>
             <p className="mobile-nav-label">Verticals</p>
-            <div className="mobile-vertical-grid">
-              {verticals
-                .filter((vertical) =>
-                  ["final-expense", "home-services", "personal-injury", "tax-debt"].includes(
-                    vertical.slug,
-                  ),
-                )
-                .map((vertical) => (
-                <Link href={`/verticals/${vertical.slug}`} key={vertical.slug}>
-                  {vertical.name}
-                </Link>
-                ))}
+            <div className="mobile-vertical-catalog">
+              {verticalCategories.map((category) => (
+                <div className="mobile-vertical-group" key={category}>
+                  <p>
+                    {category}
+                    <span>
+                      {String(
+                        verticals.filter(
+                          (vertical) => vertical.category === category,
+                        ).length,
+                      ).padStart(2, "0")}
+                    </span>
+                  </p>
+                  {verticals
+                    .filter((vertical) => vertical.category === category)
+                    .map((vertical) => (
+                      <Link
+                        href={`/verticals/${vertical.slug}`}
+                        key={vertical.slug}
+                      >
+                        {vertical.name}
+                      </Link>
+                    ))}
+                </div>
+              ))}
             </div>
-            <Link href="/verticals">View all verticals</Link>
+            <Link className="mobile-view-all" href="/verticals">
+              Browse the vertical directory
+            </Link>
             <Link href="/blog">Resources</Link>
             <Link href="/partners">Partners</Link>
             <Link href="/about">About</Link>

@@ -177,11 +177,21 @@ img {
 }
 
 .desktop-nav {
+  display: grid;
   flex: 1;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  min-width: 0;
 }
 
 .desktop-actions {
   margin-left: auto;
+}
+
+.desktop-nav > .nav-dropdown,
+.desktop-nav > .nav-link,
+.desktop-nav > .nav-dropdown > .nav-link {
+  min-width: 0;
+  width: 100%;
 }
 
 .nav-link {
@@ -4258,7 +4268,31 @@ body {
 /* 2026 enterprise refinement */
 
 .nav-dropdown-panel.is-wide {
-  min-width: 720px;
+  min-width: 0;
+  width: min(720px, calc(100vw - 48px));
+}
+
+.nav-vertical-summary {
+  align-items: center;
+  border-bottom: 1px solid var(--rid-border);
+  display: flex;
+  font-family: var(--rid-font-mono);
+  justify-content: space-between;
+  letter-spacing: 0.07em;
+  margin: -12px -12px 8px;
+  min-height: 50px;
+  padding: 0 20px;
+  text-transform: uppercase;
+}
+
+.nav-vertical-summary span {
+  color: var(--rid-ink);
+  font-size: 10px;
+}
+
+.nav-vertical-summary small {
+  color: var(--rid-muted);
+  font-size: 9px;
 }
 
 .nav-vertical-mega {
@@ -4274,12 +4308,19 @@ body {
 }
 
 .nav-vertical-mega p {
+  align-items: center;
   color: var(--rid-violet);
+  display: flex;
   font-family: var(--rid-font-mono);
   font-size: 9px;
+  justify-content: space-between;
   letter-spacing: 0.08em;
   margin: 0 0 8px;
   text-transform: uppercase;
+}
+
+.nav-vertical-mega p span {
+  color: var(--rid-muted);
 }
 
 .nav-vertical-mega a {
@@ -4308,20 +4349,49 @@ body {
   text-transform: uppercase;
 }
 
-.mobile-vertical-grid {
+.mobile-vertical-catalog {
   border-bottom: 1px solid var(--rid-border);
   display: grid;
-  gap: 0 18px;
+  gap: 24px 18px;
   grid-template-columns: 1fr 1fr;
-  padding-bottom: 14px;
+  padding: 4px 0 22px;
 }
 
-.mobile-vertical-grid a {
+.mobile-vertical-group {
+  align-content: start;
+  display: grid;
+}
+
+.mobile-vertical-group p {
+  align-items: center;
+  color: var(--rid-violet);
+  display: flex;
+  font-family: var(--rid-font-mono);
+  font-size: 10px;
+  justify-content: space-between;
+  letter-spacing: 0.08em;
+  margin: 0;
+  min-height: 38px;
+  text-transform: uppercase;
+}
+
+.mobile-vertical-group p span {
+  color: var(--rid-muted);
+}
+
+.mobile-vertical-group a {
   align-items: center;
   border-top: 1px solid var(--rid-border);
   display: flex;
   font-size: 14px;
   min-height: 46px;
+}
+
+.mobile-drawer nav > .mobile-view-all {
+  font-family: var(--rid-font-mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .home-hero {
@@ -4860,7 +4930,7 @@ body {
 }
 
 @media (max-width: 520px) {
-  .mobile-vertical-grid {
+  .mobile-vertical-catalog {
     grid-template-columns: 1fr;
   }
 
