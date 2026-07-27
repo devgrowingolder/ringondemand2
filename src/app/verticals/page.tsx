@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import { VerticalBrowser } from "@/components/verticals/vertical-browser";
 import { EditorialHero } from "@/components/site/editorial-page";
 import { SiteShell } from "@/components/site/site-chrome";
-import { verticals } from "@/lib/verticals";
+import {
+  catalogVerticals,
+  verticalCategories,
+} from "@/lib/verticals";
 
 export const metadata: Metadata = {
   title: "Verticals",
@@ -17,18 +20,16 @@ export default function VerticalsPage() {
         <EditorialHero
           action="Describe a campaign"
           code="[ Verticals ]"
-          copy="Choose your market, then tell us whether you want calls, leads, or appointments. Set your locations, hours, volume, and filters before requesting pricing."
+          copy={`Explore ${catalogVerticals.length} verticals across ${verticalCategories.length} markets. Choose one, then set your delivery type, locations, hours, volume, and filters.`}
           title="Find the right campaign for your sales team."
         >
           <div className="vertical-hero-index">
-            {["Insurance", "Home services", "Legal", "Financial"].map(
-              (category, index) => (
-                <div key={category}>
+            {verticalCategories.map((category, index) => (
+                <div key={category.slug}>
                   <span>0{index + 1}</span>
-                  <strong>{category}</strong>
+                  <strong>{category.name}</strong>
                 </div>
-              ),
-            )}
+              ))}
           </div>
         </EditorialHero>
         <section className="vertical-browser-section">
@@ -42,7 +43,7 @@ export default function VerticalsPage() {
               </p>
             </div>
           </div>
-          <VerticalBrowser verticals={verticals} />
+          <VerticalBrowser verticals={catalogVerticals} />
         </section>
       </main>
     </SiteShell>

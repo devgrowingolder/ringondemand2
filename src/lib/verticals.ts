@@ -5,172 +5,273 @@ export type VerticalDefinition = {
   headline: string;
   description: string;
   qualificationPrompts: string[];
+  catalog?: boolean;
+};
+
+export type VerticalCategory = {
+  name: string;
+  slug: string;
+  description: string;
+};
+
+export const VERTICAL_CATALOG_SOURCE = "https://ringondemand.com/";
+
+export const verticalCategories: VerticalCategory[] = [
+  {
+    name: "Insurance",
+    slug: "insurance",
+    description: "Health, life, property, auto, and protection products.",
+  },
+  {
+    name: "Home services",
+    slug: "home-services",
+    description: "Repair, improvement, restoration, and local home services.",
+  },
+  {
+    name: "Legal",
+    slug: "legal",
+    description: "Consumer legal intake and case-related demand.",
+  },
+  {
+    name: "Financial",
+    slug: "financial",
+    description: "Debt, lending, credit, and retirement programs.",
+  },
+  {
+    name: "Addiction / rehab",
+    slug: "addiction-rehab",
+    description: "Treatment and rehabilitation inquiries.",
+  },
+  {
+    name: "Auto services",
+    slug: "auto-services",
+    description: "Automotive protection and service demand.",
+  },
+  {
+    name: "Moving",
+    slug: "moving",
+    description: "Towing and long-distance moving inquiries.",
+  },
+  {
+    name: "Telecom",
+    slug: "telecom",
+    description: "Telecommunications customer acquisition.",
+  },
+  {
+    name: "Real estate",
+    slug: "real-estate",
+    description: "Home seller and real-estate opportunities.",
+  },
+];
+
+const categoryPrompts: Record<string, string[]> = {
+  Insurance: [
+    "States where your team is licensed",
+    "Buyer-approved product criteria",
+    "Hours your team can accept demand",
+  ],
+  "Home services": [
+    "Service area",
+    "Requested job or service",
+    "Dispatch or appointment availability",
+  ],
+  Legal: [
+    "Geographic eligibility",
+    "Case or inquiry type",
+    "Buyer-approved intake criteria",
+  ],
+  Financial: [
+    "Geographic eligibility",
+    "Buyer-approved financial criteria",
+    "Contact and delivery availability",
+  ],
+  "Addiction / rehab": [
+    "Locations and program availability",
+    "Buyer-approved intake criteria",
+    "Hours the intake team is available",
+  ],
+  "Auto services": [
+    "Covered locations",
+    "Vehicle or product criteria",
+    "Buyer-approved routing rules",
+  ],
+  Moving: [
+    "Pickup and service area",
+    "Requested service",
+    "Dispatch availability",
+  ],
+  Telecom: [
+    "Covered markets",
+    "Requested service",
+    "Buyer-approved qualification rules",
+  ],
+  "Real estate": [
+    "Target markets",
+    "Property or seller criteria",
+    "Buyer-approved contact rules",
+  ],
+};
+
+const categoryDescriptions: Record<string, (name: string) => string> = {
+  Insurance: (name) =>
+    `Choose ${name} calls, leads, or appointments around your licensed states, hours, volume, and qualification rules.`,
+  "Home services": (name) =>
+    `Build ${name} demand around the service areas, working hours, job types, and volume your team can handle.`,
+  Legal: (name) =>
+    `Set the geography, intake hours, case criteria, volume, and destination for your ${name} campaign.`,
+  Financial: (name) =>
+    `Choose locations, contact hours, volume, qualification rules, and delivery for your ${name} campaign.`,
+  "Addiction / rehab": (name) =>
+    `Define locations, intake hours, volume, qualification rules, and delivery for ${name} inquiries.`,
+  "Auto services": (name) =>
+    `Choose covered markets, hours, volume, vehicle criteria, and delivery for your ${name} campaign.`,
+  Moving: (name) =>
+    `Set the service area, operating hours, volume, job criteria, and destination for ${name} demand.`,
+  Telecom: (name) =>
+    `Define markets, hours, volume, qualification rules, and delivery for your ${name} campaign.`,
+  "Real estate": (name) =>
+    `Choose markets, contact hours, property criteria, volume, and destination for your ${name} campaign.`,
+};
+
+const verticalSeeds: Array<[name: string, category: string]> = [
+  ["Final Expense", "Insurance"],
+  ["Medicare", "Insurance"],
+  ["ACA", "Insurance"],
+  ["U65 Health", "Insurance"],
+  ["Home Insurance", "Insurance"],
+  ["Auto Insurance", "Insurance"],
+  ["SSDI", "Insurance"],
+  ["Mortgage Protection", "Insurance"],
+  ["Life Insurance", "Insurance"],
+  ["Business Insurance", "Insurance"],
+  ["IUL", "Insurance"],
+  ["Auto Warranty", "Auto services"],
+  ["Rehab Treatment", "Addiction / rehab"],
+  ["Plumbing", "Home services"],
+  ["Water Damage", "Home services"],
+  ["Mold Removal", "Home services"],
+  ["Pest Control", "Home services"],
+  ["Electrician", "Home services"],
+  ["Appliance Repair", "Home services"],
+  ["Locksmith", "Home services"],
+  ["Home Security", "Home services"],
+  ["Towing", "Moving"],
+  ["Deck Building and Repair", "Home services"],
+  ["Telecom", "Telecom"],
+  ["Fire Damage Restoration", "Home services"],
+  ["Long Distance Moving", "Moving"],
+  ["Driveway and Paving", "Home services"],
+  ["Carpentry", "Home services"],
+  ["Pool Services", "Home services"],
+  ["Handyman", "Home services"],
+  ["Home Remodeling", "Home services"],
+  ["Junk Removal", "Home services"],
+  ["Landscaping", "Home services"],
+  ["Fence", "Home services"],
+  ["Carpet Cleaning", "Home services"],
+  ["Fireplace Repair", "Home services"],
+  ["Chimney Cleaning", "Home services"],
+  ["Dryer Vent Cleaning", "Home services"],
+  ["Exterior Paint", "Home services"],
+  ["Sliding Door Repair", "Home services"],
+  ["Bathroom Remodel", "Home services"],
+  ["Walk In Tubs", "Home services"],
+  ["HVAC", "Home services"],
+  ["Roofing", "Home services"],
+  ["Gutter Installation", "Home services"],
+  ["Windows", "Home services"],
+  ["Garage", "Home services"],
+  ["Concrete", "Home services"],
+  ["Air Duct Cleaning", "Home services"],
+  ["Kitchen Remodeling", "Home services"],
+  ["Flooring", "Home services"],
+  ["Solar", "Home services"],
+  ["Siding", "Home services"],
+  ["MVA / Auto Accident", "Legal"],
+  ["Personal Injury", "Legal"],
+  ["Immigration Lawyer", "Legal"],
+  ["Credit Repair", "Financial"],
+  ["Tax Debt", "Financial"],
+  ["Debt Settlement", "Financial"],
+  ["Annuity", "Financial"],
+  ["Business Loan / MCA", "Financial"],
+  ["Personal Loans", "Financial"],
+  ["Home Seller / Sell My Home Fast", "Real estate"],
+  ["Pre-Settlement Funding", "Legal"],
+];
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function createVertical(
+  name: string,
+  category: string,
+): VerticalDefinition {
+  const description =
+    categoryDescriptions[category]?.(name) ??
+    `Choose the locations, hours, volume, qualification rules, and delivery for your ${name} campaign.`;
+
+  return {
+    slug: slugify(name),
+    name,
+    category,
+    headline: `Build a ${name} campaign around your team.`,
+    description,
+    qualificationPrompts: categoryPrompts[category] ?? [
+      "Target locations",
+      "Buyer-approved qualification rules",
+      "Delivery hours and destination",
+    ],
+  };
+}
+
+const catalogDefinitions = verticalSeeds.map(([name, category]) =>
+  createVertical(name, category),
+);
+
+const finalExpense = catalogDefinitions.find(
+  (vertical) => vertical.slug === "final-expense",
+);
+
+if (finalExpense) {
+  finalExpense.headline =
+    "We Provide High Volume Final Expense Calls That Have Guaranteed Intent & 90 Second Call Times.";
+  finalExpense.description =
+    "Buy final expense calls around the states, hours, daily volume, qualification rules, and call destination your team can support.";
+}
+
+const homeServicesOverview: VerticalDefinition = {
+  slug: "home-services",
+  name: "Home Services",
+  category: "Home services",
+  headline: "Buy Home Services calls, leads, or appointments by service area.",
+  description:
+    "Choose the service, locations, working hours, job criteria, expected volume, and delivery destination.",
+  qualificationPrompts: categoryPrompts["Home services"],
+  catalog: false,
 };
 
 export const verticals: VerticalDefinition[] = [
-  {
-    slug: "final-expense",
-    name: "Final Expense",
-    category: "Insurance",
-    headline:
-      "We Provide High Volume Final Expense Calls That Have Guaranteed Intent & 90 Second Call Times.",
-    description:
-      "Buy final expense calls around the states, hours, daily volume, qualification rules, and call destination your team can support.",
-    qualificationPrompts: [
-      "Age or product criteria",
-      "State availability",
-      "Buyer-approved call requirements",
-    ],
-  },
-  {
-    slug: "medicare",
-    name: "Medicare",
-    category: "Insurance",
-    headline: "Buy Medicare calls, leads, or appointments around your capacity.",
-    description:
-      "Choose your states, schedule, volume, qualification rules, and delivery destination before requesting pricing.",
-    qualificationPrompts: [
-      "Geographic eligibility",
-      "Campaign schedule",
-      "Buyer-approved qualification criteria",
-    ],
-  },
-  {
-    slug: "aca",
-    name: "ACA",
-    category: "Insurance",
-    headline: "Build an ACA campaign around your licensed markets.",
-    description:
-      "Set your states, contact hours, volume, qualification rules, and preferred delivery model.",
-    qualificationPrompts: [
-      "State availability",
-      "Contact window",
-      "Buyer-approved eligibility criteria",
-    ],
-  },
-  {
-    slug: "auto-insurance",
-    name: "Auto Insurance",
-    category: "Insurance",
-    headline: "Send Auto Insurance demand to the right team.",
-    description:
-      "Choose your states, hours, volume, qualification rules, and whether you want calls or leads.",
-    qualificationPrompts: [
-      "State availability",
-      "Policy or vehicle criteria",
-      "Buyer-approved routing conditions",
-    ],
-  },
-  {
-    slug: "mortgage-protection",
-    name: "Mortgage Protection",
-    category: "Insurance",
-    headline: "Build a Mortgage Protection campaign around your sales team.",
-    description:
-      "Confirm your states, schedule, volume, qualification rules, and destination before requesting pricing.",
-    qualificationPrompts: [
-      "State availability",
-      "Product criteria",
-      "Buyer-approved qualification rules",
-    ],
-  },
-  {
-    slug: "home-services",
-    name: "Home Services",
-    category: "Home services",
-    headline: "Buy Home Services calls, leads, or appointments by service area.",
-    description:
-      "Choose your service areas, working hours, job criteria, expected volume, and delivery destination.",
-    qualificationPrompts: [
-      "Service area",
-      "Requested service",
-      "Buyer-approved job criteria",
-    ],
-  },
-  {
-    slug: "roofing",
-    name: "Roofing",
-    category: "Home services",
-    headline: "Get Roofing demand in the markets your team serves.",
-    description:
-      "Set locations, hours, volume, job criteria, and whether demand should arrive as calls, leads, or appointments.",
-    qualificationPrompts: [
-      "Service area",
-      "Property or project criteria",
-      "Buyer-approved appointment requirements",
-    ],
-  },
-  {
-    slug: "hvac",
-    name: "HVAC",
-    category: "Home services",
-    headline: "Buy HVAC demand around your dispatch hours and capacity.",
-    description:
-      "Document service areas, dispatch hours, capacity, job criteria, and destination before campaign review.",
-    qualificationPrompts: [
-      "Service area",
-      "Service type",
-      "Buyer-approved scheduling criteria",
-    ],
-  },
-  {
-    slug: "solar",
-    name: "Solar",
-    category: "Home services",
-    headline: "Put qualified Solar opportunities in front of your team.",
-    description:
-      "Choose markets, contact windows, expected volume, qualification rules, and appointment destination.",
-    qualificationPrompts: [
-      "Market availability",
-      "Property criteria",
-      "Buyer-approved appointment requirements",
-    ],
-  },
-  {
-    slug: "personal-injury",
-    name: "Personal Injury",
-    category: "Legal",
-    headline: "Build a Personal Injury campaign around your intake criteria.",
-    description:
-      "Set the eligible geography, delivery hours, volume, case criteria, and intake destination.",
-    qualificationPrompts: [
-      "Geographic eligibility",
-      "Case type",
-      "Buyer-approved intake criteria",
-    ],
-  },
-  {
-    slug: "tax-debt",
-    name: "Tax Debt",
-    category: "Financial",
-    headline: "Buy Tax Debt demand your intake team is ready to handle.",
-    description:
-      "Confirm geography, hours, capacity, qualification rules, and destination before any submission.",
-    qualificationPrompts: [
-      "Geographic eligibility",
-      "Buyer-approved financial criteria",
-      "Contact availability",
-    ],
-  },
-  {
-    slug: "debt-settlement",
-    name: "Debt Settlement",
-    category: "Financial",
-    headline: "Build a Debt Settlement campaign around your qualification rules.",
-    description:
-      "Keep qualification, schedule, volume, and destination requirements connected through the funnel.",
-    qualificationPrompts: [
-      "Geographic eligibility",
-      "Buyer-approved qualification rules",
-      "Contact availability",
-    ],
-  },
+  homeServicesOverview,
+  ...catalogDefinitions,
 ];
+
+export const catalogVerticals = verticals.filter(
+  (vertical) => vertical.catalog !== false,
+);
 
 export const verticalBySlug = new Map(
   verticals.map((vertical) => [vertical.slug, vertical]),
 );
 
-export const verticalCategories = Array.from(
-  new Set(verticals.map((vertical) => vertical.category)),
-);
+export function categorySlug(category: string) {
+  return (
+    verticalCategories.find((item) => item.name === category)?.slug ??
+    slugify(category)
+  );
+}

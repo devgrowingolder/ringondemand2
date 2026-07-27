@@ -16,7 +16,10 @@ import { CampaignBriefDemo } from "@/components/home/campaign-brief-demo";
 import { FAQ } from "@/components/home/faq";
 import { ProductStory } from "@/components/home/product-story";
 import { SiteShell } from "@/components/site/site-chrome";
-import { verticals } from "@/lib/verticals";
+import {
+  catalogVerticals,
+  verticalCategories,
+} from "@/lib/verticals";
 
 const buyingModels = [
   {
@@ -68,7 +71,9 @@ const workspaceFeatures = [
   ],
 ];
 
-const categoryOrder = ["Insurance", "Home services", "Legal", "Financial"];
+const categoryOrder = verticalCategories
+  .slice(0, 4)
+  .map((category) => category.name);
 
 export default function Home() {
   return (
@@ -322,8 +327,9 @@ export default function Home() {
             <div>
               <h2>Built for teams in high-intent markets.</h2>
               <p>
-                Start with your market, then choose the delivery model,
-                locations, hours, volume, and qualification rules.
+                Browse {catalogVerticals.length} vertical programs across{" "}
+                {verticalCategories.length} markets. Start with your market,
+                then choose delivery, locations, hours, volume, and filters.
               </p>
             </div>
           </div>
@@ -340,8 +346,9 @@ export default function Home() {
                   <h3>{category}</h3>
                 </div>
                 <div>
-                  {verticals
+                  {catalogVerticals
                     .filter((vertical) => vertical.category === category)
+                    .slice(0, 5)
                     .map((vertical) => (
                       <Link
                         href={`/verticals/${vertical.slug}`}

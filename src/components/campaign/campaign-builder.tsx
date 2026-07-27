@@ -12,6 +12,7 @@ import {
   PhoneCall,
   Sparkles,
 } from "lucide-react";
+import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import { trackFunnelEvent } from "@/lib/analytics";
 import type { CampaignDraftV1 } from "@/lib/campaign/schema";
@@ -21,10 +22,10 @@ const defaultBrief =
   "Final expense calls in Florida and Texas on weekdays from 9am to 5pm with a daily limit of 25 calls.";
 
 const steps = [
-  "Describe",
-  "Delivery",
-  "Locations",
-  "Rules",
+  "Start",
+  "Campaign",
+  "Coverage",
+  "Setup",
   "Contact",
   "Review",
 ] as const;
@@ -69,7 +70,6 @@ const emptyContact: ContactState = {
 
 function currentUnresolved(draft: CampaignDraftV1) {
   const fields: string[] = [];
-  if (draft.deliveryModel === "undecided") fields.push("deliveryModel");
   if (!draft.vertical.name) fields.push("vertical");
   if (!draft.locations.states.length && !draft.locations.zipCodes.length)
     fields.push("locations");
@@ -77,7 +77,6 @@ function currentUnresolved(draft: CampaignDraftV1) {
     fields.push("schedule");
   if (!draft.volume.count) fields.push("volume");
   if (!draft.qualificationRules.length) fields.push("qualificationRules");
-  if (draft.destination === "undecided") fields.push("destination");
   return fields;
 }
 
@@ -332,6 +331,18 @@ export function CampaignBuilder({
             </button>
           </div>
         )}
+        <div className="campaign-next-steps">
+          <h2>What happens next</h2>
+          <ol>
+            <li>We review the campaign details and any undecided fields.</li>
+            <li>You confirm pricing, qualification, and delivery setup.</li>
+            <li>The destination is tested before the campaign moves forward.</li>
+          </ol>
+          <Link className="text-link" href="/onboarding">
+            View the onboarding checklist
+            <ArrowRight aria-hidden="true" size={15} />
+          </Link>
+        </div>
         {error && <p className="form-error">{error}</p>}
       </div>
     );
@@ -350,6 +361,14 @@ export function CampaignBuilder({
           Step {step + 1} of {steps.length}
         </span>
       </header>
+
+      <div className="campaign-builder-intro">
+        <strong>Start with what you know.</strong>
+        <span>
+          Choose “Help me choose” where needed. Nothing is submitted until the
+          final review.
+        </span>
+      </div>
 
       <div className="campaign-progress" aria-label="Campaign progress">
         {steps.map((label, index) => (
@@ -471,7 +490,34 @@ export function CampaignBuilder({
         )}
 
         {step === 2 && (
-          <form className="builder-step" onSubmit={(event) => saveStep(event, 3)}>
+          <form
+            className="builder-step"
+            onSubmit={(event) => {
+              setDraft((current) => ({
+                ...current,
+                schedule: current.schedule.windows.length
+                  ? current.schedule
+                  : {
+                      timezone:
+                        current.schedule.timezone || "America/New_York",
+                      windows: [
+                        {
+                          days: [
+                            "Monday",
+                            "Tuesday",
+                            "Wednesday",
+                            "Thursday",
+                            "Friday",
+                          ],
+                          start: "09:00",
+                          end: "17:00",
+                        },
+                      ],
+                    },
+              }));
+              saveStep(event, 3);
+            }}
+          >
             <div className="builder-step-copy">
               <MapPin aria-hidden="true" />
               <p className="section-code">Locations and schedule</p>
@@ -701,6 +747,20 @@ export function CampaignBuilder({
                 value={draft.qualificationRules.join("\n")}
               />
             </label>
+            <button
+              className="builder-help-choice"
+              onClick={() =>
+                setDraft((current) => ({
+                  ...current,
+                  qualificationRules: [
+                    "Help me define the qualification rules",
+                  ],
+                }))
+              }
+              type="button"
+            >
+              I need help defining the rules
+            </button>
             <fieldset className="choice-grid">
               <legend>Delivery destination</legend>
               {[

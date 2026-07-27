@@ -13,7 +13,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SiteShell } from "@/components/site/site-chrome";
 import { VerticalFAQ } from "@/components/verticals/vertical-faq";
-import { verticalBySlug, verticals } from "@/lib/verticals";
+import {
+  catalogVerticals,
+  categorySlug,
+  verticalBySlug,
+  verticals,
+} from "@/lib/verticals";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -39,10 +44,13 @@ export default async function VerticalPage({ params }: Props) {
 
   const brief = `${vertical.name} inbound calls in Florida on weekdays from 9am to 5pm with a daily limit of 25 calls.`;
   const campaignHref = `/build-campaign?brief=${encodeURIComponent(brief)}`;
-  const categoryClass = vertical.category.toLowerCase().replace(" ", "-");
-  const relatedVerticals = verticals.filter(
-    (item) => item.slug !== vertical.slug && item.category === vertical.category,
-  );
+  const categoryClass = categorySlug(vertical.category);
+  const relatedVerticals = catalogVerticals
+    .filter(
+      (item) =>
+        item.slug !== vertical.slug && item.category === vertical.category,
+    )
+    .slice(0, 6);
 
   return (
     <SiteShell>
