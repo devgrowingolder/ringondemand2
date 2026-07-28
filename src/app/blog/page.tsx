@@ -19,8 +19,8 @@ const resources = [
   },
   {
     type: "Campaign operations",
-    title: "Build a campaign brief your whole team can use",
-    copy: "How to document service type, vertical, locations, schedule, volume, qualification rules, and destination.",
+    title: "Build campaign details your whole team can use",
+    copy: "How to document what you want to receive, your service, locations, schedule, volume, customer criteria, and destination.",
     icon: BookOpen,
   },
   {

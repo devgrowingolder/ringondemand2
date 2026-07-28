@@ -18,8 +18,8 @@ export default function CustomersPage() {
           action="Book a walkthrough"
           actionHref="/build-campaign?intent=demo"
           code="[ Customer experience ]"
-          copy="Know what you ordered, what was delivered, and what your team should do next. Every campaign begins with a buy box you can review."
-          title="A clearer way to buy inbound demand."
+          copy="Know what you requested, what your team received, and what happens next. Every campaign begins with a simple summary you can review."
+          title="A clearer way to buy calls, leads, and appointments."
         >
           <div className="proof-register-visual">
             <div className="proof-register-head">
@@ -29,7 +29,7 @@ export default function CustomersPage() {
             {[
               "Delivery model and vertical",
               "States, ZIP codes, and hours",
-              "Volume and qualification rules",
+              "Volume and customer criteria",
               "Phone, CRM, or calendar destination",
               "Buyer approval before submission",
             ].map((item) => (
@@ -47,8 +47,8 @@ export default function CustomersPage() {
           <div className="principle-list">
             {[
               [
-                "The approved campaign",
-                "The delivery model, locations, schedule, volume, qualification rules, and destination.",
+                "Your campaign details",
+                "What you want to receive, locations, schedule, volume, customer criteria, and destination.",
               ],
               [
                 "What was delivered",
@@ -56,7 +56,7 @@ export default function CustomersPage() {
               ],
               [
                 "What happens next",
-                "The applicable action, quality review, pricing request, or scheduling handoff.",
+                "The applicable action, quality review, pricing request, or scheduled call.",
               ],
             ].map(([title, copy], index) => (
               <article key={title}>

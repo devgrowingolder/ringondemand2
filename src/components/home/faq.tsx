@@ -5,19 +5,19 @@ import { useState } from "react";
 
 const items = [
   {
-    question: "Are calls and leads exclusive?",
+    question: "What is the difference between calls, leads, and appointments?",
     answer:
-      "Campaign terms state whether each delivery is exclusive and how exclusivity is defined for that buying model.",
+      "Calls connect someone who is calling now. Leads provide contact details for follow-up. Appointments reserve a time on your calendar. Your campaign will state exactly what you are requesting.",
   },
   {
     question: "How does billing work?",
     answer:
-      "Pricing and the billable event are defined before launch. Your agreement explains the service type, qualification rules, billing threshold, and credit policy.",
+      "Pricing and what counts as a billable delivery are confirmed before the campaign moves forward. The agreement also explains customer criteria and the applicable credit policy.",
   },
   {
     question: "Can I control when deliveries arrive?",
     answer:
-      "Campaign settings can define locations, schedules, availability, destination, and volume limits.",
+      "Yes. You can request specific locations, delivery hours, volume limits, and a phone, system, or calendar destination.",
   },
   {
     question: "How are credit requests reviewed?",
@@ -27,7 +27,7 @@ const items = [
   {
     question: "What do you need to build a campaign?",
     answer:
-      "Start with the service type, vertical, locations, delivery hours, expected volume, qualification rules, and destination.",
+      "Start with calls, leads, or appointments; the service you sell; your locations and hours; the volume your team can handle; your customer criteria; and where each delivery should go.",
   },
 ];
 

@@ -7,7 +7,7 @@ export default async function BookingFallbackPage({ searchParams }: Props) {
   return (
     <main className="booking-fallback">
       <p className="section-code">Demo booking</p>
-      <h1>Your campaign brief is ready.</h1>
+      <h1>Your campaign details are ready.</h1>
       <p>
         Online scheduling is temporarily unavailable. Email
         {" "}<a href={`mailto:hello@ringondemand.com?subject=${encodeURIComponent(`Schedule campaign ${campaignId ?? ""}`)}`}>hello@ringondemand.com</a>
@@ -18,7 +18,7 @@ export default async function BookingFallbackPage({ searchParams }: Props) {
           Email the team
         </a>
         <Link className="button button-outline" href="/build-campaign?intent=demo">
-          Return to my brief
+          Return to my campaign details
         </Link>
       </div>
     </main>

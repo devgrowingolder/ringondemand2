@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Ring On Demand | Pay-Per-Call, Leads & Appointments",
     description:
-      "Choose your market, schedule, volume, and delivery model. Ring On Demand builds the campaign around your team.",
+      "Choose calls, leads, or appointments, then set your service area, schedule, volume, and customer criteria.",
     type: "website",
   },
 };

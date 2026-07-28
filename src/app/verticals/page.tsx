@@ -18,10 +18,10 @@ export default function VerticalsPage() {
     <SiteShell>
       <main>
         <EditorialHero
-          action="Describe a campaign"
+          action="Choose a program"
           code="[ Verticals ]"
-          copy={`Explore ${catalogVerticals.length} verticals across ${verticalCategories.length} markets. Choose one, then set your delivery type, locations, hours, volume, and filters.`}
-          title="Find the right campaign for your sales team."
+          copy={`Explore ${catalogVerticals.length} services across ${verticalCategories.length} categories. Choose what you sell, then tell us whether you want calls, leads, or appointments.`}
+          title="Choose the service your team sells."
         >
           <div className="vertical-hero-index">
             {verticalCategories.map((category, index) => (
@@ -36,10 +36,11 @@ export default function VerticalsPage() {
           <div className="section-heading">
             <p className="section-code">[01] Browse markets</p>
             <div>
-              <h2>Start with the vertical you sell.</h2>
+              <h2>Find your service, then choose how you want to receive new opportunities.</h2>
               <p>
-                Every vertical uses the same simple campaign brief, with
-                market-specific qualification questions.
+                Each page explains the information we need, including
+                locations, hours, volume, and service-specific customer
+                questions.
               </p>
             </div>
           </div>

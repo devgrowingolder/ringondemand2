@@ -26,12 +26,12 @@ const partnerTypes = [
   {
     icon: Handshake,
     title: "Business partner",
-    copy: "Coordinate a qualified introduction with a campaign brief that can move into review.",
+    copy: "Coordinate a qualified introduction with clear campaign details that can move into review.",
   },
   {
     icon: Network,
     title: "Network partner",
-    copy: "Align delivery requirements, handoff responsibilities, and proof standards before activation.",
+    copy: "Align delivery requirements, partner responsibilities, and proof standards before activation.",
   },
   {
     icon: Share2,
@@ -41,7 +41,7 @@ const partnerTypes = [
   {
     icon: Workflow,
     title: "Operations partner",
-    copy: "Support routing, review, or downstream fulfillment using the canonical campaign record.",
+    copy: "Support delivery, review, or downstream fulfillment using the reviewed campaign details.",
   },
 ];
 
@@ -53,16 +53,16 @@ export default function PartnersPage() {
           action="Start a partner conversation"
           actionHref="/build-campaign?intent=demo"
           code="[ Partner network ]"
-          copy="Connect buyers, technology, traffic, and operations through one clear campaign brief and handoff."
+          copy="Connect buyers, technology, traffic, and operations through one clear set of campaign details."
           inverse
           title="Grow with Ring On Demand."
         >
           <div className="partner-route-map">
-            <div>Campaign brief</div>
+            <div>Campaign details</div>
             <ArrowRight aria-hidden="true" />
             <div>Shared rules</div>
             <ArrowRight aria-hidden="true" />
-            <div>Operational handoff</div>
+            <div>Next step</div>
           </div>
         </EditorialHero>
 

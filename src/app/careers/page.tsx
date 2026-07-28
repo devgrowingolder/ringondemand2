@@ -15,7 +15,7 @@ import { SiteShell } from "@/components/site/site-chrome";
 export const metadata: Metadata = {
   title: "Careers",
   description:
-    "Join the Ring On Demand talent network and help build the infrastructure behind live demand.",
+    "Join the Ring On Demand talent network and help build clearer ways to buy calls, leads, and appointments.",
 };
 
 const principles = [
@@ -27,7 +27,7 @@ const principles = [
   {
     icon: Network,
     title: "Build connected systems",
-    copy: "Sales, campaign setup, routing, quality review, and handoff should operate from one shared record.",
+    copy: "Sales, campaign setup, delivery, quality review, and next steps should operate from one shared record.",
   },
   {
     icon: HeartHandshake,
@@ -68,7 +68,7 @@ export default function CareersPage() {
         <section className="careers-hero">
           <div className="careers-hero-copy">
             <p className="section-code">Careers</p>
-            <h1>Help us build a better way to buy inbound demand.</h1>
+            <h1>Help us build a better way to buy calls, leads, and appointments.</h1>
             <p>
               Join a team making calls, leads, and appointments easier for
               buyers to define, receive, and review.
@@ -81,7 +81,7 @@ export default function CareersPage() {
           <div className="careers-hero-panel" aria-label="What we are building">
             <div>
               <span>01</span>
-              <p>Define demand</p>
+              <p>Set campaign details</p>
             </div>
             <div>
               <span>02</span>
@@ -100,7 +100,7 @@ export default function CareersPage() {
             <div>
               <h2>Making performance marketing easier to understand and run.</h2>
               <p>
-                Ring On Demand connects campaign intent with the systems that
+                Ring On Demand connects each buyer request with the systems that
                 move a live call, lead, or appointment to the right buyer.
                 We care about precise product thinking, accountable operations,
                 and experiences people can understand on the first pass.

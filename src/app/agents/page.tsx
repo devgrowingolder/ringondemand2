@@ -63,12 +63,12 @@ export default function BuyerWorkspacePage() {
         <section className="editorial-statement">
           <p className="section-code">Your campaign controls</p>
           <h2>
-            Control your market, schedule, volume, and routing in one place.
+            Control your market, schedule, volume, and destination in one place.
           </h2>
         </section>
 
         <NumberedFeature
-          copy="See the service type, vertical, locations, hours, volume, qualification rules, and destination in one editable summary."
+          copy="See what you requested, your service, locations, hours, volume, customer criteria, and destination in one editable summary."
           number="01"
           title="See exactly what you ordered."
         >

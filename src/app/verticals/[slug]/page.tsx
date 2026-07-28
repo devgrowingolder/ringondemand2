@@ -73,7 +73,7 @@ export default async function VerticalPage({ params }: Props) {
               </li>
               <li>
                 <Check aria-hidden="true" size={17} />
-                Set qualification rules and daily volume
+                Set the rules and volume your team can handle
               </li>
             </ul>
             <Link className="button button-dark" href={campaignHref}>
@@ -93,8 +93,8 @@ export default async function VerticalPage({ params }: Props) {
             </div>
             <h2>{vertical.name}</h2>
             <p>
-              Start with a structured brief. Edit every field before
-              submission.
+              Answer a few simple questions, then check every detail before
+              you submit.
             </p>
             <div className="vertical-offer-fields">
               <div>
@@ -115,7 +115,7 @@ export default async function VerticalPage({ params }: Props) {
               </div>
             </div>
             <Link className="button button-purple" href={campaignHref}>
-              Start the brief
+              Start my campaign
             </Link>
           </div>
         </section>
@@ -123,39 +123,39 @@ export default async function VerticalPage({ params }: Props) {
         <section className="vertical-value-band">
           <div>
             <Route aria-hidden="true" />
-            <span>One brief</span>
+            <span>One set of answers</span>
           </div>
           <ArrowRight aria-hidden="true" />
           <div>
             <ClipboardCheck aria-hidden="true" />
-            <span>One approval</span>
+            <span>One review</span>
           </div>
           <ArrowRight aria-hidden="true" />
           <div>
             <PhoneCall aria-hidden="true" />
-            <span>One operational handoff</span>
+            <span>One connected next step</span>
           </div>
         </section>
 
         <section className="vertical-benefits">
-          <p className="section-code">[01] Your buy box</p>
-          <h2>Build the campaign around your sales team.</h2>
+          <p className="section-code">[01] Your campaign</p>
+          <h2>Choose where, when, and how much your team can receive.</h2>
           <div>
             {[
               [
                 MapPinned,
                 "Choose the market",
-                "Confirm states and ZIP codes in one searchable location step.",
+                "Tell us the states and ZIP codes where your team works.",
               ],
               [
                 CalendarClock,
                 "Set the schedule",
-                "Add timezone and one or more day-and-time delivery windows.",
+                "Choose the days and hours when your team can respond.",
               ],
               [
                 SlidersHorizontal,
                 "Control volume",
-                "Set the expected count by day, week, or month.",
+                "Tell us how many calls, leads, or appointments your team can handle.",
               ],
             ].map(([Icon, title, copy], index) => {
               const BenefitIcon = Icon as typeof MapPinned;
@@ -176,30 +176,30 @@ export default async function VerticalPage({ params }: Props) {
             <p className="section-code">[02] How it works</p>
             <h2>Tell us. Review it. Get pricing.</h2>
             <p>
-              Start in plain language or use the guided questions. You review
-              every campaign detail before it is sent.
+              Start in your own words or follow the guided questions. Nothing
+              is submitted until you check the answers.
             </p>
           </div>
           <ol>
             <li>
               <span>1</span>
               <div>
-                <strong>Tell us what you need</strong>
-                <p>Describe the vertical, states, hours, volume, and delivery model.</p>
+                <strong>Choose your program</strong>
+                <p>Pick calls, leads, or appointments and the service you sell.</p>
               </div>
             </li>
             <li>
               <span>2</span>
               <div>
-                <strong>Review your buy box</strong>
-                <p>Confirm or edit every value before approval.</p>
+                <strong>Set your campaign rules</strong>
+                <p>Add locations, hours, volume, customer criteria, and a destination.</p>
               </div>
             </li>
             <li>
               <span>3</span>
               <div>
                 <strong>Request pricing or book a call</strong>
-                <p>Your campaign details carry into the next conversation.</p>
+                <p>Review your answers once, then continue without entering them again.</p>
               </div>
             </li>
           </ol>
@@ -207,8 +207,8 @@ export default async function VerticalPage({ params }: Props) {
 
         <section className="vertical-qualification">
           <div>
-            <p className="section-code">[03] Qualification</p>
-            <h2>Define what counts for this campaign.</h2>
+            <p className="section-code">[03] Customer criteria</p>
+            <h2>Tell us what a good match looks like.</h2>
           </div>
           <div className="vertical-qualification-list">
             {vertical.qualificationPrompts.map((prompt, index) => (
@@ -225,7 +225,7 @@ export default async function VerticalPage({ params }: Props) {
           <section className="vertical-related">
             <div>
               <p className="section-code">[ Also in {vertical.category} ]</p>
-              <h2>Explore adjacent campaign pages.</h2>
+              <h2>Explore related services.</h2>
             </div>
             <div>
               {relatedVerticals.map((item) => (
@@ -251,11 +251,11 @@ export default async function VerticalPage({ params }: Props) {
         </section>
 
         <section className="vertical-final-cta">
-          <p className="section-code">[ Build the buy box ]</p>
+          <p className="section-code">[ Build your campaign ]</p>
           <h2>Get pricing for a {vertical.name} campaign.</h2>
           <p>
-            Tell us the market, delivery model, locations, hours, and volume
-            your team can handle.
+            Choose calls, leads, or appointments, then add your locations,
+            hours, volume, and customer criteria.
           </p>
           <Link className="button button-light" href={campaignHref}>
             Build this campaign

@@ -7,7 +7,7 @@ import { AnnouncementBar } from "@/components/site/site-chrome";
 export const metadata: Metadata = {
   title: "Build a campaign",
   description:
-    "Describe, confirm, approve, and submit one canonical Ring On Demand campaign brief.",
+    "Describe, review, and submit the Ring On Demand campaign details your team wants priced.",
 };
 
 type Props = {

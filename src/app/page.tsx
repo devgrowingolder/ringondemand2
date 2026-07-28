@@ -26,8 +26,8 @@ const buyingModels = [
     number: "01",
     icon: PhoneCall,
     name: "Pay per call",
-    headline: "Talk to consumers while they are on the phone.",
-    copy: "Inbound calls route to your agents using the states, hours, filters, and limits set for the campaign.",
+    headline: "Talk to people who are calling now.",
+    copy: "Send inbound calls to your team during the hours and in the locations you choose.",
     linkLabel: "See Final Expense call campaigns",
     href: "/verticals/final-expense",
   },
@@ -35,8 +35,8 @@ const buyingModels = [
     number: "02",
     icon: Inbox,
     name: "Pay per lead",
-    headline: "Put new leads in front of your team quickly.",
-    copy: "Real-time form leads can be delivered to the destination selected for the campaign.",
+    headline: "Receive new leads for your team to follow up.",
+    copy: "Send contact details to the destination you choose, with the campaign information attached.",
     linkLabel: "See Home Services lead campaigns",
     href: "/verticals/home-services",
   },
@@ -44,8 +44,8 @@ const buyingModels = [
     number: "03",
     icon: CalendarDays,
     name: "Pay per appointment",
-    headline: "Put qualified conversations on the calendar.",
-    copy: "Booked appointments arrive with the campaign and scheduling details your team needs.",
+    headline: "Put scheduled conversations on your calendar.",
+    copy: "Receive booked appointments with the details your team needs to prepare and follow up.",
     linkLabel: "See Personal Injury appointment campaigns",
     href: "/verticals/personal-injury",
   },
@@ -86,12 +86,11 @@ export default function Home() {
               <span aria-hidden="true" />
               Calls / Leads / Appointments
             </p>
-            <h1>Only pay for demand that reaches your team.</h1>
+            <h1>Only pay for the calls, leads, and appointments you choose.</h1>
             <p>
-              Ring On Demand delivers inbound calls, real-time leads, and
-              booked appointments to insurance, home services, legal, and
-              financial teams. Choose your market, hours, volume, and filters
-              before anything goes live.
+              Choose what you want to receive, where your team works, when
+              you are available, and how much volume you can handle. We turn
+              those answers into one campaign for you to review.
             </p>
             <div className="hero-actions">
               <Link
@@ -111,16 +110,16 @@ export default function Home() {
 
           <div className="hero-campaign-panel">
             <div className="hero-panel-top">
-              <span>Campaign brief</span>
+              <span>Campaign details</span>
               <span className="hero-live-status">
                 <i aria-hidden="true" />
                 Ready to configure
               </span>
             </div>
             <div className="hero-panel-title">
-              <span>RID / BUY BOX / 01</span>
-              <h2>Build your buy box</h2>
-              <p>Choose calls, leads, or appointments</p>
+              <span>RID / CAMPAIGN / 01</span>
+              <h2>Set up your campaign</h2>
+              <p>Start with calls, leads, or appointments</p>
             </div>
             <div className="hero-panel-fields">
               <div>
@@ -160,7 +159,7 @@ export default function Home() {
               <Link
                 href="/build-campaign"
               >
-                Start a campaign
+                Choose a program
                 <ArrowRight aria-hidden="true" size={15} />
               </Link>
             </div>
@@ -195,10 +194,11 @@ export default function Home() {
 
         <section className="brand-statement">
           <p className="section-code">Three ways to buy production</p>
-          <h2>Buy the outcome that fits your sales team.</h2>
+          <h2>Choose how you want new customers to reach you.</h2>
           <p>
-            Choose inbound calls, real-time leads, booked appointments, or a
-            mix built around your vertical and capacity.
+            Start with inbound calls, new leads, or booked appointments. Then
+            choose the vertical, locations, hours, and volume that fit your
+            team.
           </p>
         </section>
 
@@ -206,11 +206,11 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[01] How it works</p>
             <div>
-              <h2>Tell us what you want. We build around it.</h2>
+              <h2>Choose a service. Set your rules. Review the details.</h2>
               <p>
-                Set your states, delivery hours, daily cap, filters, and
-                destination once. The same campaign details follow every
-                delivery.
+                Tell us what you sell, where and when your team can respond,
+                and how much volume you want. You can edit every answer before
+                you request pricing.
               </p>
             </div>
           </div>
@@ -221,7 +221,7 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[02] Buying models</p>
             <div>
-              <h2>Choose what you want to pay for.</h2>
+              <h2>Three simple ways to buy new opportunities.</h2>
             </div>
           </div>
           <div className="buying-model-grid">
@@ -244,7 +244,7 @@ export default function Home() {
         <section className="workspace-section">
           <div className="workspace-section-copy">
             <p className="section-code">[03] Buyer workspace</p>
-            <h2>You decide when, where, and how much.</h2>
+            <h2>See what arrived and what happened next.</h2>
             <div className="workspace-feature-list">
               {workspaceFeatures.map(([name, copy], index) => (
                 <div key={name}>
@@ -285,7 +285,7 @@ export default function Home() {
                 </div>
                 {[
                   ["Final Expense — FL", "Ready", "Inbound calls", "25/day"],
-                  ["Roofing — TX", "Review", "Exclusive leads", "40/day"],
+                  ["Roofing — TX", "Review", "Real-time leads", "40/day"],
                   ["Medicare — AZ", "Paused", "Appointments", "10/week"],
                 ].map((row) => (
                   <div className="campaign-table-row" key={row[0]}>
@@ -325,11 +325,11 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[04] Verticals</p>
             <div>
-              <h2>Built for teams in high-intent markets.</h2>
+              <h2>Choose the service your team sells.</h2>
               <p>
-                Browse {catalogVerticals.length} vertical programs across{" "}
-                {verticalCategories.length} markets. Start with your market,
-                then choose delivery, locations, hours, volume, and filters.
+                Browse {catalogVerticals.length} programs across{" "}
+                {verticalCategories.length} categories. Pick a service, then
+                tell us whether you want calls, leads, or appointments.
               </p>
             </div>
           </div>
@@ -372,11 +372,10 @@ export default function Home() {
           <div className="section-heading">
             <p className="section-code">[05] Research</p>
             <div>
-              <h2>Make every campaign easier to evaluate.</h2>
+              <h2>Understand what you are buying before you begin.</h2>
               <p>
-                Learn how to define a buy box, review delivery quality, and
-                compare calls, leads, and appointments without relying on
-                vague promises.
+                Learn how calls, leads, and appointments work, what details to
+                confirm, and how to review what your team receives.
               </p>
               <Link className="text-link" href="/blog">
                 Read the research
@@ -404,8 +403,9 @@ export default function Home() {
             <div>
               <h2>Straight answers before you launch.</h2>
               <p>
-                Campaign-specific terms remain visible in the approved buy box
-                and agreement.
+                Your service type, locations, hours, volume, customer
+                criteria, and pricing are confirmed before a campaign moves
+                forward.
               </p>
             </div>
           </div>

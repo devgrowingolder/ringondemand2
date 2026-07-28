@@ -105,7 +105,7 @@ function splitZips(value: string) {
 function deliveryLabel(model: CampaignDraftV1["deliveryModel"]) {
   return {
     inbound_calls: "Inbound calls",
-    exclusive_leads: "Exclusive leads",
+    exclusive_leads: "Real-time leads",
     appointments: "Appointments",
     undecided: "Help me choose",
   }[model];
@@ -158,7 +158,7 @@ export function CampaignBuilder({
       setDraft(payload.draft);
       if (payload.containedContactData) {
         setNotice(
-          "Contact details were removed from the campaign brief. Add them once in the contact step.",
+          "Contact details were removed from your campaign description. Add them once in the contact step.",
         );
       }
       trackFunnelEvent({
@@ -303,11 +303,11 @@ export function CampaignBuilder({
     return (
       <div className="campaign-builder-success">
         <CheckCircle2 aria-hidden="true" />
-        <p className="section-code">Campaign brief saved</p>
-        <h1>Your campaign is ready for the next step.</h1>
+        <p className="section-code">Campaign request saved</p>
+        <h1>We saved your campaign details.</h1>
         <p>
-          Your approved campaign details and contact information will carry
-          into pricing or call scheduling. Reference: <strong>{campaignId}</strong>
+          Use the same details to request pricing or schedule a call. You will
+          not need to enter them again. Reference: <strong>{campaignId}</strong>
         </p>
         {completedAction ? (
           <div className="campaign-action-complete">{completedAction}</div>
@@ -334,9 +334,9 @@ export function CampaignBuilder({
         <div className="campaign-next-steps">
           <h2>What happens next</h2>
           <ol>
-            <li>We review the campaign details and any undecided fields.</li>
-            <li>You confirm pricing, qualification, and delivery setup.</li>
-            <li>The destination is tested before the campaign moves forward.</li>
+            <li>We review your answers and contact you about anything unclear.</li>
+            <li>You confirm pricing, what counts, and where deliveries should go.</li>
+            <li>We confirm the setup with you before the campaign moves forward.</li>
           </ol>
           <Link className="text-link" href="/onboarding">
             View the onboarding checklist
@@ -353,9 +353,9 @@ export function CampaignBuilder({
       <header className="campaign-builder-header">
         <div>
           <p className="section-code">
-            {intent === "demo" ? "Demo campaign brief" : "Campaign brief"}
+            {intent === "demo" ? "Book a call" : "Get pricing"}
           </p>
-          <h1>Tell us what you want to buy.</h1>
+          <h1>Build your campaign.</h1>
         </div>
         <span>
           Step {step + 1} of {steps.length}
@@ -395,14 +395,15 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <Sparkles aria-hidden="true" />
               <p className="section-code">Describe</p>
-              <h2>What kind of demand do you want?</h2>
+              <h2>What would you like your team to receive?</h2>
               <p>
-                Use normal language. We&apos;ll organize what you enter and ask
-                you to confirm anything that is missing or unclear.
+                Describe the service, locations, hours, volume, and whether you
+                want calls, leads, or appointments. We will organize your
+                answers and ask you to confirm anything unclear.
               </p>
             </div>
             <label>
-              Campaign brief
+              Describe your campaign
               <textarea
                 maxLength={2000}
                 onChange={(event) => setBrief(event.target.value)}
@@ -417,7 +418,7 @@ export function CampaignBuilder({
                 ) : (
                   <ArrowRight aria-hidden="true" />
                 )}
-                Structure this campaign
+                Review my answers
               </button>
             </div>
           </form>
@@ -428,13 +429,13 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <PhoneCall aria-hidden="true" />
               <p className="section-code">Delivery and vertical</p>
-              <h2>How should demand reach your team?</h2>
+              <h2>Choose a program and service.</h2>
             </div>
             <fieldset className="choice-grid">
               <legend>Delivery model</legend>
               {[
                 ["inbound_calls", "Inbound calls"],
-                ["exclusive_leads", "Exclusive leads"],
+                ["exclusive_leads", "Real-time leads"],
                 ["appointments", "Appointments"],
                 ["undecided", "Help me choose"],
               ].map(([value, label]) => (
@@ -456,7 +457,7 @@ export function CampaignBuilder({
               ))}
             </fieldset>
             <label className="form-field">
-              Searchable vertical
+              Service or vertical
               <input
                 list="vertical-options"
                 onChange={(event) => setVertical(event.target.value)}
@@ -521,7 +522,7 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <MapPin aria-hidden="true" />
               <p className="section-code">Locations and schedule</p>
-              <h2>Where and when can your team take demand?</h2>
+              <h2>Where and when can your team respond?</h2>
             </div>
             <div className="two-column-fields">
               <label className="form-field">
@@ -686,7 +687,7 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <Clock3 aria-hidden="true" />
               <p className="section-code">Volume, rules, and destination</p>
-              <h2>Set your volume, filters, and destination.</h2>
+              <h2>How much can your team handle?</h2>
             </div>
             <div className="two-column-fields">
               <label className="form-field">
@@ -730,7 +731,7 @@ export function CampaignBuilder({
               </label>
             </div>
             <label className="form-field">
-              Qualification rules (one per line)
+              Customer criteria (one per line)
               <textarea
                 onChange={(event) =>
                   setDraft((current) => ({
@@ -741,7 +742,7 @@ export function CampaignBuilder({
                       .filter(Boolean),
                   }))
                 }
-                placeholder="Add buyer-approved criteria"
+                placeholder="Example: homeowner, valid ZIP code, requested service"
                 required
                 rows={5}
                 value={draft.qualificationRules.join("\n")}
@@ -753,13 +754,13 @@ export function CampaignBuilder({
                 setDraft((current) => ({
                   ...current,
                   qualificationRules: [
-                    "Help me define the qualification rules",
+                    "Help me define the customer criteria",
                   ],
                 }))
               }
               type="button"
             >
-              I need help defining the rules
+              I need help defining the customer criteria
             </button>
             <fieldset className="choice-grid">
               <legend>Delivery destination</legend>
@@ -802,7 +803,7 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <PhoneCall aria-hidden="true" />
               <p className="section-code">Contact once</p>
-              <h2>Who should own the next step?</h2>
+              <h2>Who should we contact about this campaign?</h2>
               <p>
                 Enter your contact details once. We&apos;ll reuse them for
                 pricing, scheduling, and onboarding.
@@ -897,7 +898,7 @@ export function CampaignBuilder({
             <div className="builder-step-copy">
               <CheckCircle2 aria-hidden="true" />
               <p className="section-code">Buyer approval</p>
-              <h2>Review your campaign.</h2>
+              <h2>Check your answers before you submit.</h2>
               <p>
                 Nothing is submitted until you approve the details below.
               </p>
@@ -930,7 +931,7 @@ export function CampaignBuilder({
                   3,
                 ],
                 [
-                  "Qualification",
+                  "Customer criteria",
                   draft.qualificationRules.join("; ") || "Needs confirmation",
                   3,
                 ],

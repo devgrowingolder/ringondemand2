@@ -14,25 +14,25 @@ import { useState } from "react";
 const stories = [
   {
     id: "define",
-    label: "Define",
-    headline: "Tell us what you want to buy.",
-    copy: "Choose calls, leads, or appointments, then set your vertical, locations, hours, volume, and filters.",
-    action: "Build my buy box",
+    label: "Choose",
+    headline: "Choose the program that fits your team.",
+    copy: "Start with calls, leads, or appointments. Then choose your service, locations, hours, volume, and customer criteria.",
+    action: "Choose my program",
     href: "/build-campaign",
   },
   {
     id: "route",
-    label: "Route",
-    headline: "Send every result to the right place.",
-    copy: "Calls connect to your agents, leads go to your selected destination, and appointments land on your calendar.",
+    label: "Deliver",
+    headline: "Choose where each delivery should go.",
+    copy: "Send calls to a phone, leads to your selected system, and appointments to a calendar.",
     action: "See delivery options",
     href: "/agents",
   },
   {
     id: "review",
     label: "Review",
-    headline: "Review what was delivered.",
-    copy: "See delivery details, add outcome notes, manage availability, and submit credit requests from one workspace.",
+    headline: "See what your team received.",
+    copy: "Review delivery details, add outcome notes, manage availability, and follow the applicable credit process from one workspace.",
     action: "Explore the buyer workspace",
     href: "/agents",
   },
@@ -93,7 +93,7 @@ export function ProductStory() {
               "Locations",
               "Schedule",
               "Volume",
-              "Qualification",
+              "Customer criteria",
               "Destination",
             ].map((item, index) => (
               <div className={index < 2 ? "is-current" : ""} key={item}>
@@ -107,17 +107,17 @@ export function ProductStory() {
               <div>
                 <span className="workspace-kicker">
                   {active === "define"
-                    ? "Define your demand"
+                    ? "Choose your program"
                     : active === "route"
-                      ? "Delivery routing"
-                      : "Campaign review"}
+                      ? "Choose a destination"
+                      : "Review your campaign"}
                 </span>
                 <strong>
                   {active === "define"
                     ? "Final Expense — FL + TX"
                     : active === "route"
-                      ? "Route by campaign rule"
-                      : "Approve the canonical brief"}
+                      ? "Send each delivery to the right place"
+                      : "Approve the campaign details"}
                 </strong>
               </div>
               <span className="workspace-status">
@@ -148,7 +148,7 @@ export function ProductStory() {
                   <strong>25 / day</strong>
                 </div>
                 <div className="mock-field is-wide">
-                  <span>Qualification rule</span>
+                  <span>Customer criteria</span>
                   <strong>Buyer-approved criteria</strong>
                 </div>
               </div>
@@ -170,7 +170,7 @@ export function ProductStory() {
                   <div>
                     <MapPin aria-hidden="true" />
                     <span>CRM</span>
-                    <small>Exclusive lead</small>
+                    <small>Real-time lead</small>
                   </div>
                   <div>
                     <CalendarDays aria-hidden="true" />

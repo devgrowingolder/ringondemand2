@@ -30,7 +30,7 @@ export const verticalCategories: VerticalCategory[] = [
   {
     name: "Legal",
     slug: "legal",
-    description: "Consumer legal intake and case-related demand.",
+    description: "Consumer legal intake and case-related inquiries.",
   },
   {
     name: "Financial",
@@ -45,7 +45,7 @@ export const verticalCategories: VerticalCategory[] = [
   {
     name: "Auto services",
     slug: "auto-services",
-    description: "Automotive protection and service demand.",
+    description: "Automotive protection and service inquiries.",
   },
   {
     name: "Moving",
@@ -68,7 +68,7 @@ const categoryPrompts: Record<string, string[]> = {
   Insurance: [
     "States where your team is licensed",
     "Buyer-approved product criteria",
-    "Hours your team can accept demand",
+    "Hours your team can receive calls, leads, or appointments",
   ],
   "Home services": [
     "Service area",
@@ -93,7 +93,7 @@ const categoryPrompts: Record<string, string[]> = {
   "Auto services": [
     "Covered locations",
     "Vehicle or product criteria",
-    "Buyer-approved routing rules",
+    "Buyer-approved delivery rules",
   ],
   Moving: [
     "Pickup and service area",
@@ -103,7 +103,7 @@ const categoryPrompts: Record<string, string[]> = {
   Telecom: [
     "Covered markets",
     "Requested service",
-    "Buyer-approved qualification rules",
+    "Buyer-approved customer criteria",
   ],
   "Real estate": [
     "Target markets",
@@ -114,21 +114,21 @@ const categoryPrompts: Record<string, string[]> = {
 
 const categoryDescriptions: Record<string, (name: string) => string> = {
   Insurance: (name) =>
-    `Choose ${name} calls, leads, or appointments around your licensed states, hours, volume, and qualification rules.`,
+    `Choose ${name} calls, leads, or appointments around your licensed states, hours, volume, and customer criteria.`,
   "Home services": (name) =>
-    `Build ${name} demand around the service areas, working hours, job types, and volume your team can handle.`,
+    `Choose ${name} calls, leads, or appointments around your service areas, working hours, job types, and team capacity.`,
   Legal: (name) =>
-    `Set the geography, intake hours, case criteria, volume, and destination for your ${name} campaign.`,
+    `Set the geography, intake hours, case criteria, volume, and destination for your ${name} calls, leads, or appointments.`,
   Financial: (name) =>
-    `Choose locations, contact hours, volume, qualification rules, and delivery for your ${name} campaign.`,
+    `Choose locations, contact hours, volume, customer criteria, and delivery for your ${name} calls, leads, or appointments.`,
   "Addiction / rehab": (name) =>
-    `Define locations, intake hours, volume, qualification rules, and delivery for ${name} inquiries.`,
+    `Choose locations, intake hours, volume, intake criteria, and delivery for ${name} inquiries.`,
   "Auto services": (name) =>
     `Choose covered markets, hours, volume, vehicle criteria, and delivery for your ${name} campaign.`,
   Moving: (name) =>
-    `Set the service area, operating hours, volume, job criteria, and destination for ${name} demand.`,
+    `Set the service area, operating hours, volume, job criteria, and destination for ${name} calls, leads, or appointments.`,
   Telecom: (name) =>
-    `Define markets, hours, volume, qualification rules, and delivery for your ${name} campaign.`,
+    `Choose markets, hours, volume, customer criteria, and delivery for your ${name} campaign.`,
   "Real estate": (name) =>
     `Choose markets, contact hours, property criteria, volume, and destination for your ${name} campaign.`,
 };
@@ -214,7 +214,7 @@ function createVertical(
 ): VerticalDefinition {
   const description =
     categoryDescriptions[category]?.(name) ??
-    `Choose the locations, hours, volume, qualification rules, and delivery for your ${name} campaign.`;
+    `Choose the locations, hours, volume, customer criteria, and delivery for your ${name} campaign.`;
 
   return {
     slug: slugify(name),
@@ -224,7 +224,7 @@ function createVertical(
     description,
     qualificationPrompts: categoryPrompts[category] ?? [
       "Target locations",
-      "Buyer-approved qualification rules",
+      "Buyer-approved customer criteria",
       "Delivery hours and destination",
     ],
   };
@@ -242,7 +242,7 @@ if (finalExpense) {
   finalExpense.headline =
     "We Provide High Volume Final Expense Calls That Have Guaranteed Intent & 90 Second Call Times.";
   finalExpense.description =
-    "Buy final expense calls around the states, hours, daily volume, qualification rules, and call destination your team can support.";
+    "Buy final expense calls around the states, hours, daily volume, customer criteria, and call destination your team can support.";
 }
 
 const homeServicesOverview: VerticalDefinition = {

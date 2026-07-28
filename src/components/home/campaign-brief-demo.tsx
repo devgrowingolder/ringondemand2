@@ -41,7 +41,7 @@ function parseDemoBrief(input: string): DemoSummary {
     delivery: normalized.includes("appointment")
       ? "Appointments"
       : normalized.includes("lead")
-        ? "Exclusive leads"
+        ? "Real-time leads"
         : normalized.includes("call")
           ? "Live inbound calls"
           : "Needs confirmation",
@@ -69,7 +69,7 @@ export function CampaignBriefDemo() {
       <form className="campaign-prompt" onSubmit={handleSubmit}>
         <label htmlFor="campaign-demo-brief">
           <Sparkles aria-hidden="true" size={18} strokeWidth={1.6} />
-          What kind of demand do you want?
+          What would you like your team to receive?
         </label>
         <div className="campaign-prompt-row">
           <textarea
@@ -87,8 +87,8 @@ export function CampaignBriefDemo() {
           </button>
         </div>
         <p id="campaign-demo-help">
-          We structure only what you state. You approve every field before it is
-          submitted.
+          Describe it in your own words. We will organize your answers, and
+          you can correct every detail before submitting.
         </p>
       </form>
 
@@ -98,8 +98,8 @@ export function CampaignBriefDemo() {
       >
         <div className="campaign-result-head">
           <div>
-            <p className="section-code">Structured campaign</p>
-            <h3>{submitted ? "Review the buy box" : "Ready to update"}</h3>
+            <p className="section-code">Campaign details</p>
+            <h3>{submitted ? "Review your answers" : "Ready to update"}</h3>
           </div>
           <span className="approval-state">
             {submitted ? "Buyer review required" : "Brief changed"}

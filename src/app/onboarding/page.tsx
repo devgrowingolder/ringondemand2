@@ -13,24 +13,24 @@ import { SiteShell } from "@/components/site/site-chrome";
 export const metadata: Metadata = {
   title: "Getting started",
   description:
-    "See the information Ring On Demand needs to review, route, and prepare a campaign.",
+    "See the information Ring On Demand needs to review and prepare your campaign.",
 };
 
 const onboardingSteps = [
   {
     icon: SlidersHorizontal,
-    title: "Build your buy box",
-    copy: "Choose the vertical, delivery type, locations, hours, volume, and qualification rules.",
+    title: "Choose your program",
+    copy: "Choose calls, leads, or appointments, then add your service, locations, hours, volume, and customer criteria.",
   },
   {
     icon: ClipboardCheck,
-    title: "Review the campaign",
+    title: "Check your answers",
     copy: "Check one clear summary. Edit anything that is wrong or still undecided before you submit.",
   },
   {
     icon: Route,
-    title: "Confirm delivery",
-    copy: "Tell us whether demand should route to a phone line, CRM, calendar, or another approved destination.",
+    title: "Choose a destination",
+    copy: "Tell us whether calls should go to a phone, leads to your selected system, or appointments to a calendar.",
   },
   {
     icon: ShieldCheck,
@@ -56,11 +56,11 @@ export default function OnboardingPage() {
         <section className="onboarding-hero">
           <div>
             <p className="section-code">Getting started</p>
-            <h1>One campaign brief. One review. One clear handoff.</h1>
+            <h1>Here is what we need to get started.</h1>
             <p>
-              You do not need to know every technical detail. Start with what
-              you want to buy, and the guided flow will show you what is still
-              needed before the campaign can move forward.
+              Answer seven simple questions about what you want, where your
+              team works, and how much volume you can handle. If you are
+              unsure, choose “Help me choose.”
             </p>
             <div>
               <Link className="button button-purple" href="/build-campaign">
@@ -87,9 +87,9 @@ export default function OnboardingPage() {
           <div className="section-heading">
             <p className="section-code">[01] The process</p>
             <div>
-              <h2>Four steps from interest to a review-ready campaign.</h2>
+              <h2>Four steps from choosing a program to reviewing the setup.</h2>
               <p>
-                Your answers stay connected, so pricing, scheduling, routing,
+                Your answers stay connected, so pricing, scheduling, delivery,
                 and onboarding do not need the same information entered again.
               </p>
             </div>
@@ -111,7 +111,7 @@ export default function OnboardingPage() {
             <p className="section-code">[02] What to have ready</p>
             <h2>A short list is enough to begin.</h2>
             <p>
-              If you are unsure about a delivery type, qualification rule, or
+              If you are unsure about what to receive, customer criteria, or
               destination, choose “Help me choose.” The team can resolve it
               with you before activation.
             </p>
@@ -128,7 +128,7 @@ export default function OnboardingPage() {
 
         <section className="onboarding-cta">
           <p className="section-code">Ready to begin?</p>
-          <h2>Tell us what your team wants to receive.</h2>
+          <h2>Start with the answers you already know.</h2>
           <p>
             Start in plain language. Review every field before anything is
             submitted.

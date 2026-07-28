@@ -22,25 +22,25 @@ const productLinks = [
   {
     href: "/#how-it-works",
     label: "How it works",
-    detail: "Define, route, and review every campaign.",
+    detail: "Choose a service, set your rules, and review the details.",
     icon: Route,
   },
   {
     href: "/agents",
     label: "Buyer workspace",
-    detail: "One operating view for every live conversation.",
+    detail: "See deliveries, campaign settings, and follow-up in one place.",
     icon: PhoneCall,
   },
   {
     href: "/connected-apps",
     label: "Connected operations",
-    detail: "Carry approved campaign data into downstream systems.",
+    detail: "Send calls, leads, and appointments to the right destination.",
     icon: Link2,
   },
   {
     href: "/onboarding",
     label: "Getting started",
-    detail: "See what we need before a campaign can be activated.",
+    detail: "See the simple information we need to get started.",
     icon: ClipboardList,
   },
 ];
@@ -293,10 +293,10 @@ export function SiteFooter() {
       <section className="footer-cta">
         <div>
           <p className="section-code">[ READY WHEN YOU ARE ]</p>
-          <h2>Tell us what you want to buy.</h2>
+          <h2>Tell us what your team wants to receive.</h2>
           <p>
-            Share your vertical, states, hours, volume, and preferred delivery.
-            We&apos;ll turn it into a campaign brief you can review.
+            Choose calls, leads, or appointments. Then add your service,
+            locations, hours, volume, and customer criteria.
           </p>
         </div>
         <div className="footer-cta-actions">
@@ -318,8 +318,8 @@ export function SiteFooter() {
             width={270}
           />
           <p>
-            Inbound calls, real-time leads, and booked appointments for teams
-            that know how to close.
+            Inbound calls, new leads, and booked appointments built around
+            your service area, schedule, and capacity.
           </p>
         </div>
         <div>

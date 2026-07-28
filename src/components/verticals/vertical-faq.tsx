@@ -7,24 +7,24 @@ export function VerticalFAQ({ vertical }: { vertical: string }) {
   const [open, setOpen] = useState(0);
   const items = [
     {
-      question: `What should a ${vertical} campaign brief include?`,
+      question: `What should my ${vertical} campaign details include?`,
       answer:
-        "Start with the delivery model, target locations, delivery hours, expected volume, buyer-approved qualification rules, and destination.",
+        "Start with what you want to receive, target locations, delivery hours, expected volume, customer criteria, and destination.",
     },
     {
       question: "Can the campaign target specific states or ZIP codes?",
       answer:
-        "The campaign schema supports states and ZIP codes. Every location remains visible in the buyer-approved summary.",
+        "Yes. Add the states and ZIP codes you want, then review them before you submit.",
     },
     {
       question: "Can my team control delivery hours and volume?",
       answer:
-        "Schedule windows, timezone, volume, and period are confirmed before submission and carried into the canonical record.",
+        "Yes. Confirm your timezone, delivery windows, and daily, weekly, or monthly volume before the campaign moves forward.",
     },
     {
       question: "How do pricing and demo requests work?",
       answer:
-        "Both actions use the same approved campaign and contact record, so the buyer does not need to enter campaign details again.",
+        "Both actions use the same reviewed campaign details and contact info, so you do not need to enter everything again.",
     },
   ];
 
