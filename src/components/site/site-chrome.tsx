@@ -2,91 +2,219 @@
 
 import {
   ArrowRight,
+  Blocks,
+  BriefcaseBusiness,
+  CalendarDays,
+  ChartNoAxesCombined,
   ChevronDown,
-  ClipboardList,
-  Link2,
+  CircleHelp,
+  ClipboardCheck,
+  FileText,
+  LayoutDashboard,
   Menu,
   PhoneCall,
   Route,
+  ShieldCheck,
+  Users,
   X,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import {
-  catalogVerticals,
-  verticalCategories,
-} from "@/lib/verticals";
+import { verticalCategories } from "@/lib/verticals";
 
 const productLinks = [
   {
-    href: "/#how-it-works",
-    label: "How it works",
-    detail: "Choose a service, set your rules, and review the details.",
-    icon: Route,
-  },
-  {
-    href: "/agents",
-    label: "Buyer workspace",
-    detail: "See deliveries, campaign settings, and follow-up in one place.",
+    href: "/products/inbound-calls",
+    label: "Inbound calls",
+    detail: "Talk with people while they are on the phone.",
     icon: PhoneCall,
   },
   {
-    href: "/connected-apps",
-    label: "Connected operations",
-    detail: "Send calls, leads, and appointments to the right destination.",
-    icon: Link2,
+    href: "/products/real-time-leads",
+    label: "Real-time leads",
+    detail: "Receive contact details for your team to follow up with.",
+    icon: FileText,
   },
   {
-    href: "/onboarding",
-    label: "Getting started",
-    detail: "See the simple information we need to get started.",
-    icon: ClipboardList,
+    href: "/products/booked-appointments",
+    label: "Booked appointments",
+    detail: "Begin with time already set aside for a conversation.",
+    icon: CalendarDays,
   },
 ];
 
+const platformLinks = [
+  {
+    href: "/platform",
+    label: "Buyer workspace",
+    detail: "Keep setup details, incoming items, and next steps together.",
+    icon: LayoutDashboard,
+  },
+  {
+    href: "/platform/campaign-setup",
+    label: "Setup",
+    detail: "Choose what you want, where, when, how many, and who.",
+    icon: ClipboardCheck,
+  },
+  {
+    href: "/platform/delivery",
+    label: "Receiving options",
+    detail: "Tell us where your team wants each item sent.",
+    icon: Route,
+  },
+  {
+    href: "/platform/quality-review",
+    label: "Review details",
+    detail: "Keep item details, outcomes, and review steps together.",
+    icon: ShieldCheck,
+  },
+];
+
+const resourceLinks = [
+  {
+    href: "/resources",
+    label: "Resource center",
+    detail: "Straightforward guides for buying calls, leads, and appointments.",
+    icon: Blocks,
+  },
+  {
+    href: "/blog",
+    label: "Articles",
+    detail: "Practical setup, pricing, and operations guidance.",
+    icon: FileText,
+  },
+  {
+    href: "/customers",
+    label: "What to expect",
+    detail: "See how the buying process is designed to work.",
+    icon: Users,
+  },
+  {
+    href: "/trust",
+    label: "Trust center",
+    detail: "Understand our proof, privacy, and review standards.",
+    icon: ShieldCheck,
+  },
+];
+
+const companyLinks = [
+  ["/company/about", "About", "How Ring On Demand helps teams buy calls, leads, and appointments.", CircleHelp],
+  ["/careers", "Careers", "Help build the infrastructure behind live customer conversations.", BriefcaseBusiness],
+  ["/community", "Community", "Meet buyers, operators, and partners in pay per call.", Users],
+  ["/brands", "Our brands", "Explore the consumer properties in our network.", Blocks],
+] as const;
+
+type DropdownLink = {
+  href: string;
+  label: string;
+  detail: string;
+  icon: typeof PhoneCall;
+};
+
+function DropdownCards({ links }: { links: readonly DropdownLink[] }) {
+  return (
+    <div className="signal-nav-card-grid">
+      {links.map(({ href, label, detail, icon: Icon }) => (
+        <Link className="signal-nav-card" href={href} key={href}>
+          <Icon aria-hidden="true" size={19} strokeWidth={1.55} />
+          <span>
+            <strong>{label}</strong>
+            <small>{detail}</small>
+          </span>
+          <ArrowRight aria-hidden="true" size={14} />
+        </Link>
+      ))}
+    </div>
+  );
+}
+
 function NavDropdown({
+  id,
   label,
+  open,
+  onOpen,
+  onClose,
   children,
   wide = false,
 }: {
+  id: string;
   label: string;
+  open: boolean;
+  onOpen: () => void;
+  onClose: () => void;
   children: React.ReactNode;
   wide?: boolean;
 }) {
+  const panelId = `nav-panel-${id}`;
+
   return (
-    <div className="nav-dropdown">
-      <button className="nav-link nav-dropdown-trigger" type="button">
+    <div
+      className={`nav-dropdown ${open ? "is-open" : ""}`}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) {
+          onClose();
+        }
+      }}
+      onMouseEnter={onOpen}
+      onMouseLeave={onClose}
+    >
+      <button
+        aria-controls={panelId}
+        aria-expanded={open}
+        className="nav-link nav-dropdown-trigger"
+        onClick={onOpen}
+        onKeyDown={(event) => {
+          if (
+            event.key === "ArrowDown" ||
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
+            event.preventDefault();
+            onOpen();
+          }
+          if (event.key === "Escape") {
+            onClose();
+          }
+        }}
+        type="button"
+      >
         {label}
-        <ChevronDown aria-hidden="true" size={14} strokeWidth={1.6} />
+        <ChevronDown aria-hidden="true" size={13} strokeWidth={1.7} />
       </button>
-      <div className={`nav-dropdown-panel ${wide ? "is-wide" : ""}`}>
-        {children}
-      </div>
+      {open && (
+        <div
+          className={`nav-dropdown-panel ${wide ? "is-wide" : ""}`}
+          id={panelId}
+        >
+          {children}
+        </div>
+      )}
     </div>
   );
 }
 
 export function AnnouncementBar() {
   return (
-    <Link className="announcement-bar" href="/build-campaign">
-      <span>Pay per call, pay per lead, or pay per appointment</span>
+    <Link className="announcement-bar" href="/get-pricing">
+      <span>Looking for calls, leads, or appointments?</span>
       <span className="announcement-link">
-        Get pricing <ArrowRight aria-hidden="true" size={14} />
+        Start your pricing request <ArrowRight aria-hidden="true" size={14} />
       </span>
     </Link>
   );
 }
 
 export function SiteHeader() {
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
 
-    if (!open) {
+    if (!mobileOpen) {
       return () => {
         document.body.style.overflow = "";
       };
@@ -96,7 +224,7 @@ export function SiteHeader() {
 
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setOpen(false);
+        setMobileOpen(false);
         menuButtonRef.current?.focus();
       }
     };
@@ -106,178 +234,177 @@ export function SiteHeader() {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", closeOnEscape);
     };
-  }, [open]);
+  }, [mobileOpen]);
+
+  const closeDropdown = () => setActiveDropdown(null);
 
   return (
     <>
-      <AnnouncementBar />
-      <header className="site-header">
-        <div className="site-header-inner">
-          <Link className="brand-lockup" href="/" aria-label="Ring On Demand home">
+      <header className="site-header signal-site-header">
+        <div className="site-header-inner signal-header-inner">
+          <Link className="brand-lockup signal-brand-lockup" href="/" aria-label="Ring On Demand home">
             <Image
               alt="Ring On Demand"
-              height={52}
+              height={36}
               priority
               src="/brand/ring-on-demand-logo.png"
-              width={250}
+              width={252}
             />
           </Link>
 
-          <nav className="desktop-nav" aria-label="Primary navigation">
-            <NavDropdown label="Services" wide>
-              <div className="nav-product-grid">
-                {productLinks.map(({ href, label, detail, icon: Icon }) => (
-                  <Link className="nav-product-link" href={href} key={href}>
-                    <Icon aria-hidden="true" size={20} strokeWidth={1.5} />
-                    <span>
-                      <strong>{label}</strong>
-                      <small>{detail}</small>
-                    </span>
-                  </Link>
-                ))}
+          <nav
+            className="desktop-nav signal-desktop-nav"
+            aria-label="Primary navigation"
+          >
+            <NavDropdown
+              id="products"
+              label="Products"
+              open={activeDropdown === "products"}
+              onClose={closeDropdown}
+              onOpen={() => setActiveDropdown("products")}
+              wide
+            >
+              <div className="signal-menu-heading">
+                <span>Choose what fits your sales process</span>
+                <Link href="/how-it-works">How it works <ArrowRight aria-hidden="true" size={13} /></Link>
               </div>
+              <DropdownCards links={productLinks} />
             </NavDropdown>
-            <NavDropdown label="Verticals" wide>
-              <div className="nav-vertical-summary">
-                <span>Explore all {catalogVerticals.length} verticals</span>
-                <small>{verticalCategories.length} markets</small>
+
+            <NavDropdown
+              id="verticals"
+              label="Industries"
+              open={activeDropdown === "verticals"}
+              onClose={closeDropdown}
+              onOpen={() => setActiveDropdown("verticals")}
+              wide
+            >
+              <div className="signal-menu-heading">
+                <span>Browse by industry</span>
+                <Link href="/verticals">View all industries <ArrowRight aria-hidden="true" size={13} /></Link>
               </div>
-              <div className="nav-category-mega">
+              <div className="signal-vertical-menu">
                 {verticalCategories.map((category) => (
-                  <Link
-                    className="nav-category-link"
-                    href={`/verticals#category-${category.slug}`}
-                    key={category.slug}
-                  >
+                  <Link href={`/verticals#category-${category.slug}`} key={category.slug}>
                     <span>
                       <strong>{category.name}</strong>
-                      <span>
-                        {String(
-                          catalogVerticals.filter(
-                            (vertical) => vertical.category === category.name,
-                          ).length,
-                        ).padStart(2, "0")}
-                      </span>
+                      <small>Explore</small>
                     </span>
-                    <small>{category.description}</small>
+                    <p>{category.description}</p>
                   </Link>
                 ))}
               </div>
-              <Link className="nav-view-all" href="/verticals">
-                View all verticals
-                <ArrowRight aria-hidden="true" size={14} />
-              </Link>
             </NavDropdown>
-            <Link className="nav-link" href="/about">
-              About
-            </Link>
-            <Link className="nav-link" href="/blog">
-              Resources
-            </Link>
-            <Link className="nav-link" href="/partners">
-              Partners
-            </Link>
-            <Link className="nav-link" href="mailto:hello@ringondemand.com">
-              Contact
-            </Link>
+
+            <Link className="nav-link" href="/how-it-works">How it works</Link>
+
+            <NavDropdown
+              id="platform"
+              label="Buyer workspace"
+              open={activeDropdown === "platform"}
+              onClose={closeDropdown}
+              onOpen={() => setActiveDropdown("platform")}
+              wide
+            >
+              <div className="signal-menu-heading">
+                <span>From request to next step</span>
+                <Link href="/platform/reporting">Reporting <ChartNoAxesCombined aria-hidden="true" size={13} /></Link>
+              </div>
+              <DropdownCards links={platformLinks} />
+            </NavDropdown>
+
+            <NavDropdown
+              id="resources"
+              label="Resources"
+              open={activeDropdown === "resources"}
+              onClose={closeDropdown}
+              onOpen={() => setActiveDropdown("resources")}
+              wide
+            >
+              <DropdownCards links={resourceLinks} />
+            </NavDropdown>
+
+            <Link className="nav-link" href="/partners">Partners</Link>
+
+            <NavDropdown
+              id="company"
+              label="Company"
+              open={activeDropdown === "company"}
+              onClose={closeDropdown}
+              onOpen={() => setActiveDropdown("company")}
+              wide
+            >
+              <DropdownCards
+                links={companyLinks.map(([href, label, detail, icon]) => ({ href, label, detail, icon }))}
+              />
+            </NavDropdown>
           </nav>
 
-          <div className="desktop-actions">
+          <div className="desktop-actions signal-desktop-actions">
             <a
               className="nav-link"
               href="https://ring-on-demand.proaxis.ai/cx/buyer/login"
-              aria-label="Open the Ring On Demand buyer portal in a new tab"
               rel="noreferrer"
               target="_blank"
             >
               Buyer login
             </a>
-            <Link className="nav-link" href="/build-campaign?intent=demo">
-              Book a call
-            </Link>
-            <Link className="button button-dark button-nav" href="/build-campaign">
+            <Link className="button button-purple button-nav" href="/get-pricing">
               Get pricing
             </Link>
           </div>
 
           <button
             aria-controls="mobile-navigation"
-            aria-expanded={open}
-            aria-label={open ? "Close navigation" : "Open navigation"}
-            className="mobile-menu-button"
-            onClick={() => setOpen((value) => !value)}
+            aria-expanded={mobileOpen}
+            aria-label={mobileOpen ? "Close navigation" : "Open navigation"}
+            className="mobile-menu-button signal-mobile-menu-button"
+            onClick={() => setMobileOpen((value) => !value)}
             ref={menuButtonRef}
             type="button"
           >
-            {open ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            {mobileOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
           </button>
         </div>
       </header>
 
-      {open && (
+      {mobileOpen && (
         <div
-          className="mobile-drawer"
+          className="mobile-drawer signal-mobile-drawer"
           id="mobile-navigation"
           onClick={(event) => {
             if ((event.target as HTMLElement).closest("a")) {
-              setOpen(false);
+              setMobileOpen(false);
             }
           }}
           ref={drawerRef}
         >
           <nav aria-label="Mobile navigation">
-            <p className="mobile-nav-label">Services</p>
-            <Link href="/#how-it-works">How it works</Link>
-            <Link href="/agents">Buyer workspace</Link>
-            <Link href="/connected-apps">Connected operations</Link>
-            <Link href="/onboarding">Getting started</Link>
-            <Link href="/#buying-models">Calls, leads, and appointments</Link>
-            <p className="mobile-nav-label">
-              Vertical categories · {catalogVerticals.length} programs
-            </p>
-            <div className="mobile-vertical-catalog">
-              {verticalCategories.map((category) => (
-                <Link
-                  className="mobile-vertical-category"
-                  href={`/verticals#category-${category.slug}`}
-                  key={category.slug}
-                >
-                  <span>
-                    {category.name}
-                    <span>
-                      {String(
-                        catalogVerticals.filter(
-                          (vertical) => vertical.category === category.name,
-                        ).length,
-                      ).padStart(2, "0")}
-                    </span>
-                  </span>
-                  <small>{category.description}</small>
-                </Link>
-              ))}
-            </div>
-            <Link className="mobile-view-all" href="/verticals">
-              Browse the vertical directory
-            </Link>
-            <Link href="/blog">Resources</Link>
+            <p className="mobile-nav-label">Products</p>
+            {productLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+            <Link href="/how-it-works">How it works</Link>
+            <p className="mobile-nav-label">Platform</p>
+            {platformLinks.map((item) => <Link href={item.href} key={item.href}>{item.label}</Link>)}
+            <p className="mobile-nav-label">Explore</p>
+            <Link href="/verticals">All industries</Link>
+            <Link href="/resources">Resources</Link>
             <Link href="/partners">Partners</Link>
-            <Link href="/about">About</Link>
-            <Link href="/community">Pay per call community</Link>
-            <Link href="/brands">Brand network</Link>
+            <Link href="/company/about">About</Link>
             <Link href="/careers">Careers</Link>
-            <a href="mailto:hello@ringondemand.com">Contact</a>
+            <Link href="/community">Pay per call community</Link>
+            <Link href="/brands">Our brands</Link>
+            <Link href="/company/contact">Contact</Link>
           </nav>
           <div className="mobile-drawer-actions">
             <a
               className="button button-outline"
               href="https://ring-on-demand.proaxis.ai/cx/buyer/login"
-              aria-label="Open the Ring On Demand buyer portal in a new tab"
               rel="noreferrer"
               target="_blank"
             >
               Buyer login
             </a>
-            <Link className="button button-dark" href="/build-campaign">
+            <Link className="button button-purple" href="/get-pricing">
               Get pricing
             </Link>
           </div>
@@ -287,95 +414,90 @@ export function SiteHeader() {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ showCta = true }: { showCta?: boolean }) {
   return (
-    <footer className="site-footer">
-      <section className="footer-cta">
-        <div>
-          <p className="section-code">[ READY WHEN YOU ARE ]</p>
-          <h2>Tell us what your team wants to receive.</h2>
-          <p>
-            Choose calls, leads, or appointments. Then add your service,
-            locations, hours, volume, and customer criteria.
-          </p>
-        </div>
-        <div className="footer-cta-actions">
-          <Link className="button button-light" href="/build-campaign">
-            Get pricing
-          </Link>
-          <Link className="button button-ghost-light" href="/build-campaign?intent=demo">
-            Book a demo
-          </Link>
-        </div>
-      </section>
+    <footer className="site-footer signal-site-footer">
+      {showCta && (
+        <section className="footer-cta signal-footer-cta">
+          <div>
+            <p className="section-code">Ready to get started?</p>
+            <h2>Tell us what your team needs.</h2>
+            <p>
+              Share what you want to receive, where your team works, when you
+              can respond, and how much you can handle.
+            </p>
+          </div>
+          <div className="footer-cta-actions">
+            <Link className="button button-light" href="/get-pricing">Get pricing</Link>
+            <Link className="button button-ghost-light" href="/book-a-call">Talk to our team</Link>
+          </div>
+        </section>
+      )}
 
       <div className="footer-grid">
         <div className="footer-brand">
-          <Image
-            alt="Ring On Demand"
-            height={55}
-            src="/brand/ring-on-demand-logo.png"
-            width={270}
-          />
+          <Image alt="Ring On Demand" height={55} src="/brand/ring-on-demand-logo.png" width={270} />
           <p>
-            Inbound calls, new leads, and booked appointments built around
-            your service area, schedule, and capacity.
+            Ring On Demand helps sales teams plan inbound calls, real-time
+            leads, and booked appointments around the way they work.
           </p>
         </div>
         <div>
-          <h3>Product</h3>
-          <Link href="/#how-it-works">How it works</Link>
-          <Link href="/agents">Buyer workspace</Link>
-          <Link href="/connected-apps">Connected operations</Link>
-          <Link href="/onboarding">Getting started</Link>
-          <Link href="/build-campaign">Build a campaign</Link>
+          <h3>Products</h3>
+          <Link href="/products/inbound-calls">Inbound calls</Link>
+          <Link href="/products/real-time-leads">Real-time leads</Link>
+          <Link href="/products/booked-appointments">Booked appointments</Link>
+          <Link href="/how-it-works">How it works</Link>
+          <Link href="/get-pricing">Get pricing</Link>
+        </div>
+        <div>
+          <h3>Platform</h3>
+          <Link href="/platform">Overview</Link>
+          <Link href="/platform/campaign-setup">Setup</Link>
+          <Link href="/platform/delivery">Receiving options</Link>
+          <Link href="/platform/quality-review">Review details</Link>
+          <Link href="/platform/reporting">Reporting</Link>
         </div>
         <div>
           <h3>Explore</h3>
-          <Link href="/verticals">Verticals</Link>
-          <Link href="/verticals/final-expense">Final Expense</Link>
-          <Link href="/verticals/medicare">Medicare</Link>
-          <Link href="/verticals/home-services">Home Services</Link>
-          <Link href="/blog">Resources</Link>
+          <Link href="/verticals">All industries</Link>
+          <Link href="/resources">Resources</Link>
+          <Link href="/customers">Customer experience</Link>
           <Link href="/partners">Partners</Link>
+          <Link href="/trust">Trust center</Link>
         </div>
         <div>
           <h3>Company</h3>
-          <Link href="/customers">Customer experience</Link>
-          <Link href="/about">About</Link>
-          <Link href="/community">Pay per call community</Link>
-          <Link href="/brands">Brand network</Link>
+          <Link href="/company/about">About</Link>
+          <Link href="/community">Community</Link>
+          <Link href="/brands">Our brands</Link>
           <Link href="/careers">Careers</Link>
-          <a href="mailto:hello@ringondemand.com">Contact</a>
-          <a
-            href="https://ring-on-demand.proaxis.ai/cx/buyer/login"
-            aria-label="Open the Ring On Demand buyer portal in a new tab"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Buyer login
-          </a>
+          <Link href="/company/contact">Contact</Link>
+          <a href="https://ring-on-demand.proaxis.ai/cx/buyer/login" rel="noreferrer" target="_blank">Buyer login</a>
         </div>
       </div>
       <div className="footer-legal">
         <span>© {new Date().getFullYear()} Ring On Demand</span>
-        <a href="https://ringondemand.com/legal/privacy-policy">
-          Privacy policy
-        </a>
-        <a href="https://ringondemand.com/legal/terms-of-service">
-          Terms of service
-        </a>
+        <Link href="/legal/privacy">Privacy policy</Link>
+        <Link href="/legal/terms">Terms of service</Link>
+        <Link href="/legal/accessibility">Accessibility</Link>
       </div>
     </footer>
   );
 }
 
-export function SiteShell({ children }: { children: React.ReactNode }) {
+export function SiteShell({
+  children,
+  showFooterCta = true,
+}: {
+  children: React.ReactNode;
+  showFooterCta?: boolean;
+}) {
   return (
-    <div className="page-shell">
+    <div className="page-shell signal-page-shell">
       <SiteHeader />
       {children}
-      <SiteFooter />
+      <SiteFooter showCta={showFooterCta} />
     </div>
   );
 }

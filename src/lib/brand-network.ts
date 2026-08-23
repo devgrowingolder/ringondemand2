@@ -1,3 +1,5 @@
+import { getRenderableProofById } from "@/lib/proof";
+
 export type BrandRecord = {
   name: string;
   domain: string;
@@ -7,7 +9,11 @@ export type BrandRecord = {
   checkedAt: string;
 };
 
-export const brandNetwork: BrandRecord[] = [
+type RegisteredBrandRecord = BrandRecord & {
+  proofId: string;
+};
+
+const registeredBrandNetwork: RegisteredBrandRecord[] = [
   {
     name: "Top 10 Rehab",
     domain: "https://www.top10rehab.com/",
@@ -15,6 +21,7 @@ export const brandNetwork: BrandRecord[] = [
     availability: "verified_online",
     ownership: "pending_documentation",
     checkedAt: "2026-07-25",
+    proofId: "brand-top10rehab-online",
   },
   {
     name: "American Addiction Hotline",
@@ -23,6 +30,7 @@ export const brandNetwork: BrandRecord[] = [
     availability: "verified_online",
     ownership: "pending_documentation",
     checkedAt: "2026-07-25",
+    proofId: "brand-american-addiction-hotline-online",
   },
   {
     name: "GrowingOlder",
@@ -31,8 +39,17 @@ export const brandNetwork: BrandRecord[] = [
     availability: "verified_online",
     ownership: "pending_documentation",
     checkedAt: "2026-07-25",
+    proofId: "brand-growingolder-online",
   },
 ];
+
+export function getBrandNetwork(now = new Date()): BrandRecord[] {
+  return registeredBrandNetwork.flatMap(({ proofId, ...brand }) =>
+    getRenderableProofById(proofId, "brand network", now) ? [brand] : [],
+  );
+}
+
+export const brandNetwork = getBrandNetwork();
 
 export const unresolvedBrandSubmissions = [
   "bestaddictioncenters.com",

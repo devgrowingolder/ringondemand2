@@ -5,29 +5,29 @@ import { useState } from "react";
 
 const items = [
   {
-    question: "What is the difference between calls, leads, and appointments?",
+    question: "Which option is right for my team?",
     answer:
-      "Calls connect someone who is calling now. Leads provide contact details for follow-up. Appointments reserve a time on your calendar. Your campaign will state exactly what you are requesting.",
+      "Choose inbound calls if someone can answer while the person is on the phone. Choose leads if your team has a consistent follow-up process. Choose appointments if you sell through scheduled conversations. If you are unsure, select ‘Help me decide’ in the pricing form.",
   },
   {
-    question: "How does billing work?",
+    question: "What affects pricing?",
     answer:
-      "Pricing and what counts as a billable delivery are confirmed before the campaign moves forward. The agreement also explains customer criteria and the applicable credit policy.",
+      "Pricing depends on the service, locations, receiving hours, requested amount, audience, where each call, lead, or appointment should go, and the applicable campaign terms. We confirm those details before sharing pricing.",
   },
   {
-    question: "Can I control when deliveries arrive?",
+    question: "Can I choose when and where I receive calls, leads, or appointments?",
     answer:
-      "Yes. You can request specific locations, delivery hours, volume limits, and a phone, system, or calendar destination.",
+      "You can request specific states, ZIP codes, days, hours, a time zone, and an amount your team can handle. We confirm availability for those details before the campaign moves forward.",
   },
   {
-    question: "How are credit requests reviewed?",
+    question: "How are campaign items and credit requests reviewed?",
     answer:
-      "The applicable credit policy explains eligible reasons, required evidence, review timing, and the final decision process.",
+      "Your campaign terms explain the information attached to each call, lead, or appointment, what counts as eligible, and how applicable credit requests are handled. Review those terms before approving a campaign.",
   },
   {
-    question: "What do you need to build a campaign?",
+    question: "What happens after I request pricing?",
     answer:
-      "Start with calls, leads, or appointments; the service you sell; your locations and hours; the volume your team can handle; your customer criteria; and where each delivery should go.",
+      "Your request is saved for review. We confirm current availability and the applicable campaign details, then share the next step for pricing or scheduling. Submitting the website form does not launch a campaign.",
   },
 ];
 

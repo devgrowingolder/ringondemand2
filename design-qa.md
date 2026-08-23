@@ -1,207 +1,100 @@
-# Ring On Demand Design QA
+# Ring On Demand Homepage — Design QA
 
-Audit date: 2026-07-26
-Final result: passed
+Review date: 2026-08-22
 
-## 1. Source truth and implementation
+## Source of truth
 
-- Copy and offer-language source truth:
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/current-source/ringondemand-home-1440x900.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/current-source/ringondemand-home-390x844.png`
-  - `https://ringondemand.com/`
-- Approved implementation:
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-3-home-1440x900.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-home-896x707.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-home-390x844.png`
-- Local review target: `http://localhost:3000/`
-- Intended production target: `https://ringondemand2.vercel.app/`
-- State: signed out, default homepage, default campaign preview, no modal or
-  dropdown open.
-- Density: CSS pixel screenshots at device scale 1.
+- Approved visual target: `/Users/kelly/.codex/generated_images/019f945c-a071-7411-b673-a289961f1dd8/exec-09531b10-1783-43c8-bde8-4b5146251b36.png`
+- Target dimensions: 797 × 1973 pixels.
+- Local implementation: `http://127.0.0.1:3000/`
+- Desktop evidence: `/Users/kelly/Documents/RID/ringondemand2/.qa/overhaul/operating-home-1440-stitched-final.png`
+- Mobile hero evidence: `/Users/kelly/Documents/RID/ringondemand2/.qa/overhaul/operating-home-390-hero-final.png`
+- Mobile workspace evidence: `/Users/kelly/Documents/RID/ringondemand2/.qa/overhaul/operating-home-390-workspace.png`
+- Mobile CTA evidence: `/Users/kelly/Documents/RID/ringondemand2/.qa/overhaul/operating-home-390-final-cta.png`
+- Combined full-page comparison: `/Users/kelly/Documents/RID/ringondemand2/.qa/overhaul/operating-home-full-comparison-final.png`
+- Combined hero comparison: `/Users/kelly/Documents/RID/ringondemand2/.qa/overhaul/operating-home-hero-comparison.png`
+- State: signed out, homepage, inbound calls selected, menus closed.
 
-The current Ring On Demand website is the language and offer reference. The
-implementation intentionally keeps the approved RID editorial design system
-rather than copying the source site's artwork, serif typography, effects, or
-unverified live statistics.
+The desktop implementation was reviewed at 1440 × 1024 CSS pixels and device scale 1. Its stitched page is 1440 × 4969 pixels. For the full comparison, the implementation was proportionally normalized to 572 × 1973 pixels beside the 797 × 1973 target. Mobile was reviewed at 390 × 844 CSS pixels and device scale 1.
 
-## 2. Required comparison evidence
+## Final findings
 
-### Full-view comparison
+No actionable P0, P1, or P2 visual findings remain.
 
-- Source: `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/source-home-full-1440.png`
-- Implementation: `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/implementation-home-full-1440.png`
-- Same-composite comparison:
-  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-home-full-1440.png`
-- Viewport: `1440 × 900`; full-page captures are `1440 × 6501` and
-  `1440 × 9803`, top-aligned in a padded `2880 × 9803` composite.
+- [P3] The implementation intentionally uses more vertical breathing room than the compact concept image, especially in the white process and workspace sections. This follows the user’s request for more whitespace and improves legibility at real browser sizes.
+- [P3] The production implementation retains the full enterprise footer after the concept’s final CTA. This is an intentional functional addition for product, company, legal, and buyer-login navigation.
+- [P3] Intercom is initialized with the configured app ID, but launcher visibility remains controlled by the Intercom workspace and its display rules.
 
-### Desktop focused comparison
+## Fidelity review
 
-- Same-composite hero comparison:
-  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-home-final-1440x900.png`
-- Same-composite header crop:
-  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-header-final-1440x160.png`
-- Viewport: `1440 × 900`; header crop: `1440 × 160` per side.
+### Structure and hierarchy
 
-### Mobile focused comparison
-
-- Same-composite comparison:
-  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/comparison-home-final-390x844.png`
-- Viewport: `390 × 844`.
-
-### Template coverage
-
-- Buyer workspace:
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-3-agents-1440x900.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-3-agents-390x844.png`
-- Final Expense landing:
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-final-expense-1440x900.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-final-expense-390x844.png`
-- Careers:
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-careers-1440x900.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-careers-390x844.png`
-- Connected operations:
-  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-connected-1440x900.png`
-- Vertical booking:
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-book-1440x900.png`
-  - `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-book-390x844.png`
-- Brand network mobile:
-  `/Users/kelly/Documents/RID/ringondemand2/.qa/design-qa/iteration-2-brands-390x844.png`
-
-## 3. Iteration history
-
-### Iteration 1
-
-Findings:
-
-- P2: the desktop hero eyebrow wrapped at an awkward phrase boundary.
-- P2: editorial page headings remained too large and produced excessive line
-  counts on the Buyer Workspace page.
-- P2: global navigation type was visually smaller than the rest of the
-  interface.
-- P1: selecting an in-page mobile link left the drawer open and the body
-  scroll-locked; Escape also failed to close it.
-- P2: buying-model links promised service information but opened unexplained
-  example verticals.
-- P2: external brand links had repeated names and several external/footer
-  targets missed the project's 44 px touch minimum.
-- P1: the scheduling fallback exposed an environment-variable name to buyers.
-- P2: the generic 404 had no recovery path.
-
-Fixes:
-
-- Shortened the hero eyebrow to “Calls / Leads / Appointments.”
-- Reduced editorial display sizes independently of the homepage display scale.
-- Tightened header height and logo width while increasing navigation type.
-- Added mobile link-close behavior, Escape handling, focus restoration, and a
-  shorter featured-vertical list.
-- Renamed buying-model links to identify the example vertical they open.
-- Added destination-specific external-link names and 44 px minimum target
-  sizes.
-- Replaced the operator-facing booking error with a buyer-safe email and
-  return-to-brief fallback.
-- Added a branded 404 with home, vertical, and pricing recovery actions.
-
-### Iteration 2
-
-Recaptured the exact desktop, tablet, and mobile viewports after the fixes.
-
-### Iteration 3
-
-The first type-scale rules were being partially superseded by legacy page
-layers later in the stylesheet. Moved the final editorial scale enforcement to
-the end of the cascade, then recaptured the homepage and Buyer Workspace at
-desktop and mobile sizes. The source and implementation were recomposited and
-inspected together. No remaining P0, P1, or P2 visual defects were found.
-
-## 4. Surface-by-surface QA
-
-### Typography
-
-- DM Sans remains the primary readable interface face; IBM Plex Mono is
-  limited to labels, navigation, metadata, and buttons.
-- A shared responsive display scale now controls homepage, editorial,
-  vertical, career, funnel, and builder headings.
-- Desktop editorial headings no longer dominate their product panels.
-- Mobile headings remain readable without clipping or horizontal overflow.
+The implementation follows the approved sequence: dark editorial hero, six-part setup rail, interactive routing stage, white three-step process, industry strip, workspace overview, expectation strip, final CTA, and enterprise footer. The hero headline, CTA hierarchy, signal artwork, framed panels, and dark/light rhythm preserve the selected direction.
 
 Result: passed.
 
-### Spacing and layout
+### Typography, spacing, and color
 
-- Header height, logo footprint, navigation padding, and hero spacing are
-  consistent at desktop, tablet, and mobile breakpoints.
-- Buyer Workspace numbered sections use a reduced compact-section height and
-  balanced media/copy gap.
-- Homepage copy precedes the campaign panel on mobile and keeps both primary
-  actions visible.
-- Representative checks across 19 public routes reported zero horizontal
-  overflow at `390px`.
+DM Sans supplies the display and body hierarchy; IBM Plex Mono is reserved for labels, controls, and navigation. Deep navy, violet, teal, white, and hairline borders consistently map to the approved design. Desktop and mobile type wrap without clipping, setup controls retain usable touch targets, and the 390-pixel layout has zero horizontal overflow.
 
 Result: passed.
 
-### Color and tokens
+### Content and proof safety
 
-- The implementation consistently uses RID navy, violet, teal, white, muted
-  text, and border tokens.
-- White text is reserved for approved dark surfaces; body copy uses the muted
-  token on white.
-- Focus uses the global 3 px violet outline.
+The homepage avoids unsupported ranking, exclusivity, pricing, performance, customer, testimonial, and integration claims. It explains the offer with calls, leads, appointments, setup details, pricing review, and next steps. No buyer-facing “campaign,” “buy box,” or “canonical brief” language appears on the homepage.
 
 Result: passed.
 
-### Imagery and artwork
+### Assets and product storytelling
 
-- No source-site artwork or protected assets were copied.
-- Existing RID signal artwork is restrained to editorial and inverse sections.
-- Product panels remain original RID compositions.
+The implementation uses the real Ring On Demand logo, the existing generated RID signal artwork, Lucide icons, and live HTML product panels. No third-party logos, fake customer metrics, fabricated testimonials, approximate SVGs, emoji, or placeholder screenshots were added.
 
 Result: passed.
 
-### Copy and information hierarchy
+### Responsive behavior and accessibility
 
-- The hero now explains the offer in plain language: inbound calls, real-time
-  leads, booked appointments, markets, hours, volume, and filters.
-- “Campaign infrastructure,” “canonical record,” and similar internal jargon
-  were removed from primary buyer-facing flows.
-- Unverified live counters, testimonials, performance rates, launch-speed, and
-  compliance statistics from the current site were not carried over.
-- The owner-approved Final Expense headline remains isolated to its dedicated
-  vertical page.
+Desktop navigation, mobile navigation, routing tabs, workspace selectors, primary links, and focus states remain usable. Routing tabs expose a correct tab/tabpanel relationship with arrow-key behavior. The workspace selector uses `aria-pressed` buttons because all four summary panels stay visible. Reduced-motion rules are present, and the mobile hierarchy stacks without hiding the primary action.
 
 Result: passed.
 
-### Icons and controls
+## Comparison history
 
-- Lucide icons use a consistent lightweight stroke and remain decorative where
-  adjacent text already names the control.
-- Primary controls meet the 44 px touch-target rule.
-- External brand links now include the destination in their accessible name.
+### Initial implementation
 
-Result: passed.
+The previous homepage mixed repeated product, prompt, workflow, workspace, directory, FAQ, and CTA sections. Its language leaned on internal terms and its white page frame did not match the approved signal-led enterprise direction.
 
-### Interaction and accessibility
+### Visual implementation pass
 
-- Mobile navigation closes on link selection and Escape, restores focus to the
-  trigger, and releases body scroll.
-- Product tabs, FAQ disclosures, campaign progress, fields, and action buttons
-  retain semantic roles and visible focus states.
-- The branded 404 provides useful recovery links.
-- Mobile and desktop screenshots show no clipped primary action or overlapping
-  controls.
+- Rebuilt the homepage around one continuous, conversion-focused narrative.
+- Added the centered dark hero and the approved “The better way to buy inbound calls.” headline.
+- Added the six-decision setup rail and interactive calls/leads/appointments routing stage.
+- Added a proof-safe buyer workspace with intentional empty states instead of invented activity.
+- Introduced measured whitespace, thin rules, violet/teal signal accents, and responsive stacking.
+- Removed the duplicate global footer CTA on the homepage while retaining the full enterprise footer.
 
-Result: passed.
+### Final refinement
 
-## 5. Known release checks outside visual QA
+- Fixed workspace semantics without changing the visual composition.
+- Rechecked the full comparison and focused hero comparison.
+- Rechecked mobile hero, workspace, final CTA, and zero horizontal overflow.
+- Confirmed that the final visual differences are the intentional whitespace and enterprise footer additions documented above.
 
-- The production Intercom script loads, but launcher visibility depends on the
-  Intercom workspace/domain configuration and must be monitored after deploy.
-- The production scheduling hostname requires a controlled, non-public test
-  campaign because it is supplied at runtime.
-- Vertical thank-you templates remain non-indexed and are not the canonical
-  campaign-builder success state.
-- This review is not a claim of complete WCAG conformance; hands-on
-  VoiceOver/NVDA testing remains appropriate before a high-risk production
-  release.
+## Interactions verified
+
+- Real-time leads tab changes the routing copy and selected state.
+- Workspace “Review details” changes the pressed state while retaining all four overview cards.
+- The primary “Get pricing” action resolves to `/get-pricing`.
+- Mobile menu opens and exposes the industry navigation.
+- Desktop and mobile pages remain free of horizontal overflow.
+
+## Console and release checks
+
+- Fresh browser tab: no application warnings or errors.
+- Historical hot-reload module errors occurred only while files were being synchronized into the temporary preview; a clean reload after the preview stabilized produced no errors.
+- Buyer-copy residue scan: passed.
+- Automated tests: 39 passed across 8 test files.
+- Scoped ESLint: passed.
+- TypeScript: passed.
+- Production build: passed; 255 static/dynamic routes generated.
 
 final result: passed

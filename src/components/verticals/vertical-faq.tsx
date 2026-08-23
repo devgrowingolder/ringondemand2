@@ -2,31 +2,10 @@
 
 import { Plus } from "lucide-react";
 import { useState } from "react";
+import type { VerticalFaqItem } from "@/lib/verticals";
 
-export function VerticalFAQ({ vertical }: { vertical: string }) {
+export function VerticalFAQ({ items }: { items: readonly VerticalFaqItem[] }) {
   const [open, setOpen] = useState(0);
-  const items = [
-    {
-      question: `What should my ${vertical} campaign details include?`,
-      answer:
-        "Start with what you want to receive, target locations, delivery hours, expected volume, customer criteria, and destination.",
-    },
-    {
-      question: "Can the campaign target specific states or ZIP codes?",
-      answer:
-        "Yes. Add the states and ZIP codes you want, then review them before you submit.",
-    },
-    {
-      question: "Can my team control delivery hours and volume?",
-      answer:
-        "Yes. Confirm your timezone, delivery windows, and daily, weekly, or monthly volume before the campaign moves forward.",
-    },
-    {
-      question: "How do pricing and demo requests work?",
-      answer:
-        "Both actions use the same reviewed campaign details and contact info, so you do not need to enter everything again.",
-    },
-  ];
 
   return (
     <div className="vertical-faq">

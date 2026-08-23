@@ -1,415 +1,249 @@
 import {
   ArrowRight,
+  BriefcaseBusiness,
+  CalendarCheck2,
   CalendarDays,
-  Check,
+  CheckCircle2,
   Clock3,
-  Headphones,
-  Inbox,
+  FileCheck2,
+  HeartPulse,
+  House,
+  Landmark,
   MapPinned,
+  PencilLine,
   PhoneCall,
+  Route,
+  Scale,
   ShieldCheck,
   SlidersHorizontal,
   Volume2,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { CampaignBriefDemo } from "@/components/home/campaign-brief-demo";
-import { FAQ } from "@/components/home/faq";
-import { ProductStory } from "@/components/home/product-story";
+import { RoutingStage, WorkspaceOverview } from "@/components/home/signal-experience";
 import { SiteShell } from "@/components/site/site-chrome";
-import {
-  catalogVerticals,
-  verticalCategories,
-} from "@/lib/verticals";
+import { createPageMetadata } from "@/lib/seo";
 
-const buyingModels = [
+const setupFields = [
+  { icon: PhoneCall, label: "What you want", value: "Calls, leads, or appointments" },
+  { icon: MapPinned, label: "Where", value: "States and ZIP codes" },
+  { icon: Clock3, label: "When", value: "Days, hours, and time zone" },
+  { icon: Volume2, label: "How many", value: "Daily or weekly limit" },
+  { icon: SlidersHorizontal, label: "Who you want to reach", value: "Customer criteria" },
+  { icon: Route, label: "Where it should go", value: "Phone, workflow, or calendar" },
+] as const;
+
+const setupSteps = [
   {
-    number: "01",
-    icon: PhoneCall,
-    name: "Pay per call",
-    headline: "Talk to people who are calling now.",
-    copy: "Send inbound calls to your team during the hours and in the locations you choose.",
-    linkLabel: "See Final Expense call campaigns",
-    href: "/verticals/final-expense",
+    icon: PencilLine,
+    label: "Tell us what you need",
+    copy: "Choose calls, leads, or appointments, then add your market and goals.",
   },
   {
-    number: "02",
-    icon: Inbox,
-    name: "Pay per lead",
-    headline: "Receive new leads for your team to follow up.",
-    copy: "Send contact details to the destination you choose, with the campaign information attached.",
-    linkLabel: "See Home Services lead campaigns",
-    href: "/verticals/home-services",
+    icon: FileCheck2,
+    label: "Review every detail",
+    copy: "Confirm locations, hours, volume, customer criteria, and destination.",
   },
   {
-    number: "03",
+    icon: CalendarCheck2,
+    label: "Choose your next step",
+    copy: "Request pricing or schedule time with our team.",
+  },
+] as const;
+
+const industryLinks = [
+  { icon: ShieldCheck, label: "Insurance", href: "/verticals#category-insurance" },
+  { icon: House, label: "Home services", href: "/verticals#category-home-services" },
+  { icon: Scale, label: "Legal", href: "/verticals#category-legal" },
+  { icon: Landmark, label: "Financial", href: "/verticals#category-financial" },
+  { icon: HeartPulse, label: "Health", href: "/verticals#category-addiction-rehab" },
+] as const;
+
+const expectations = [
+  {
+    icon: CheckCircle2,
+    title: "We confirm availability",
+    copy: "We check current options for your market and hours.",
+  },
+  {
+    icon: BriefcaseBusiness,
+    title: "We explain pricing",
+    copy: "We share pricing and what it includes.",
+  },
+  {
+    icon: FileCheck2,
+    title: "You review what counts",
+    copy: "We confirm what counts and what doesn’t.",
+  },
+  {
     icon: CalendarDays,
-    name: "Pay per appointment",
-    headline: "Put scheduled conversations on your calendar.",
-    copy: "Receive booked appointments with the details your team needs to prepare and follow up.",
-    linkLabel: "See Personal Injury appointment campaigns",
-    href: "/verticals/personal-injury",
+    title: "You choose the next step",
+    copy: "Request pricing or talk with our team.",
   },
-];
+] as const;
 
-const workspaceFeatures = [
-  ["Live delivery", "See calls, leads, and appointments as they arrive."],
-  [
-    "Recordings and details",
-    "Review the delivery details and available call recordings.",
-  ],
-  [
-    "Quality review",
-    "Add notes, record outcomes, and submit credit requests from one record.",
-  ],
-  [
-    "Campaign controls",
-    "Set locations, hours, availability, and volume for each campaign.",
-  ],
-  [
-    "Performance view",
-    "See delivery information beside the outcomes your team records.",
-  ],
-];
-
-const categoryOrder = verticalCategories
-  .slice(0, 4)
-  .map((category) => category.name);
+export const metadata = createPageMetadata({
+  title: "Inbound Calls, Leads, and Appointments",
+  description:
+    "Choose the market, hours, volume, customer criteria, and destination that fit your team. Review the details before requesting pricing.",
+  path: "/",
+});
 
 export default function Home() {
   return (
-    <SiteShell>
-      <main>
-        <section className="home-hero">
-          <div className="hero-fold-mark" aria-hidden="true" />
-          <div className="hero-copy">
-            <p className="hero-eyebrow">
+    <SiteShell showFooterCta={false}>
+      <main className="operating-home">
+        <section className="operating-hero">
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="operating-hero-art"
+            fill
+            priority
+            sizes="100vw"
+            src="/media/rid/signal-room-hero.png"
+          />
+          <div className="operating-hero-content">
+            <p className="operating-eyebrow">
               <span aria-hidden="true" />
-              Calls / Leads / Appointments
+              Inbound calls / Real-time leads / Booked appointments
+              <span aria-hidden="true" />
             </p>
-            <h1>Only pay for the calls, leads, and appointments you choose.</h1>
+            <h1>The better way to buy inbound calls.</h1>
             <p>
-              Choose what you want to receive, where your team works, when
-              you are available, and how much volume you can handle. We turn
-              those answers into one campaign for you to review.
+              Choose the market, hours, volume, customer criteria, and phone
+              line that fit your team. Need leads or appointments instead?
+              Select the format that works for you.
             </p>
-            <div className="hero-actions">
-              <Link
-                className="button button-purple"
-                href="/build-campaign"
-              >
-                Get pricing
+            <div className="operating-hero-actions">
+              <Link className="button button-purple" href="/get-pricing">
+                Get pricing <ArrowRight aria-hidden="true" size={15} />
               </Link>
-              <Link
-                className="button button-outline"
-                href="/build-campaign?intent=demo"
-              >
+              <Link className="button operating-outline-button" href="#how-it-works">
                 See how it works
               </Link>
             </div>
           </div>
 
-          <div className="hero-campaign-panel">
-            <div className="hero-panel-top">
-              <span>Campaign details</span>
-              <span className="hero-live-status">
-                <i aria-hidden="true" />
-                Ready to configure
-              </span>
-            </div>
-            <div className="hero-panel-title">
-              <span>RID / CAMPAIGN / 01</span>
-              <h2>Set up your campaign</h2>
-              <p>Start with calls, leads, or appointments</p>
-            </div>
-            <div className="hero-panel-fields">
-              <div>
-                <MapPinned aria-hidden="true" />
-                <span>
-                  <small>Coverage</small>
-                  <strong>Choose states and ZIPs</strong>
-                </span>
-              </div>
-              <div>
-                <Clock3 aria-hidden="true" />
-                <span>
-                  <small>Call window</small>
-                  <strong>Set team availability</strong>
-                </span>
-              </div>
-              <div>
-                <Volume2 aria-hidden="true" />
-                <span>
-                  <small>Daily capacity</small>
-                  <strong>Choose your daily volume</strong>
-                </span>
-              </div>
-              <div>
-                <PhoneCall aria-hidden="true" />
-                <span>
-                  <small>Destination</small>
-                  <strong>Route to phone, CRM, or calendar</strong>
-                </span>
-              </div>
-            </div>
-            <div className="hero-panel-foot">
-              <span>
-                <ShieldCheck aria-hidden="true" />
-                Buyer approval required
-              </span>
-              <Link
-                href="/build-campaign"
-              >
-                Choose a program
-                <ArrowRight aria-hidden="true" size={15} />
+          <div className="operating-setup-wrap">
+            <p className="operating-setup-label"><span>Start your setup</span></p>
+            <div className="operating-setup-rail" aria-label="Details needed for pricing">
+              {setupFields.map(({ icon: Icon, label, value }) => (
+                <Link className="operating-setup-field" href="/get-pricing" key={label}>
+                  <Icon aria-hidden="true" />
+                  <span><small>{label}</small><strong>{value}</strong></span>
+                  <ArrowRight aria-hidden="true" />
+                </Link>
+              ))}
+              <Link className="operating-setup-action" href="/get-pricing">
+                Start my setup <ArrowRight aria-hidden="true" />
               </Link>
             </div>
           </div>
         </section>
 
-        <div className="model-strip hero-proof-strip" aria-label="Ring On Demand campaign models">
-          <span>
-            <PhoneCall aria-hidden="true" />
-            Pay per call
-          </span>
-          <span>
-            <Check aria-hidden="true" />
-            Real-time leads
-          </span>
-          <span>
-            <CalendarDays aria-hidden="true" />
-            Booked appointments
-          </span>
-          <span>
-            <ShieldCheck aria-hidden="true" />
-            Your states, hours, and filters
-          </span>
-        </div>
+        <RoutingStage />
 
-        <section className="campaign-demo-section">
-          <div className="demo-instruction">
-            <span>Try it out or scroll down</span>
+        <section className="operating-process" aria-labelledby="operating-process-title">
+          <div className="operating-centered-copy">
+            <h2 id="operating-process-title">Set the details your team can handle.</h2>
+            <p>
+              Tell us where you work, when you can respond, and how much volume
+              you want. Review every detail before pricing.
+            </p>
           </div>
-          <CampaignBriefDemo />
-        </section>
+          <ol className="operating-step-list">
+            {setupSteps.map(({ icon: Icon, label, copy }, index) => (
+              <li key={label}>
+                <span className="operating-step-icon"><Icon aria-hidden="true" /></span>
+                <small>0{index + 1}</small>
+                <h3>{label}</h3>
+                <p>{copy}</p>
+              </li>
+            ))}
+          </ol>
 
-        <section className="brand-statement">
-          <p className="section-code">Three ways to buy production</p>
-          <h2>Choose how you want new customers to reach you.</h2>
-          <p>
-            Start with inbound calls, new leads, or booked appointments. Then
-            choose the vertical, locations, hours, and volume that fit your
-            team.
-          </p>
-        </section>
-
-        <section className="section-frame" id="how-it-works">
-          <div className="section-heading">
-            <p className="section-code">[01] How it works</p>
-            <div>
-              <h2>Choose a service. Set your rules. Review the details.</h2>
-              <p>
-                Tell us what you sell, where and when your team can respond,
-                and how much volume you want. You can edit every answer before
-                you request pricing.
-              </p>
+          <div className="operating-review-panel" aria-label="Illustrative setup review">
+            <div className="operating-review-topbar">
+              <strong>Review your setup</strong>
+              <div>
+                <Link href="/get-pricing">Edit setup</Link>
+                <Link className="operating-review-primary" href="/get-pricing">Request pricing</Link>
+              </div>
             </div>
+            <div className="operating-review-tabs" aria-hidden="true">
+              <span className="is-active">Your setup</span>
+              <span>Review details</span>
+              <span>Team notes</span>
+            </div>
+            <dl className="operating-review-grid">
+              {[
+                ["What you want", "Calls, leads, or appointments"],
+                ["Where", "Your selected locations"],
+                ["When", "Your selected schedule"],
+                ["How many", "Your daily or weekly limit"],
+                ["Who you want to reach", "Your customer criteria"],
+                ["Where it should go", "Your selected destination"],
+              ].map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+            </dl>
           </div>
-          <ProductStory />
         </section>
 
-        <section className="section-frame buying-models" id="buying-models">
-          <div className="section-heading">
-            <p className="section-code">[02] Buying models</p>
-            <div>
-              <h2>Three simple ways to buy new opportunities.</h2>
-            </div>
+        <section className="operating-industries" aria-labelledby="operating-industries-title">
+          <div className="operating-centered-copy">
+            <h2 id="operating-industries-title">Choose your industry.</h2>
+            <p>See what we’ll ask for and check current options for your market.</p>
           </div>
-          <div className="buying-model-grid">
-            {buyingModels.map(({ icon: Icon, ...model }) => (
-              <article key={model.name}>
-                <div className="model-number">{model.number}</div>
-                <Icon aria-hidden="true" size={38} strokeWidth={1.25} />
-                <p className="section-code">{model.name}</p>
-                <h3>{model.headline}</h3>
-                <p>{model.copy}</p>
-                <Link className="text-link" href={model.href}>
-                  {model.linkLabel}
-                  <ArrowRight aria-hidden="true" size={16} />
-                </Link>
+          <div className="operating-industry-grid">
+            {industryLinks.map(({ icon: Icon, label, href }) => (
+              <Link href={href} key={label}>
+                <Icon aria-hidden="true" />
+                <span>{label}</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <WorkspaceOverview />
+
+        <section className="operating-expectations" aria-labelledby="operating-expectations-title">
+          <h2 id="operating-expectations-title">Know what happens before you start.</h2>
+          <div>
+            {expectations.map(({ icon: Icon, title, copy }) => (
+              <article key={title}>
+                <Icon aria-hidden="true" />
+                <span><h3>{title}</h3><p>{copy}</p></span>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="workspace-section">
-          <div className="workspace-section-copy">
-            <p className="section-code">[03] Buyer workspace</p>
-            <h2>See what arrived and what happened next.</h2>
-            <div className="workspace-feature-list">
-              {workspaceFeatures.map(([name, copy], index) => (
-                <div key={name}>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
-                  <p>
-                    <strong>{name}</strong>
-                    {copy}
-                  </p>
-                </div>
-              ))}
-            </div>
-            <Link className="button button-light" href="/agents">
-              Explore the buyer workspace
-            </Link>
-          </div>
-
-          <div className="workspace-preview">
-            <div className="workspace-preview-top">
-              <span>Buyer workspace</span>
-              <span>Campaign view</span>
-            </div>
-            <div className="workspace-preview-grid">
-              <aside>
-                {["Overview", "Campaigns", "Activity", "Quality", "Reports"].map(
-                  (item, index) => (
-                    <span className={index === 1 ? "is-active" : ""} key={item}>
-                      {item}
-                    </span>
-                  ),
-                )}
-              </aside>
-              <div className="campaign-table">
-                <div className="campaign-table-head">
-                  <strong>Campaign</strong>
-                  <strong>Status</strong>
-                  <strong>Delivery</strong>
-                  <strong>Cap</strong>
-                </div>
-                {[
-                  ["Final Expense — FL", "Ready", "Inbound calls", "25/day"],
-                  ["Roofing — TX", "Review", "Real-time leads", "40/day"],
-                  ["Medicare — AZ", "Paused", "Appointments", "10/week"],
-                ].map((row) => (
-                  <div className="campaign-table-row" key={row[0]}>
-                    {row.map((cell, index) =>
-                      index === 1 ? (
-                        <span className="table-status" key={cell}>
-                          {cell}
-                        </span>
-                      ) : (
-                        <span key={cell}>{cell}</span>
-                      ),
-                    )}
-                  </div>
-                ))}
-                <div className="campaign-detail">
-                  <div>
-                    <Headphones aria-hidden="true" />
-                    <span>
-                      <small>Delivery destination</small>
-                      <strong>Buyer phone line</strong>
-                    </span>
-                  </div>
-                  <div>
-                    <SlidersHorizontal aria-hidden="true" />
-                    <span>
-                      <small>Campaign control</small>
-                      <strong>Schedule and cap</strong>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section-frame home-verticals-section" id="verticals">
-          <div className="section-heading">
-            <p className="section-code">[04] Verticals</p>
+        <section className="operating-final-cta" aria-labelledby="operating-final-cta-title">
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="operating-final-art"
+            fill
+            sizes="100vw"
+            src="/media/rid/signal-room-hero.png"
+          />
+          <div>
+            <h2 id="operating-final-cta-title">Ready to see what’s available for your team?</h2>
+            <p>
+              Share your market, hours, volume, customer criteria, and
+              destination. We’ll review the details and follow up with pricing
+              or scheduling options.
+            </p>
             <div>
-              <h2>Choose the service your team sells.</h2>
-              <p>
-                Browse {catalogVerticals.length} programs across{" "}
-                {verticalCategories.length} categories. Pick a service, then
-                tell us whether you want calls, leads, or appointments.
-              </p>
-            </div>
-          </div>
-          <div className="vertical-catalog">
-            {categoryOrder.map((category, categoryIndex) => (
-              <section
-                className={`vertical-catalog-group vertical-tone-${category
-                  .toLowerCase()
-                  .replace(" ", "-")}`}
-                key={category}
-              >
-                <div className="vertical-catalog-head">
-                  <span>0{categoryIndex + 1}</span>
-                  <h3>{category}</h3>
-                </div>
-                <div>
-                  {catalogVerticals
-                    .filter((vertical) => vertical.category === category)
-                    .slice(0, 5)
-                    .map((vertical) => (
-                      <Link
-                        href={`/verticals/${vertical.slug}`}
-                        key={vertical.slug}
-                      >
-                        <span>{vertical.name}</span>
-                        <ArrowRight aria-hidden="true" size={16} />
-                      </Link>
-                    ))}
-                </div>
-              </section>
-            ))}
-          </div>
-          <Link className="text-link vertical-catalog-all" href="/verticals">
-            Browse all vertical pages
-            <ArrowRight aria-hidden="true" size={16} />
-          </Link>
-        </section>
-
-        <section className="section-frame research-section">
-          <div className="section-heading">
-            <p className="section-code">[05] Research</p>
-            <div>
-              <h2>Understand what you are buying before you begin.</h2>
-              <p>
-                Learn how calls, leads, and appointments work, what details to
-                confirm, and how to review what your team receives.
-              </p>
-              <Link className="text-link" href="/blog">
-                Read the research
-                <ArrowRight aria-hidden="true" size={16} />
+              <Link className="button button-purple" href="/get-pricing">
+                Get pricing <ArrowRight aria-hidden="true" size={15} />
+              </Link>
+              <Link className="button operating-outline-button" href="/book-a-call">
+                Talk to our team
               </Link>
             </div>
           </div>
-          <div className="research-graphic" aria-hidden="true">
-            <div className="signal-line">
-              {Array.from({ length: 24 }).map((_, index) => (
-                <span key={index} />
-              ))}
-            </div>
-            <div className="research-notes">
-              <span>Intent</span>
-              <span>Conversation</span>
-              <span>Outcome</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="section-frame questions-section">
-          <div className="section-heading">
-            <p className="section-code">[06] Questions</p>
-            <div>
-              <h2>Straight answers before you launch.</h2>
-              <p>
-                Your service type, locations, hours, volume, customer
-                criteria, and pricing are confirmed before a campaign moves
-                forward.
-              </p>
-            </div>
-          </div>
-          <FAQ />
         </section>
       </main>
     </SiteShell>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CampaignBuilder } from "@/components/campaign/campaign-builder";
 import { AnnouncementBar } from "@/components/site/site-chrome";
+import { verticalBySlug, verticals } from "@/lib/verticals";
 
 export const metadata: Metadata = {
   title: "Build a campaign",
@@ -11,17 +12,25 @@ export const metadata: Metadata = {
 };
 
 type Props = {
-  searchParams: Promise<{
-    brief?: string;
-    intent?: string;
-  }>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 };
+
+function firstValue(value: string | string[] | undefined) {
+  return Array.isArray(value) ? value[0] : value;
+}
 
 export default async function BuildCampaignPage({ searchParams }: Props) {
   const params = await searchParams;
+  const briefParam = firstValue(params.brief);
+  const intentParam = firstValue(params.intent);
+  const verticalParam = firstValue(params.vertical)?.trim().toLowerCase();
   const initialBrief =
-    typeof params.brief === "string" ? params.brief.slice(0, 2_000) : undefined;
-  const initialIntent = params.intent === "demo" ? "demo" : "pricing";
+    typeof briefParam === "string" ? briefParam.slice(0, 2_000) : undefined;
+  const initialIntent = intentParam === "demo" ? "demo" : "pricing";
+  const initialVertical = verticalParam
+    ? verticalBySlug.get(verticalParam) ??
+      verticals.find((vertical) => vertical.name.toLowerCase() === verticalParam)
+    : undefined;
 
   return (
     <main className="campaign-page">
@@ -46,6 +55,14 @@ export default async function BuildCampaignPage({ searchParams }: Props) {
       <CampaignBuilder
         initialBrief={initialBrief}
         initialIntent={initialIntent}
+        initialVertical={
+          initialVertical
+            ? {
+                category: initialVertical.category,
+                name: initialVertical.name,
+              }
+            : undefined
+        }
       />
     </main>
   );

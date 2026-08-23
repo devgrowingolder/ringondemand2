@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 
 const example =
-  "Final expense calls in Florida and Texas on weekdays from 9am to 5pm with a daily limit of 25 calls.";
+  "I’m looking for Final Expense calls in Florida and Texas, Monday through Friday from 9 a.m. to 5 p.m., with a limit of 25 calls per day.";
 
 type DemoSummary = {
   campaign: string;
@@ -13,6 +13,14 @@ type DemoSummary = {
   delivery: string;
   schedule: string;
   volume: string;
+};
+
+const summaryLabels: Record<keyof DemoSummary, string> = {
+  campaign: "Service",
+  locations: "Service area",
+  delivery: "What you want",
+  schedule: "Receiving hours",
+  volume: "Requested amount",
 };
 
 function parseDemoBrief(input: string): DemoSummary {
@@ -46,9 +54,9 @@ function parseDemoBrief(input: string): DemoSummary {
           ? "Live inbound calls"
           : "Needs confirmation",
     schedule:
-      normalized.includes("weekday") &&
-      (normalized.includes("9am") || normalized.includes("9 am"))
-        ? "Weekdays from 9am to 5pm"
+      (normalized.includes("weekday") || normalized.includes("monday through friday")) &&
+      (normalized.includes("9am") || normalized.includes("9 am") || normalized.includes("9 a.m."))
+        ? "Weekdays from 9 a.m. to 5 p.m."
         : "Needs confirmation",
     volume: volume ? `${volume} per day` : "Needs confirmation",
   };
@@ -69,7 +77,7 @@ export function CampaignBriefDemo() {
       <form className="campaign-prompt" onSubmit={handleSubmit}>
         <label htmlFor="campaign-demo-brief">
           <Sparkles aria-hidden="true" size={18} strokeWidth={1.6} />
-          What would you like your team to receive?
+          What kind of calls, leads, or appointments do you need?
         </label>
         <div className="campaign-prompt-row">
           <textarea
@@ -87,8 +95,8 @@ export function CampaignBriefDemo() {
           </button>
         </div>
         <p id="campaign-demo-help">
-          Describe it in your own words. We will organize your answers, and
-          you can correct every detail before submitting.
+          Write it in plain language. We’ll organize the details, and you’ll
+          approve everything before anything is submitted.
         </p>
       </form>
 
@@ -98,17 +106,17 @@ export function CampaignBriefDemo() {
       >
         <div className="campaign-result-head">
           <div>
-            <p className="section-code">Campaign details</p>
-            <h3>{submitted ? "Review your answers" : "Ready to update"}</h3>
+            <p className="section-code">Your campaign</p>
+            <h3>{submitted ? "Check what we understood" : "Ready to update"}</h3>
           </div>
           <span className="approval-state">
-            {submitted ? "Buyer review required" : "Brief changed"}
+            {submitted ? "Your approval is required" : "Your description has changed"}
           </span>
         </div>
         <dl>
           {Object.entries(summary).map(([key, value]) => (
             <div key={key}>
-              <dt>{key}</dt>
+              <dt>{summaryLabels[key as keyof DemoSummary]}</dt>
               <dd>{value}</dd>
             </div>
           ))}
@@ -122,13 +130,13 @@ export function CampaignBriefDemo() {
             type="button"
           >
             <Edit3 aria-hidden="true" size={15} />
-            Edit details
+            Change my request
           </button>
           <Link
             className="button button-purple"
             href={`/build-campaign?brief=${encodeURIComponent(brief)}`}
           >
-            Use this campaign
+            Continue to pricing
             <ArrowRight aria-hidden="true" size={15} />
           </Link>
         </div>

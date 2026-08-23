@@ -6,6 +6,7 @@ import { useMemo, useState } from "react";
 import {
   categorySlug,
   type VerticalDefinition,
+  verticalAvailabilityLabel,
 } from "@/lib/verticals";
 
 export function VerticalBrowser({
@@ -59,7 +60,7 @@ export function VerticalBrowser({
       <div className="vertical-browser-toolbar">
         <p>
           <strong>{filtered.length}</strong>{" "}
-          {filtered.length === 1 ? "vertical" : "verticals"}
+          {filtered.length === 1 ? "program to explore" : "programs to explore"}
         </p>
         <div aria-label="Filter verticals by market">
           {["All", ...categories].map((category) => (
@@ -89,7 +90,7 @@ export function VerticalBrowser({
               <Link href={`/verticals/${vertical.slug}`} key={vertical.slug}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <strong>{vertical.name}</strong>
-                <small>{vertical.category}</small>
+                <small>{verticalAvailabilityLabel(vertical)}</small>
                 <ArrowRight aria-hidden="true" />
               </Link>
             ))}

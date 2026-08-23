@@ -15,26 +15,26 @@ const stories = [
   {
     id: "define",
     label: "Choose",
-    headline: "Choose the program that fits your team.",
-    copy: "Start with calls, leads, or appointments. Then choose your service, locations, hours, volume, and customer criteria.",
-    action: "Choose my program",
+    headline: "Choose calls, leads, appointments—or ask for help.",
+    copy: "Start with what you sell and how you want people to reach your team.",
+    action: "Start my request",
     href: "/build-campaign",
   },
   {
     id: "route",
-    label: "Deliver",
-    headline: "Choose where each delivery should go.",
-    copy: "Send calls to a phone, leads to your selected system, and appointments to a calendar.",
-    action: "See delivery options",
-    href: "/agents",
+    label: "Add details",
+    headline: "Tell us where, when, and how much.",
+    copy: "Add your service areas, receiving hours, team capacity, audience, and preferred phone, system, or calendar.",
+    action: "See what we’ll ask",
+    href: "/platform/campaign-setup",
   },
   {
     id: "review",
     label: "Review",
-    headline: "See what your team received.",
-    copy: "Review delivery details, add outcome notes, manage availability, and follow the applicable credit process from one workspace.",
-    action: "Explore the buyer workspace",
-    href: "/agents",
+    headline: "Check the full request before you send it.",
+    copy: "Make changes, confirm your contact information once, then request pricing or book a call.",
+    action: "See the full process",
+    href: "/how-it-works",
   },
 ] as const;
 
@@ -88,13 +88,13 @@ export function ProductStory() {
         <div className="workspace-body">
           <aside aria-label="Campaign builder steps">
             {[
-              "Delivery",
-              "Vertical",
-              "Locations",
-              "Schedule",
-              "Volume",
-              "Customer criteria",
-              "Destination",
+              "What you want",
+              "Industry",
+              "Service area",
+              "Receiving hours",
+              "How many",
+              "Who you want to reach",
+              "Where to send them",
             ].map((item, index) => (
               <div className={index < 2 ? "is-current" : ""} key={item}>
                 <span>{index + 1}</span>
@@ -107,16 +107,16 @@ export function ProductStory() {
               <div>
                 <span className="workspace-kicker">
                   {active === "define"
-                    ? "Choose your program"
+                    ? "Choose what you want"
                     : active === "route"
-                      ? "Choose a destination"
-                      : "Review your campaign"}
+                      ? "Add your campaign details"
+                      : "Review your request"}
                 </span>
                 <strong>
                   {active === "define"
                     ? "Final Expense — FL + TX"
                     : active === "route"
-                      ? "Send each delivery to the right place"
+                      ? "Tell us where and when your team can respond"
                       : "Approve the campaign details"}
                 </strong>
               </div>
@@ -128,28 +128,28 @@ export function ProductStory() {
             {active === "define" && (
               <div className="workspace-form-grid">
                 <div className="mock-field">
-                  <span>Delivery model</span>
+                  <span>What you want</span>
                   <strong>Inbound calls</strong>
                 </div>
                 <div className="mock-field">
-                  <span>Vertical</span>
+                  <span>Industry</span>
                   <strong>Final Expense</strong>
                 </div>
                 <div className="mock-field is-wide">
-                  <span>Locations</span>
+                  <span>Service area</span>
                   <strong>Florida · Texas</strong>
                 </div>
                 <div className="mock-field">
-                  <span>Schedule</span>
+                  <span>Receiving hours</span>
                   <strong>Weekdays · 9am–5pm</strong>
                 </div>
                 <div className="mock-field">
-                  <span>Volume</span>
+                  <span>Requested amount</span>
                   <strong>25 / day</strong>
                 </div>
                 <div className="mock-field is-wide">
-                  <span>Customer criteria</span>
-                  <strong>Buyer-approved criteria</strong>
+                  <span>Who you want to reach</span>
+                  <strong>Your approved questions</strong>
                 </div>
               </div>
             )}
@@ -158,7 +158,7 @@ export function ProductStory() {
               <div className="route-visual">
                 <div className="route-origin">
                   <Route aria-hidden="true" />
-                  <span>Approved campaign</span>
+                  <span>Reviewed request</span>
                 </div>
                 <div className="route-line" />
                 <div className="route-targets">
@@ -185,10 +185,10 @@ export function ProductStory() {
               <div className="review-table">
                 {[
                   ["Campaign", "Final Expense"],
-                  ["Locations", "Florida and Texas"],
-                  ["Delivery", "Live inbound calls"],
-                  ["Schedule", "Weekdays from 9am to 5pm"],
-                  ["Volume", "25 calls per day"],
+                  ["Service area", "Florida and Texas"],
+                  ["What you want", "Inbound calls"],
+                  ["Receiving hours", "Weekdays from 9am to 5pm"],
+                  ["Requested amount", "25 calls per day"],
                 ].map(([label, value]) => (
                   <div key={label}>
                     <Check aria-hidden="true" size={16} />

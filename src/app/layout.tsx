@@ -3,23 +3,12 @@ import "@fontsource-variable/dm-sans";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/500.css";
 import { IntercomChatbot } from "@/components/site/intercom-chatbot";
+import { rootMetadata } from "@/lib/seo";
 import "./globals.css";
+import "./rid-signal.css";
+import "./homepage.css";
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://ringondemand.com"),
-  title: {
-    default: "Ring On Demand | Pay-Per-Call, Leads & Appointments",
-    template: "%s | Ring On Demand",
-  },
-  description:
-    "Buy inbound calls, real-time leads, and booked appointments across insurance, home services, legal, and financial markets.",
-  openGraph: {
-    title: "Ring On Demand | Pay-Per-Call, Leads & Appointments",
-    description:
-      "Choose calls, leads, or appointments, then set your service area, schedule, volume, and customer criteria.",
-    type: "website",
-  },
-};
+export const metadata: Metadata = rootMetadata;
 
 export default function RootLayout({
   children,

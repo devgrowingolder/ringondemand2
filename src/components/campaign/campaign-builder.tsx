@@ -15,6 +15,14 @@ import {
 import Link from "next/link";
 import { FormEvent, useMemo, useState } from "react";
 import { trackFunnelEvent } from "@/lib/analytics";
+import {
+  deliveryLabel,
+  destinationLabel,
+  parseStateCodeInput,
+  parseZipCodeInput,
+  timezoneLabel,
+  unresolvedFieldLabel,
+} from "@/lib/campaign/form";
 import type { CampaignDraftV1 } from "@/lib/campaign/schema";
 import { verticals } from "@/lib/verticals";
 
@@ -80,47 +88,41 @@ function currentUnresolved(draft: CampaignDraftV1) {
   return fields;
 }
 
-function splitCodes(value: string) {
-  return Array.from(
-    new Set(
-      value
-        .split(/[\s,]+/)
-        .map((item) => item.trim().toUpperCase())
-        .filter((item) => /^[A-Z]{2}$/.test(item)),
-    ),
-  );
-}
+type InitialVertical = CampaignDraftV1["vertical"];
 
-function splitZips(value: string) {
-  return Array.from(
-    new Set(
-      value
-        .split(/[\s,]+/)
-        .map((item) => item.trim())
-        .filter((item) => /^\d{5}$/.test(item)),
-    ),
-  );
-}
-
-function deliveryLabel(model: CampaignDraftV1["deliveryModel"]) {
+function createInitialDraft(initialVertical?: InitialVertical): CampaignDraftV1 {
   return {
-    inbound_calls: "Inbound calls",
-    exclusive_leads: "Real-time leads",
-    appointments: "Appointments",
-    undecided: "Help me choose",
-  }[model];
+    ...initialDraft,
+    vertical: initialVertical ?? initialDraft.vertical,
+    locations: { ...initialDraft.locations },
+    schedule: { ...initialDraft.schedule, windows: [] },
+    volume: { ...initialDraft.volume },
+    qualificationRules: [],
+    unresolvedFields: [...initialDraft.unresolvedFields],
+  };
 }
 
 export function CampaignBuilder({
   initialBrief,
   initialIntent,
+  initialVertical,
 }: {
   initialBrief?: string;
   initialIntent: "pricing" | "demo";
+  initialVertical?: InitialVertical;
 }) {
   const [step, setStep] = useState(0);
-  const [brief, setBrief] = useState(initialBrief || defaultBrief);
-  const [draft, setDraft] = useState<CampaignDraftV1>(initialDraft);
+  const [brief, setBrief] = useState(
+    initialBrief ||
+      (initialVertical
+        ? `${initialVertical.name} campaign. I need help choosing locations, hours, volume, customer criteria, and delivery.`
+        : defaultBrief),
+  );
+  const [draft, setDraft] = useState<CampaignDraftV1>(() =>
+    createInitialDraft(initialVertical),
+  );
+  const [stateCodesInput, setStateCodesInput] = useState("");
+  const [zipCodesInput, setZipCodesInput] = useState("");
   const [contact, setContact] = useState<ContactState>(emptyContact);
   const [intent] = useState(initialIntent);
   const [busy, setBusy] = useState(false);
@@ -131,9 +133,11 @@ export function CampaignBuilder({
 
   const unresolved = useMemo(() => currentUnresolved(draft), [draft]);
 
-  function goTo(next: number) {
-    setError("");
-    setNotice("");
+  function goTo(next: number, preserveMessages = false) {
+    if (!preserveMessages) {
+      setError("");
+      setNotice("");
+    }
     setStep(Math.max(0, Math.min(steps.length - 1, next)));
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
@@ -156,6 +160,8 @@ export function CampaignBuilder({
 
       setBrief(payload.sanitizedBrief);
       setDraft(payload.draft);
+      setStateCodesInput(payload.draft.locations.states.join(", "));
+      setZipCodesInput(payload.draft.locations.zipCodes.join(", "));
       if (payload.containedContactData) {
         setNotice(
           "Contact details were removed from your campaign description. Add them once in the contact step.",
@@ -166,19 +172,16 @@ export function CampaignBuilder({
         deliveryModel: payload.draft.deliveryModel,
         vertical: payload.draft.vertical.name,
       });
-      goTo(1);
-    } catch (parseError) {
+      goTo(1, payload.containedContactData);
+    } catch {
       setNotice(
-        "Your brief is preserved. Continue through the manual campaign questions.",
+        "We could not organize this automatically, but your description is saved. Continue through the simple questions below.",
       );
       trackFunnelEvent({ name: "campaign_fallback", step: "describe" });
-      setDraft(initialDraft);
-      setError(
-        parseError instanceof Error
-          ? parseError.message
-          : "Continue through the manual flow.",
-      );
-      goTo(1);
+      setDraft(createInitialDraft(initialVertical));
+      setStateCodesInput("");
+      setZipCodesInput("");
+      goTo(1, true);
     } finally {
       setBusy(false);
     }
@@ -206,6 +209,69 @@ export function CampaignBuilder({
     }));
   }
 
+  function saveCoverageStep(event: FormEvent) {
+    event.preventDefault();
+    const states = parseStateCodeInput(stateCodesInput);
+    const zipCodes = parseZipCodeInput(zipCodesInput);
+
+    if (states.invalid.length) {
+      setError(
+        `Use two-letter state codes separated by commas, such as FL, TX. Check: ${states.invalid.join(", ")}.`,
+      );
+      return;
+    }
+
+    if (zipCodes.invalid.length) {
+      setError(
+        `Use five-digit ZIP codes separated by commas. Check: ${zipCodes.invalid.join(", ")}.`,
+      );
+      return;
+    }
+
+    if (!states.values.length && !zipCodes.values.length) {
+      setError("Add at least one state or ZIP code for this campaign.");
+      return;
+    }
+
+    if (!draft.schedule.timezone) {
+      setError("Choose the timezone your team uses for this schedule.");
+      return;
+    }
+
+    setDraft((current) => ({
+      ...current,
+      locations: {
+        states: states.values,
+        zipCodes: zipCodes.values,
+      },
+      schedule: current.schedule.windows.length
+        ? current.schedule
+        : {
+            timezone: current.schedule.timezone,
+            windows: [
+              {
+                days: [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                ],
+                start: "09:00",
+                end: "17:00",
+              },
+            ],
+          },
+    }));
+    trackFunnelEvent({
+      name: "campaign_step_complete",
+      step: steps[step],
+      deliveryModel: draft.deliveryModel,
+      vertical: draft.vertical.name,
+    });
+    goTo(3);
+  }
+
   async function submitCampaign() {
     setBusy(true);
     setError("");
@@ -213,7 +279,7 @@ export function CampaignBuilder({
 
     if (unresolved.length) {
       setError(
-        `Confirm every campaign field before submission: ${unresolved.join(", ")}.`,
+        `Confirm every campaign field before submission: ${unresolved.map(unresolvedFieldLabel).join(", ")}.`,
       );
       setBusy(false);
       return;
@@ -491,34 +557,7 @@ export function CampaignBuilder({
         )}
 
         {step === 2 && (
-          <form
-            className="builder-step"
-            onSubmit={(event) => {
-              setDraft((current) => ({
-                ...current,
-                schedule: current.schedule.windows.length
-                  ? current.schedule
-                  : {
-                      timezone:
-                        current.schedule.timezone || "America/New_York",
-                      windows: [
-                        {
-                          days: [
-                            "Monday",
-                            "Tuesday",
-                            "Wednesday",
-                            "Thursday",
-                            "Friday",
-                          ],
-                          start: "09:00",
-                          end: "17:00",
-                        },
-                      ],
-                    },
-              }));
-              saveStep(event, 3);
-            }}
-          >
+          <form className="builder-step" onSubmit={saveCoverageStep}>
             <div className="builder-step-copy">
               <MapPin aria-hidden="true" />
               <p className="section-code">Locations and schedule</p>
@@ -528,33 +567,19 @@ export function CampaignBuilder({
               <label className="form-field">
                 State codes
                 <input
-                  onChange={(event) =>
-                    setDraft((current) => ({
-                      ...current,
-                      locations: {
-                        ...current.locations,
-                        states: splitCodes(event.target.value),
-                      },
-                    }))
-                  }
+                  autoCapitalize="characters"
+                  onChange={(event) => setStateCodesInput(event.target.value)}
                   placeholder="FL, TX"
-                  value={draft.locations.states.join(", ")}
+                  value={stateCodesInput}
                 />
               </label>
               <label className="form-field">
                 ZIP codes (optional)
                 <input
-                  onChange={(event) =>
-                    setDraft((current) => ({
-                      ...current,
-                      locations: {
-                        ...current.locations,
-                        zipCodes: splitZips(event.target.value),
-                      },
-                    }))
-                  }
+                  inputMode="numeric"
+                  onChange={(event) => setZipCodesInput(event.target.value)}
                   placeholder="33101, 75201"
-                  value={draft.locations.zipCodes.join(", ")}
+                  value={zipCodesInput}
                 />
               </label>
               <label className="form-field">
@@ -569,6 +594,7 @@ export function CampaignBuilder({
                       },
                     }))
                   }
+                  required
                   value={draft.schedule.timezone}
                 >
                   <option disabled value="">
@@ -905,9 +931,9 @@ export function CampaignBuilder({
             </div>
             <dl className="builder-summary">
               {[
-                ["Delivery", deliveryLabel(draft.deliveryModel), 1],
+                ["What you want", deliveryLabel(draft.deliveryModel), 1],
                 [
-                  "Vertical",
+                  "Service",
                   `${draft.vertical.name} · ${draft.vertical.category}`,
                   1,
                 ],
@@ -919,7 +945,7 @@ export function CampaignBuilder({
                 [
                   "Schedule",
                   draft.schedule.windows.length
-                    ? `${draft.schedule.windows[0].days.length === 5 ? "Weekdays" : "Every day"} · ${draft.schedule.windows[0].start}–${draft.schedule.windows[0].end} · ${draft.schedule.timezone}`
+                    ? `${draft.schedule.windows[0].days.length === 5 ? "Weekdays" : "Every day"} · ${draft.schedule.windows[0].start}–${draft.schedule.windows[0].end} · ${timezoneLabel(draft.schedule.timezone)}`
                     : "Needs confirmation",
                   2,
                 ],
@@ -935,10 +961,10 @@ export function CampaignBuilder({
                   draft.qualificationRules.join("; ") || "Needs confirmation",
                   3,
                 ],
-                ["Destination", draft.destination, 3],
+                ["Send results to", destinationLabel(draft.destination), 3],
                 [
                   "Contact",
-                  `${contact.buyerName} · ${contact.company} · ${contact.workEmail}`,
+                  `${contact.buyerName} · ${contact.company} · ${contact.workEmail} · ${contact.phone}`,
                   4,
                 ],
               ].map(([label, value, editStep]) => (
@@ -963,7 +989,8 @@ export function CampaignBuilder({
             </dl>
             {unresolved.length > 0 && (
               <div className="unresolved-warning">
-                Confirm before submission: {unresolved.join(", ")}.
+                Confirm before submission:{" "}
+                {unresolved.map(unresolvedFieldLabel).join(", ")}.
               </div>
             )}
             <div className="builder-step-actions">
